@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Creador de Combos - Free Fire</title>
+    <style>
+        /* Diseño oscuro estilo gamer/Free Fire */
+        body {
+            background-color: #0d0e12;
+            color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+        }
+
+        h1 {
+            color: #ff4500;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #aaa;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        /* Contenedor de botones de Modos */
+        .modos-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .btn-modo {
+            background: linear-gradient(135deg, #1f2330, #141722);
+            color: #fff;
+            border: 2px solid #333;
+            padding: 12px 20px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-modo:hover {
+            border-color: #ff4500;
+            box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
+        }
+
+        .btn-modo.active {
+            background: linear-gradient(135deg, #ff4500, #b33000);
+            border-color: #ff8753;
+            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+        }
+
+        /* Pantalla donde se muestran las habilidades */
+        .combo-display {
+            background-color: #161925;
+            border-radius: 12px;
+            max-width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #252a3d;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            display: none;
+        }
+
+        .combo-title {
+            color: #ffbd00;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .slots-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .slot {
+            background-color: #1f2438;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #ffbd00;
+            text-align: left;
+        }
+
+        .slot.activa {
+            border-left-color: #ff4500;
+        }
+
+        .slot-tipo {
+            font-size: 11px;
+            text-transform: uppercase;
+            color: #888;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+
+        .slot-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+        }
+
+        .slot-desc {
+            font-size: 12px;
+            color: #bbb;
+            margin-top: 5px;
+        }
+
+        /* Sección del código y botón de copiar */
+        .code-container {
+            margin-top: 25px;
+            background-color: #0b0c10;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #222;
+        }
+
+        .copy-box {
+            font-family: monospace;
+            font-size: 12px;
+            color: #00ffcc;
+            word-break: break-all;
+            margin-bottom: 12px;
+            background-color: #050507;
+            padding: 8px;
+            border-radius: 4px;
+        }
+
+        .btn-copiar {
+            background-color: #00ffcc;
+            color: #000;
+            border: none;
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-copiar:hover {
+            background-color: #00cc99;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Creador de Combos FF</h1>
+    <p class="subtitle">Selecciona un modo táctico para cargar las habilidades meta</p>
+
+    <!-- Botones de los modos de juego -->
+    <div class="modos-container">
+        <button class="btn-modo" onclick="mostrarCombo('soporte', this)">🛡️ SOPORTE</button>
+        <button class="btn-modo" onclick="mostrarCombo('monedero', this)">💰 MONEDERO</button>
+        <button class="btn-modo" onclick="mostrarCombo('daño', this)">➿ DAÑO DOBLE</button>
+    </div>
+
+    <!-- Pantalla del Combo Seleccionado -->
+    <div id="comboDisplay" class="combo-display">
+        <div id="comboTitle" class="combo-title">Modo Seleccionado</div>
+        
+        <div class="slots-grid">
+            <!-- Habilidad Activa -->
+            <div class="slot activa">
+                <div class="slot-tipo" style="color: #ff4500;">Habilidad Activa</div>
+                <div id="slotActiva" class="slot-name">-</div>
+                <div id="descActiva" class="slot-desc">-</div>
+            </div>
+            <!-- Pasiva 1 -->
+            <div class="slot">
+                <div class="slot-tipo">Pasiva 1</div>
+                <div id="slotPasiva1" class="slot-name">-</div>
+                <div id="descPasiva1" class="slot-desc">-</div>
+            </div>
+            <!-- Pasiva 2 -->
+            <div class="slot">
+                <div class="slot-tipo">Pasiva 2</div>
+                <div id="slotPasiva2" class="slot-name">-</div>
+                <div id="descPasiva2" class="slot-desc">-</div>
+            </div>
+            <!-- Pasiva 3 -->
+            <div class="slot">
+                <div class="slot-tipo">Pasiva 3</div>
+                <div id="slotPasiva3" class="slot-name">-</div>
+                <div id="descPasiva3" class="slot-desc">-</div>
+            </div>
+        </div>
+
+        <!-- Caja de Código Interactiva -->
+        <div class="code-container">
+            <div id="codeBox" class="copy-box">Código: -</div>
+            <button id="btnCopiar" class="btn-copiar" onclick="copiarCodigoContenido()">📋 COPIAR CÓDIGO</button>
+        </div>
+    </div>
+
+    <script>
+        // Variables globales para rastrear el código actual
+        let codigoActual = "";
+
+        // Base de datos de los combos al 100%
+        const combos = {
+            soporte: {
+                titulo: "Combo Soporte Imparable 🛡️",
+                codigo: "#FF#fmptcntpY3Z3c2ljY3F+dWtiZXlidH98aXV7b3VxaXJvcHRwe2JqZGV/dHB7",
+                activa: "Dimitri",
+                descActiva: "Crea una zona de curación donde tú y tus aliados se autoreviven automáticamente.",
+                pasiva1: "Thiva",
+                descPasiva1: "Revive a tus compañeros un 70% más rápido y les recupera vida al instante.",
+                pasiva2: "Olivia",
+                descPasiva2: "Traspasa efectos de curación potenciados a todo tu equipo cercano.",
+                pasiva3: "Kapella",
+                descPasiva3: "Aumenta los efectos de los objetos de curación y reduce la pérdida de vida de aliados derribados."
+            },
+            monedero: {
+                titulo: "Combo Monedero Inteligente 💰",
+                codigo: "#FF#cGl/aHV9eXF8f3V5c2RxfnVrYmV5YnR/fGl1e291cWlyb3B0cHtiamRlf3Rzfg==",
+                activa: "Tatsuya",
+                descActiva: "Acelera a gran velocidad hacia adelante. Se puede acumular hasta para 3 usos seguidos.",
+                pasiva1: "Thiva",
+                descPasiva1: "Te ayuda a levantar a tus compañeros tumbados a máxima velocidad en media batalla.",
+                pasiva2: "Olivia",
+                descPasiva2: "Aumenta el porcentaje de curación que reciben los aliados cuando usas objetos o habilidades.",
+                pasiva3: "Kapella",
+                descPasiva3: "Mejora el rendimiento de curación general del equipo y blinda a los compañeros en el suelo."
+            },
+            daño: {
+                titulo: "Combo Daño Doble Letal ➿",
+                codigo: "#FF#cGl7YXV9eXN9f3V5cmdxfnVqZ2V5YnR/fGl1e291fGlyb3B0cHtiamRlf3Rxdw==",
+                activa: "Tatsuya",
+                descActiva: "Te desplazas a velocidad extrema para sorprender al enemigo o romper su línea de fuego.",
+                pasiva1: "Jota",
+                descPasiva1: "Al disparar a enemigos recuperas algo de PV, y derribar a un enemigo te recupera el 20% de tu vida.",
+                pasiva2: "Thiva",
+                descPasiva2: "Te permite levantar a tus aliados casi instantáneamente para no frenar la presión del rusheo.",
+                pasiva3: "Olivia",
+                descPasiva3: "Aumenta drásticamente la vida con la que reviven tus compañeros caídos en batalla."
+            }
+        };
+
+        function mostrarCombo(modo, boton) {
+            const botones = document.querySelectorAll('.btn-modo');
+            botones.forEach(b => b.classList.remove('active'));
+            boton.classList.add('active');
+
+            const datos = combos[modo];
+            codigoActual = datos.codigo; // Guardamos el código actual
+
+            document.getElementById('comboTitle').innerText = datos.titulo;
+            document.getElementById('slotActiva').innerText = datos.activa;
+            document.getElementById('descActiva').innerText = datos.descActiva;
+            document.getElementById('slotPasiva1').innerText = datos.pasiva1;
+            document.getElementById('descPasiva1').innerText = datos.descPasiva1;
+            document.getElementById('slotPasiva2').innerText = datos.pasiva2;
+            document.getElementById('descPasiva2').innerText = datos.descPasiva2;
+            document.getElementById('slotPasiva3').innerText = datos.pasiva3;
+            document.getElementById('descPasiva3').innerText = datos.descPasiva3;
+            document.getElementById('codeBox').innerText = datos.codigo;
+
+            // Resetear el botón de copiar cada vez que se cambie de modo
+            const btnCopiar = document.getElementById('btnCopiar');
+            btnCopiar.innerText = "📋 COPIAR CÓDIGO";
+            btnCopiar.style.backgroundColor = "#00ffcc";
+
+            document.getElementById('comboDisplay').style.display = "block";
+        }
+
+        function copiarCodigoContenido() {
+            if (codigoActual === "") return;
+
+            // Copiar el código al portapapeles del sistema
+            navigator.clipboard.writeText(codigoActual).then(() => {
+                const btnCopiar = document.getElementById('btnCopiar');
+                btnCopiar.innerText = "✅ ¡COPIADO CON ÉXITO!";
+                btnCopiar.style.backgroundColor = "#2ecc71"; // Cambia a verde limpio
+                btnCopiar.style.color = "#fff";
+                
+                // Regresa a la normalidad después de 2 segundos
+                setTimeout(() => {
+                    btnCopiar.innerText = "📋 COPIAR CÓDIGO";
+                    btnCopiar.style.backgroundColor = "#00ffcc";
+                    btnCopiar.style.color = "#000";
+                }, 2000);
+            }).catch(err => {
+                alert("Error al copiar el código, inténtalo manualmente.");
+            });
+        }
+    </script>
+</body>
+              </html>
