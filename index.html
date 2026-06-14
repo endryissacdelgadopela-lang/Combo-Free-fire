@@ -3,704 +3,236 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panel Diosito v3.6 - Free Fire</title>
+    <title>⚙️ Generador de Sensibilidad - Free Fire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    
     <style>
-        /* Diseño oscuro estilo gamer/Free Fire */
+        * {
+            box-sizing: border-box;
+            font-family: 'Rajdhani', sans-serif;
+        }
+        
         body {
-            background-color: #0d0e12;
+            background: radial-gradient(circle at 50% 0%, #1a233a 0%, #080914 70%, #030408 100%);
             color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             text-align: center;
-            padding: 20px;
             margin: 0;
-        }
-
-        h1 {
-            color: #ff4500;
-            text-transform: uppercase;
-            text-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
-            font-size: 28px;
-            margin-bottom: 5px;
-        }
-
-        .subtitle {
-            color: #aaa;
-            font-size: 14px;
-            margin-bottom: 25px;
-        }
-
-        h2 {
-            color: #ffbd00;
-            margin-top: 40px;
-            text-transform: uppercase;
-            font-size: 20px;
-        }
-
-        /* Contenedores principales */
-        .combo-display, .sensi-panel, .features-panel, .promo-panel {
-            background-color: #161925;
-            border-radius: 12px;
-            max-width: 500px;
-            margin: 0 auto 20px auto;
             padding: 20px;
-            border: 1px solid #252a3d;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            min-height: 100vh;
         }
 
-        .combo-display { display: none; }
-
-        /* Panel de Promoción de Youtube */
-        .promo-panel {
-            border: 2px solid #ff0000;
-            background: linear-gradient(135deg, #1a1111, #161925);
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.3);
+        h1 { 
+            font-family: 'Orbitron', sans-serif;
+            color: #ff5500; 
+            margin-bottom: 5px;
+            font-size: 28px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
+        }
+        
+        .sub {
+            color: #7e8da2;
+            margin-top: 0;
+            font-size: 14px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
         }
 
-        .promo-title {
-            color: #ff3333;
-            font-size: 22px;
-            font-weight: bold;
+        .panel-container {
+            background: linear-gradient(135deg, rgba(20, 20, 35, 0.85) 0%, rgba(12, 12, 22, 0.95) 100%);
+            border: 1px solid rgba(255, 85, 0, 0.15);
+            border-radius: 20px;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 25px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+        }
+
+        .opcion-grupo {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #ffaa00;
+            font-weight: 700;
+            font-size: 16px;
             text-transform: uppercase;
             margin-bottom: 8px;
-            text-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
         }
 
-        .btn-youtube {
-            background: linear-gradient(135deg, #ff0000, #cc0000);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 10px;
-            text-transform: uppercase;
-            transition: transform 0.2s, box-shadow 0.2s;
-            display: inline-block;
-            text-decoration: none;
-        }
-
-        .btn-youtube:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-        }
-
-        /* Contenedor de botones de Modos */
-        .modos-container {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 30px;
-        }
-
-        .btn-modo {
-            background: linear-gradient(135deg, #1f2330, #141722);
+        select {
+            width: 100%;
+            background: #090a12;
+            border: 1px solid #252845;
             color: #fff;
-            border: 2px solid #333;
-            padding: 12px 20px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .btn-modo:hover {
-            border-color: #ff4500;
-            box-shadow: 0 0 10px rgba(255, 69, 0, 0.3);
-        }
-
-        .btn-modo.active {
-            background: linear-gradient(135deg, #ff4500, #b33000);
-            border-color: #ff8753;
-            box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
-        }
-
-        .combo-title, .sensi-title, .feature-title {
-            color: #ffbd00;
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 15px;
-            text-transform: uppercase;
-        }
-
-        .slots-grid, .sensi-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 15px;
-        }
-
-        .slot, .sensi-stat {
-            background-color: #1f2438;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #ffbd00;
-            text-align: left;
-        }
-
-        .slot.activa { border-left-color: #ff4500; }
-        .sensi-stat { border-left-color: #00ffcc; }
-
-        .slot-tipo, .sensi-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            color: #888;
-            font-weight: bold;
-            margin-bottom: 4px;
-        }
-
-        .slot-name, .sensi-value {
+            padding: 12px;
             font-size: 16px;
-            font-weight: bold;
-            color: #fff;
+            font-weight: 600;
+            border-radius: 10px;
+            outline: none;
+            cursor: pointer;
         }
 
-        .slot-desc {
-            font-size: 12px;
-            color: #bbb;
+        /* --- ESTILO PARA BOTONES MODO --- */
+        .modos-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 10px;
             margin-top: 5px;
         }
-
-        /* Cajas de código y botones */
-        .code-container {
-            margin-top: 25px;
-            background-color: #0b0c10;
-            padding: 15px;
-            border-radius: 8px;
-            border: 1px solid #222;
-        }
-
-        .copy-box {
-            font-family: monospace;
-            font-size: 12px;
-            color: #00ffcc;
-            word-break: break-all;
-            margin-bottom: 12px;
-            background-color: #050507;
-            padding: 8px;
-            border-radius: 4px;
-        }
-
-        .btn-copiar, .btn-calcular {
-            background-color: #00ffcc;
-            color: #000;
-            border: none;
-            padding: 12px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            width: 100%;
-            transition: background-color 0.2s ease;
-            text-transform: uppercase;
-        }
-
-        .btn-copiar:hover, .btn-calcular:hover { background-color: #00cc99; }
-        .btn-calcular { background-color: #ff4500; color: white; margin-top: 15px; }
-        .btn-calcular:hover { background-color: #e03e00; }
-
-        /* Estilos de Selección */
-        .select-custom, .input-custom {
-            background-color: #1f2438;
-            color: white;
-            border: 1px solid #333;
-            padding: 10px;
-            width: 100%;
-            border-radius: 6px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            font-weight: bold;
-            outline: none;
-            box-sizing: border-box;
-        }
-        .select-custom:focus, .input-custom:focus { border-color: #ff4500; }
-
-        /* DISEÑO REACCIÓN TÁCTIL */
-        .box-reaccion {
-            width: 100%;
-            height: 120px;
-            background-color: #e74c3c;
-            border-radius: 8px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: bold;
-            font-size: 18px;
-            cursor: pointer;
-            user-select: none;
-            margin-top: 15px;
-            transition: background 0.1s ease;
-        }
-
-        /* Estructura de bloque de nicks con botón */
-        .nick-row {
-            display: flex;
-            flex-direction: column;
-            background-color: #1f2438;
+        
+        .btn-modo {
+            background: #0f1122;
+            border: 1px solid #252845;
+            color: #8fa3be;
             padding: 12px;
-            border-radius: 8px;
-            margin-bottom: 12px;
-            border: 1px solid #333;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 15px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
             text-align: center;
         }
-
-        .nick-text-display {
-            font-size: 18px;
-            font-weight: bold;
-            color: #888;
-            margin-bottom: 8px;
-            word-break: break-all;
-        }
-
-        .btn-nick-copiar {
-            background-color: #222;
-            color: #aaa;
-            border: 1px solid #444;
-            padding: 8px 12px;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 4px;
-            cursor: not-allowed;
-            text-transform: uppercase;
-            transition: all 0.2s;
-            width: 100%;
-        }
-
-        .btn-nick-copiar.active {
-            background-color: #00ffcc;
-            color: #000;
+        
+        .btn-modo.seleccionado {
+            background: linear-gradient(135deg, #ff5500 0%, #cc1100 100%);
+            color: #fff;
             border: none;
-            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 50, 0, 0.4);
         }
-        .btn-nick-copiar.active:hover { background-color: #00cc99; }
 
-        /* Sección de Créditos del Proyecto */
-        .creditos {
-            margin-top: 60px;
-            margin-bottom: 20px;
-            font-size: 13px;
-            color: #666;
-            letter-spacing: 1px;
-            border-top: 1px solid #1f2438;
-            padding-top: 20px;
+        .btn-generar {
+            width: 100%;
+            background: linear-gradient(90deg, #ff8800, #ff3300);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: 700;
+            border-radius: 12px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 10px;
+            box-shadow: 0 5px 15px rgba(255, 68, 0, 0.3);
+            transition: transform 0.2s;
         }
-        .creditos strong {
-            color: #ff4500;
-            text-shadow: 0 0 5px rgba(255, 69, 0, 0.2);
+        .btn-generar:active { transform: scale(0.98); }
+
+        /* --- MODAL ESTILO CATCH --- */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
         }
-        .creditos span {
-            color: #00ffcc;
+        .modal-content {
+            background: #0a0a0f;
+            border: 1px solid #222;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 350px;
+            padding: 20px;
+            text-align: left;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+        }
+        .modal-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            border-bottom: 1px solid #151525;
+            padding-bottom: 10px;
+        }
+        .sens-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #12121f;
+            font-size: 15px;
+        }
+        .sens-label { color: #ff3b3b; font-weight: 700; text-transform: uppercase; }
+        .sens-value { color: #00ffaa; font-family: monospace; font-weight: bold; }
+
+        .btn-close {
+            width: 100%;
+            background: #15151c;
+            color: #fff;
+            border: 1px solid #333;
+            padding: 12px;
+            border-radius: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 15px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <h1>Panel Diosito v3.6</h1>
-    <p class="subtitle">Desarrollado y Optimizado por Endry</p>
+    <h1>⚙️ CONFIG_SENS GENERATOR ⚙️</h1>
+    <p class="sub">Ajusta tu dispositivo para dar todo capa</p>
 
-    <!-- 📢 PUBLICIDAD OFICIAL DE TU CANAL -->
-    <div class="promo-panel">
-        <div class="promo-title">📺 CANAL RECOMENDADO</div>
-        <p class="slot-desc" style="color: #fff; font-size: 14px; margin-bottom: 10px;">
-            ¡No te pierdas las configuraciones más rotas, trucos y salas exclusivas! 
-        </p>
-        <div style="font-size: 18px; font-weight: bold; color: #ffbd00; margin-bottom: 5px;">🔥 Fantamista YT 🔥</div>
-        <a href="https://www.youtube.com/@FantamistaYT" target="_blank" class="btn-youtube">🚨 SUSCRÍBETE AQUÍ</a>
-    </div>
+    <div class="panel-container">
+        <div class="opcion-grupo">
+            <label>Dispositivo:</label>
+            <select id="selectDispositivo">
+                <option value="android">Android (Gama Baja / Media)</option>
+                <option value="ios">iOS (iPhone / iPad)</option>
+                <option value="emulador">PC (Emulador)</option>
+            </select>
+        </div>
 
-    <!-- 1️⃣ SECCIÓN DE COMBOS -->
-    <h2>🛡️ SELECCIÓN DE COMBOS TÁCTICOS</h2>
-    <div class="modos-container">
-        <button id="btn-soporte" class="btn-modo" onclick="mostrarCombo('soporte', this)">🛡️ SOPORTE</button>
-        <button id="btn-monedero" class="btn-modo" onclick="mostrarCombo('monedero', this)">💰 MONEDERO</button>
-        <button id="btn-daño" class="btn-modo" onclick="mostrarCombo('daño', this)">➿ DAÑO DOBLE</button>
-    </div>
+        <div class="opcion-grupo">
+            <label>Uso de DPI:</label>
+            <select id="selectDpi">
+                <option value="si">Sí (Recomendar DPI)</option>
+                <option value="no">No DPI (Dejar de fábrica)</option>
+            </select>
+        </div>
 
-    <div id="comboDisplay" class="combo-display">
-        <div id="comboTitle" class="combo-title">Modo Seleccionado</div>
-        <div class="slots-grid">
-            <div class="slot activa">
-                <div class="slot-tipo" style="color: #ff4500;">Habilidad Activa</div>
-                <div id="slotActiva" class="slot-name">-</div>
-                <div id="descActiva" class="slot-desc">-</div>
-            </div>
-            <div class="slot">
-                <div class="slot-tipo">Pasiva 1</div>
-                <div id="slotPasiva1" class="slot-name">-</div>
-                <div id="descPasiva1" class="slot-desc">-</div>
-            </div>
-            <div class="slot">
-                <div class="slot-tipo">Pasiva 2</div>
-                <div id="slotPasiva2" class="slot-name">-</div>
-                <div id="descPasiva2" class="slot-desc">-</div>
-            </div>
-            <div class="slot">
-                <div class="slot-tipo">Pasiva 3</div>
-                <div id="slotPasiva3" class="slot-name">-</div>
-                <div id="descPasiva3" class="slot-desc">-</div>
+        <div class="opcion-grupo">
+            <label>Modo de Disparo:</label>
+            <div class="modos-grid">
+                <div class="btn-modo seleccionado" onclick="cambiarModo('alta', this)">⚡ Alta Sensibilidad (Full Rojo)</div>
+                <div class="btn-modo" onclick="cambiarModo('precision', this)">🎯 Alta Precisión (Mira Estable)</div>
+                <div class="btn-modo" onclick="cambiarModo('baja', this)">📉 Sensibilidad Baja (Estable)</div>
             </div>
         </div>
-        <div class="code-container">
-            <div id="codeBox" class="copy-box">Código: -</div>
-            <button id="btnCopiar" class="btn-copiar" onclick="copyCodeAction()">📋 COPIAR CÓDIGO DE IMPORTACIÓN</button>
-        </div>
+
+        <button class="btn-generar" onclick="generarConfig()">Generar Sensibilidad</button>
     </div>
 
-
-    <!-- 2️⃣ SECCIÓN DE SENSIBILIDAD -->
-    <h2>🎯 GENERADOR DE SENSIBILIDAD DIOSITO</h2>
-    <div class="sensi-panel">
-        <div class="sensi-title">Configura tu Estilo de Juego</div>
-        
-        <label class="slot-tipo" style="display:block; text-align:left;">Selecciona tu Celular:</label>
-        <select id="selectMarca" class="select-custom">
-            <option value="iphone">iPhone (iOS) 🍏</option>
-            <option value="xiaomi">Xiaomi / POCO / Redmi 🦊</option>
-            <option value="samsung">Samsung Galaxy 🌌</option>
-            <option value="motorola">Motorola Moto 🏍️</option>
-            <option value="tecno">Tecno / Infinix / Otros Android 📱</option>
-        </select>
-
-        <label class="slot-tipo" style="display:block; text-align:left;">Selecciona el Modo:</label>
-        <select id="selectModo" class="select-custom">
-            <option value="br">BR Clasificatoria 🏆</option>
-            <option value="de">Duelo de Escuadras (DE) ⚔️</option>
-            <option value="pvp">Modo PVP / Salas 🔴</option>
-        </select>
-
-        <label class="slot-tipo" style="display:block; text-align:left;">Selecciona las Armas:</label>
-        <select id="selectArma" class="select-custom">
-            <option value="todo">Todas las Armas (General) 🔫</option>
-            <option value="escopeta">Escopetas (M1014, Mag-7, Dos Tiros) 💥</option>
-            <option value="ar">SMG / AR (M4A1, MP40, Thompson) ☄️</option>
-        </select>
-
-        <label class="slot-tipo" style="display:block; text-align:left;">Configuración de DPI:</label>
-        <select id="selectDpi" class="select-custom">
-            <option value="nodpi">Sin DPI (Celular de Fábrica)</option>
-            <option value="condpi">Con DPI Alto (Sensibilidad Rápida)</option>
-        </select>
-
-        <button class="btn-calcular" onclick="generarSensibilidad()">⚡ GENERAR SENSI PERFECTA</button>
-
-        <div id="resultadosSensi" style="margin-top: 25px; display: none;">
-            <div class="sensi-grid">
-                <div class="sensi-stat">
-                    <div class="sensi-label">General</div>
-                    <div id="sensiGen" class="sensi-value">-</div>
-                </div>
-                <div class="sensi-stat">
-                    <div class="sensi-label">Punto Rojo</div>
-                    <div id="sensiRojo" class="sensi-value">-</div>
-                </div>
-                <div class="sensi-stat">
-                    <div class="sensi-label">Mira x2</div>
-                    <div id="sensiX2" class="sensi-value">-</div>
-                </div>
-                <div class="sensi-stat">
-                    <div class="sensi-label">Mira x4</div>
-                    <div id="sensiX4" class="sensi-value">-</div>
-                </div>
-                <div class="sensi-stat">
-                    <div class="sensi-label">Mira Franco</div>
-                    <div id="sensiFranco" class="sensi-value">-</div>
-                </div>
-                <div class="sensi-stat">
-                    <div class="sensi-label">Cámara 360</div>
-                    <div id="sensiCamara" class="sensi-value">-</div>
-                </div>
-            </div>
+    <div id="resultadoModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-title" id="txtModoTitulo">Configuración</div>
             
-            <div class="code-container" style="margin-top:15px; background-color:#141722;">
-                <div class="sensi-label" style="color:#ffbd00;">Botón de Disparo Recomendado</div>
-                <div id="sensiBoton" class="slot-name" style="color:#00ffcc; font-size:24px; margin-top:5px;">-</div>
-            </div>
-
-            <div id="containerDpiResultado" class="code-container" style="margin-top:15px; background-color:#0b0c10; border-color: #ffbd00;">
-                <div class="sensi-label" style="color:#ffbd00;">⚙️ DPI Sugerido</div>
-                <div id="sensiDpiText" class="slot-name" style="color:#fff; font-size:20px; margin-top:5px;">-</div>
-            </div>
-        </div>
-    </div>
-
-
-    <!-- 3️⃣ TEST DE REFLEJOS -->
-    <h2>⚡ TEST DE REFLEJOS & MS TÁCTIL</h2>
-    <div class="features-panel">
-        <div class="feature-title">Calibrador de Velocidad de Dedos</div>
-        <p class="slot-desc" style="margin-bottom: 15px;">Cuando el cuadro cambie por completo a VERDE, dale un tap lo más rápido posible.</p>
-        
-        <div id="boxReflejo" class="box-reaccion" onclick="manejarClicReaccion()">¡TOCA PARA EMPEZAR!</div>
-        
-        <div id="resultadoReaccion" class="code-container" style="display:none; background-color:#141722;">
-            <div class="slot-tipo" style="color:#00ffcc;">Tu Tiempo de Reacción</div>
-            <div id="txtMs" class="slot-name" style="font-size:24px; color:#ffbd00;">0 ms</div>
-            <div id="txtRango" class="slot-desc" style="font-size:14px; margin-top:5px; font-weight:bold;">-</div>
-        </div>
-    </div>
-
-
-    <!-- 4️⃣ CREADOR DE NOMBRES -->
-    <h2>🥷 CREADOR DE NOMBRES INSANOS</h2>
-    <div class="features-panel">
-        <div class="feature-title">Letras y Símbolos Veteranos</div>
-        
-        <input type="text" id="inputNick" class="input-custom" placeholder="Escribe tu apodo (Max 12 letras)..." maxlength="12" oninput="actualizarNicks()">
-        
-        <div class="code-container" style="background-color:#0b0c10; text-align:left; padding:15px;">
-            <div class="slot-tipo" style="color: #ff4500; font-weight: bold; margin-bottom: 12px;">Elige tu estilo y cópialo de una:</div>
+            <div class="sens-row"><span class="sens-label">General:</span><span id="vGen" class="sens-value">0</span></div>
+            <div class="sens-row"><span class="sens-label">Punto Rojo:</span><span id="vMira1" class="sens-value">0</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X2:</span><span id="vMira2" class="sens-value">0</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X4:</span><span id="vMira4" class="sens-value">0</span></div>
+            <div class="sens-row"><span class="sens-label">Franco:</span><span id="vFranco" class="sens-value">0</span></div>
+            <div class="sens-row"><span class="sens-label">Cámara:</span><span id="vCamara" class="sens-value">0</span></div>
             
-            <div class="nick-row">
-                <div id="nickText1" class="nick-text-display">❌ Escribe un nombre primero...</div>
-                <button id="btnCopiarNick1" class="btn-nick-copiar" onclick="ejecutarCopiaNick(1)" disabled>📋 Copiar Estilo Rayo</button>
-            </div>
+            <div class="sens-row" id="filaDpi"><span class="sens-label">DPI Recomendado:</span><span id="vDpi" class="sens-value">0</span></div>
+            <div class="sens-row"><span class="sens-label">Botón de Disparo:</span><span id="vBoton" class="sens-value">0</span></div>
 
-            <div class="nick-row">
-                <div id="nickText2" class="nick-text-display">❌ Escribe un nombre primero...</div>
-                <button id="btnCopiarNick2" class="btn-nick-copiar" onclick="ejecutarCopiaNick(2)" disabled>📋 Copiar Estilo Demonio</button>
-            </div>
-        </div>
-
-        <div class="code-container" style="margin-top:15px; background-color:#141722; border-color:#ffbd00;">
-            <div class="slot-tipo" style="color:#ffbd00;">Espacio Invisible para Nombre (Copy/Paste)</div>
-            <div class="copy-box" style="font-size:16px; color:#fff;">( ㅤ )</div>
-            <button id="btnCopiarEspacio" class="btn-copiar" style="background-color:#ffbd00;" onclick="copiarEspacioInvisible()">📋 COPIAR ESPACIO INVISIBLE</button>
+            <button class="btn-close" onclick="cerrarModal()">Cerrar Ajustes</button>
         </div>
     </div>
 
-
-    <!-- SECCIÓN DE CRÉDITOS -->
-    <div class="creditos">
-        Creado con <span>Inteligencia Artificial</span> & Diseñado por <strong>Endry</strong> ⚡
-    </div>
-
-    <script>
-        let codigoActual = "";
-        let modoAbiertoActualmente = "";
-
-        let estadoReaccion = "inicio"; 
-        let tiempoInicio = 0;
-        let timeoutReaccion;
-
-        const combos = {
-            soporte: {
-                titulo: "Combo Soporte Imparable 🛡️",
-                codigo: "#FF#fmptcntpY3Z3c2ljY3F+dWtiZXlidH98aXV7b3VxaXJvcHRwe2JqZGV/dHB7",
-                activa: "Dimitri",
-                pasiva1: "Kapella", descPasiva1: "Aumenta los efectos de curación y reduce pérdida de vida de aliados caídos.",
-                pasiva2: "Olivia", descPasiva2: "Traspasa efectos de curación potenciados a todo tu equipo cercano.",
-                pasiva3: "Thiva", descPasiva3: "Revive a tus compañeros un 70% más rápido y les recupera vida al instante."
-            },
-            monedero: {
-                titulo: "Combo Monedero Inteligente 💰",
-                codigo: "#FF#cGl/aHV9eXF8f3V5c2RxfnVrYmV5YnR/fGl1e291cWlyb3B0cHtiamRlf3Rzfg==",
-                activa: "Clu",
-                pasiva1: "Moco Enigma", descPasiva1: "Rastrea y marca a los enemigos a los que disparas por mucho más tiempo.",
-                pasiva2: "Suzy", descPasiva2: "Te otorga monedas extra de Free Fire por cada eliminación de tu escuadra.",
-                pasiva3: "Thiva", descPasiva3: "Revive a tus compañeros caídos a máxima velocidad para mantener la economía."
-            },
-            daño: {
-                titulo: "Combo Daño Doble Letal ➿",
-                codigo: "#FF#cGl7YXV9eXN9f3V5cmdxfnVqZ2V5YnR/fGl1e291fGlyb3B0cHtiamRlf3Rxdw==",
-                activa: "Ray (Ryden)",
-                pasiva1: "Kairos", descPasiva1: "Consume energía automáticamente para aumentar la penetración de armadura.",
-                pasiva2: "Rin (Kelly Renacida)", descPasiva2: "Aumenta la velocidad al correr y el primer disparo causa daño masivo.",
-                pasiva3: "Luna", descPasiva3: "Aumenta la velocidad de disparo un 8% y da velocidad de movimiento al impactar."
-            }
-        };
-
-        function mostrarCombo(modo, boton) {
-            const panelCombo = document.getElementById('comboDisplay');
-            if (modoAbiertoActualmente === modo) {
-                boton.classList.remove('active');
-                panelCombo.style.display = "none";
-                modoAbiertoActualmente = "";
-                return;
-            }
-            const botones = document.querySelectorAll('.btn-modo');
-            botones.forEach(b => b.classList.remove('active'));
-            boton.classList.add('active');
-
-            const datos = combos[modo];
-            codigoActual = datos.codigo;
-            modoAbiertoActualmente = modo;
-
-            document.getElementById('comboTitle').innerText = datos.titulo;
-            document.getElementById('slotActiva').innerText = datos.activa;
-            document.getElementById('slotPasiva1').innerText = datos.pasiva1;
-            document.getElementById('descPasiva1').innerText = datos.descPasiva1;
-            document.getElementById('slotPasiva2').innerText = datos.pasiva2;
-            document.getElementById('descPasiva2').innerText = datos.descPasiva2;
-            document.getElementById('slotPasiva3').innerText = datos.pasiva3;
-            document.getElementById('descPasiva3').innerText = datos.descPasiva3;
-            document.getElementById('codeBox').innerText = datos.codigo;
-
-            document.getElementById('btnCopiar').innerText = "📋 COPIAR CÓDIGO";
-            panelCombo.style.display = "block";
-        }
-
-        function copyCodeAction() {
-            if (codigoActual === "") return;
-            navigator.clipboard.writeText(codigoActual).then(() => {
-                const btnCopiar = document.getElementById('btnCopiar');
-                btnCopiar.innerText = "✅ ¡COPIADO CON ÉXITO!";
-                setTimeout(() => { btnCopiar.innerText = "📋 COPIAR CÓDIGO DE IMPORTACIÓN"; }, 2000);
-            });
-        }
-
-        // CÁLCULO DE SENSIBILIDADES CORREGIDO (v3.6)
-        function generarSensibilidad() {
-            const modo = document.getElementById('selectModo').value;
-            const arma = document.getElementById('selectArma').value;
-            const dpiSelection = document.getElementById('selectDpi').value;
-            const marca = document.getElementById('selectMarca').value;
-
-            let general, rojo, x2, x4, franco, camara, boton, dpiValue;
-
-            // Ajuste base según sistema
-            let plus = (marca === "iphone") ? 3 : 0;
-
-            if (modo === "pvp") {
-                general = (dpiSelection === "condpi") ? 100 : (95 + plus); 
-                rojo = 95; x2 = 88; x4 = 82; franco = 48; camara = 70;
-                boton = (arma === "escopeta") ? "42%" : "47%";
-                dpiValue = "580 DPI";
-            } else if (modo === "de") {
-                general = (94 + plus); 
-                rojo = (arma === "escopeta") ? 99 : 92; 
-                x2 = 94; x4 = 89; franco = 55; camara = 65;
-                boton = "45%";
-                dpiValue = "500 DPI";
-            } else { 
-                general = (dpiSelection === "condpi") ? 95 : (90 + plus); 
-                rojo = 88; 
-                x2 = (arma === "ar") ? 96 : 90; 
-                x4 = 94; franco = 42; camara = 50;
-                boton = "52%";
-                dpiValue = "460 DPI";
-            }
-
-            // Inserción limpia de valores en el HTML
-            document.getElementById('sensiGen').innerText = general;
-            document.getElementById('sensiRojo').innerText = rojo;
-            document.getElementById('sensiX2').innerText = x2;
-            document.getElementById('sensiX4').innerText = x4;
-            document.getElementById('sensiFranco').innerText = franco;
-            document.getElementById('sensiCamara').innerText = camara;
-            document.getElementById('sensiBoton').innerText = boton;
-
-            const dpiContainer = document.getElementById('containerDpiResultado');
-            if (dpiSelection === "nodpi") {
-                dpiContainer.style.display = "none";
-            } else {
-                document.getElementById('sensiDpiText').innerText = dpiValue;
-                dpiContainer.style.display = "block";
-            }
-
-            document.getElementById('resultadosSensi').style.display = "block";
-        }
-
-        // LÓGICA DEL TEST DE REFLEJOS
-        function manejarClicReaccion() {
-            const box = document.getElementById('boxReflejo');
-            const panelRes = document.getElementById('resultadoReaccion');
-
-            if (estadoReaccion === "inicio" || estadoReaccion === "resultado") {
-                estadoReaccion = "esperando";
-                box.innerText = "ESPERA EL CAMBIO A VERDE...";
-                box.style.backgroundColor = "#f1c40f";
-                panelRes.style.display = "none";
-
-                let tiempoAzar = Math.floor(Math.random() * 3000) + 2000;
-                timeoutReaccion = setTimeout(() => {
-                    estadoReaccion = "clic";
-                    box.innerText = "¡TOOOOOCA YA!";
-                    box.style.backgroundColor = "#2ecc71";
-                    tiempoInicio = window.performance.now();
-                }, tiempoAzar);
-
-            } else if (estadoReaccion === "esperando") {
-                clearTimeout(timeoutReaccion);
-                estadoReaccion = "inicio";
-                box.innerText = "❌ ¡MUY RÁPIDO! TOCA PARA REINICIAR";
-                box.style.backgroundColor = "#e74c3c";
-
-            } else if (estadoReaccion === "clic") {
-                let tiempoFin = window.performance.now();
-                let msFinal = Math.round(tiempoFin - tiempoInicio);
-                estadoReaccion = "resultado";
-                box.innerText = "¡HECHO! VOLVER A PROBAR";
-                box.style.backgroundColor = "#34495e";
-                document.getElementById('txtMs').innerText = msFinal + " ms";
-                
-                let rango = "";
-                if(msFinal < 180) rango = "👽 ¡REFLEJOS HACKER! Eres nivel Torneo Profesional.";
-                else if(msFinal <= 260) rango = "⚡ JUGADOR INSANO. Das puros rojos en PVP.";
-                else rango = "🐢 BOTCITO RECOGEDOR. Tienes que levantar más rápido la mira.";
-                
-                document.getElementById('txtRango').innerText = rango;
-                panelRes.style.display = "block";
-            }
-        }
-
-        // CONTROL INTELIGENTE DE NICKS Y SU BOTÓN DE COPIADO
-        function actualizarNicks() {
-            const valorInput = document.getElementById('inputNick').value.trim();
-            const txt1 = document.getElementById('nickText1');
-            const txt2 = document.getElementById('nickText2');
-            const btn1 = document.getElementById('btnCopiarNick1');
-            const btn2 = document.getElementById('btnCopiarNick2');
-
-            if (valorInput === "") {
-                txt1.innerText = "❌ Escribe un nombre primero...";
-                txt2.innerText = "❌ Escribe un nombre primero...";
-                txt1.style.color = "#888";
-                txt2.style.color = "#888";
-                
-                btn1.disabled = true;
-                btn1.classList.remove('active');
-                btn2.disabled = true;
-                btn2.classList.remove('active');
-            } else {
-                txt1.innerText = valorInput.toUpperCase() + " ⚡";
-                txt2.innerText = "꧁👹 " + valorInput.toUpperCase() + " 👹꧂";
-                txt1.style.color = "#fff";
-                txt2.style.color = "#fff";
-                
-                btn1.disabled = false;
-                btn1.classList.add('active');
-                btn2.disabled = false;
-                btn2.classList.add('active');
-            }
-        }
-
-        function ejecutarCopiaNick(numeroEstilo) {
-            const textoNick = document.getElementById('nickText' + numeroEstilo).innerText;
-            const boton = document.getElementById('btnCopiarNick' + numeroEstilo);
-            
-            navigator.clipboard.writeText(textoNick).then(() => {
-                const textoOriginalBoton = boton.innerText;
-                boton.innerText = "✅ ¡COPIADO!";
-                boton.style.backgroundColor = "#ffffff";
-                boton.style.color = "#000000";
-                
-                setTimeout(() => {
-                    boton.innerText = textoOriginalBoton;
-                    boton.style.backgroundColor = "#00ffcc";
-                    boton.style.color = "#000000";
-                }, 1500);
-            });
-        }
-
-        function copiarEspacioInvisible() {
-            navigator.clipboard.writeText("ㅤ").then(() => {
-                const btn = document.getElementById('btnCopiarEspacio');
-                btn.innerText = "✅ ¡ESPACIO COPIADO!";
-                setTimeout(() => { btn.innerText = "📋 COPIAR ESPACIO INVISIBLE"; }, 2000);
-            });
-        }
-    </script>
+    <script src="sens.js"></script>
 </body>
-            </html>
+</html>
