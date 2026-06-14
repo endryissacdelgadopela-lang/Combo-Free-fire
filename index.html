@@ -76,10 +76,10 @@
             cursor: pointer;
         }
 
-        /* --- ESTILO PARA BOTONES MODO --- */
+        /* --- BOTONES DE MODOS DE DISPARO --- */
         .modos-grid {
-            display: grid;
-            grid-template-columns: 1fr;
+            display: flex;
+            flex-direction: column;
             gap: 10px;
             margin-top: 5px;
         }
@@ -88,21 +88,23 @@
             background: #0f1122;
             border: 1px solid #252845;
             color: #8fa3be;
-            padding: 12px;
+            padding: 14px;
             border-radius: 10px;
             cursor: pointer;
             font-weight: 700;
             font-size: 15px;
             text-transform: uppercase;
-            transition: all 0.3s ease;
+            transition: all 0.25s ease;
             text-align: center;
         }
         
+        /* Efecto cuando un modo está seleccionado */
         .btn-modo.seleccionado {
             background: linear-gradient(135deg, #ff5500 0%, #cc1100 100%);
             color: #fff;
             border: none;
-            box-shadow: 0 0 15px rgba(255, 50, 0, 0.4);
+            box-shadow: 0 0 15px rgba(255, 50, 0, 0.5);
+            transform: scale(1.02);
         }
 
         .btn-generar {
@@ -123,20 +125,20 @@
         }
         .btn-generar:active { transform: scale(0.98); }
 
-        /* --- MODAL ESTILO CATCH --- */
+        /* --- VENTANA FLOTANTE (MODAL FLOATING) --- */
         .modal {
             display: none;
             position: fixed;
             z-index: 999;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
+            background: rgba(0, 0, 0, 0.85);
             backdrop-filter: blur(4px);
             align-items: center;
             justify-content: center;
         }
         .modal-content {
             background: #0a0a0f;
-            border: 1px solid #222;
+            border: 1px solid #1f1f35;
             border-radius: 24px;
             width: 90%;
             max-width: 350px;
@@ -145,26 +147,26 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
         }
         .modal-title {
-            font-family: 'Rajdhani', sans-serif;
-            font-size: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 18px;
             font-weight: 700;
             color: #ffffff;
             text-align: center;
             margin-bottom: 15px;
             text-transform: uppercase;
-            border-bottom: 1px solid #151525;
+            border-bottom: 2px solid #ff5500;
             padding-bottom: 10px;
         }
         .sens-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 9px 0;
             border-bottom: 1px solid #12121f;
             font-size: 15px;
         }
         .sens-label { color: #ff3b3b; font-weight: 700; text-transform: uppercase; }
-        .sens-value { color: #00ffaa; font-family: monospace; font-weight: bold; }
+        .sens-value { color: #00ffaa; font-family: monospace; font-weight: bold; font-size: 16px; }
 
         .btn-close {
             width: 100%;
@@ -183,13 +185,13 @@
 <body>
 
     <h1>⚙️ CONFIG_SENS GENERATOR ⚙️</h1>
-    <p class="sub">Ajusta tu dispositivo para dar todo capa</p>
+    <p class="sub">Consigue la configuración perfecta para tu dispositivo</p>
 
     <div class="panel-container">
         <div class="opcion-grupo">
             <label>Dispositivo:</label>
             <select id="selectDispositivo">
-                <option value="android">Android (Gama Baja / Media)</option>
+                <option value="android">Android (Gama Baja / Media / Alta)</option>
                 <option value="ios">iOS (iPhone / iPad)</option>
                 <option value="emulador">PC (Emulador)</option>
             </select>
@@ -198,17 +200,17 @@
         <div class="opcion-grupo">
             <label>Uso de DPI:</label>
             <select id="selectDpi">
-                <option value="si">Sí (Recomendar DPI)</option>
+                <option value="si">Sí (Recomendar un DPI óptimo)</option>
                 <option value="no">No DPI (Dejar de fábrica)</option>
             </select>
         </div>
 
         <div class="opcion-grupo">
-            <label>Modo de Disparo:</label>
+            <label>Modo de Disparo Especial:</label>
             <div class="modos-grid">
-                <div class="btn-modo seleccionado" onclick="cambiarModo('alta', this)">⚡ Alta Sensibilidad (Full Rojo)</div>
-                <div class="btn-modo" onclick="cambiarModo('precision', this)">🎯 Alta Precisión (Mira Estable)</div>
-                <div class="btn-modo" onclick="cambiarModo('baja', this)">📉 Sensibilidad Baja (Estable)</div>
+                <div id="btn-alta" class="btn-modo seleccionado" onclick="cambiarModo('alta')">⚡ Alta Sensibilidad (Full Rojo)</div>
+                <div id="btn-precision" class="btn-modo" onclick="cambiarModo('precision')">🎯 Alta Precisión (Mira Estable)</div>
+                <div id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">📉 Sensibilidad Baja (Control Total)</div>
             </div>
         </div>
 
@@ -219,15 +221,16 @@
         <div class="modal-content">
             <div class="modal-title" id="txtModoTitulo">Configuración</div>
             
-            <div class="sens-row"><span class="sens-label">General:</span><span id="vGen" class="sens-value">0</span></div>
-            <div class="sens-row"><span class="sens-label">Punto Rojo:</span><span id="vMira1" class="sens-value">0</span></div>
-            <div class="sens-row"><span class="sens-label">Mira X2:</span><span id="vMira2" class="sens-value">0</span></div>
-            <div class="sens-row"><span class="sens-label">Mira X4:</span><span id="vMira4" class="sens-value">0</span></div>
-            <div class="sens-row"><span class="sens-label">Franco:</span><span id="vFranco" class="sens-value">0</span></div>
-            <div class="sens-row"><span class="sens-label">Cámara:</span><span id="vCamara" class="sens-value">0</span></div>
+            <div class="sens-row"><span class="sens-label">General:</span><span id="vGen" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Punto Rojo:</span><span id="vMira1" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X2:</span><span id="vMira2" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X4:</span><span id="vMira4" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Franco:</span><span id="vFranco" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Cámara:</span><span id="vCamara" class="sens-value">0%</span></div>
             
             <div class="sens-row" id="filaDpi"><span class="sens-label">DPI Recomendado:</span><span id="vDpi" class="sens-value">0</span></div>
-            <div class="sens-row"><span class="sens-label">Botón de Disparo:</span><span id="vBoton" class="sens-value">0</span></div>
+            
+            <div class="sens-row"><span class="sens-label">Botón de Disparo:</span><span id="vBoton" class="sens-value">0%</span></div>
 
             <button class="btn-close" onclick="cerrarModal()">Cerrar Ajustes</button>
         </div>
