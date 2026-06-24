@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ Sensi 9° Aniversario - Free Fire</title>
+    <title>⚡ Sensi Pro 9° Aniversario - Free Fire</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -24,9 +24,7 @@
         /* --- LOGO / ENCABEZADO 9° ANIVERSARIO --- */
         .header-aniversario {
             margin-bottom: 25px;
-            position: relative;
         }
-        
         .badge-9 {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
@@ -38,43 +36,69 @@
             line-height: 1;
             filter: drop-shadow(0 0 15px rgba(255, 0, 124, 0.5));
         }
-
         h1 { 
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             color: #ffffff; 
             margin: 5px 0;
-            font-size: 22px;
+            font-size: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
             text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
         }
-        
-        .sub {
-            color: #b0a1cf;
-            margin-top: 0;
-            font-size: 13px;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+
+        /* ==========================================
+           PASO 1: PANTALLA DE INGRESO DE ID
+        ========================================== */
+        #pantalla-id {
+            background: linear-gradient(135deg, rgba(30, 15, 55, 0.95) 0%, rgba(12, 6, 24, 0.98) 100%);
+            border: 2px solid #ff007c;
+            border-radius: 24px;
+            max-width: 400px;
+            margin: 40px auto;
+            padding: 30px 20px;
+            box-shadow: 0 0 35px rgba(255, 0, 124, 0.4);
+        }
+        .input-id {
+            width: 100%;
+            background: #07030e;
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
+            padding: 14px;
+            font-size: 20px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-align: center;
+            border-radius: 12px;
+            outline: none;
+            margin: 15px 0;
+            letter-spacing: 3px;
+        }
+        .input-id::placeholder {
+            color: rgba(0, 240, 255, 0.4);
+            font-size: 15px;
+            letter-spacing: 0px;
         }
 
-        /* --- PANEL DE CONFIGURACIÓN --- */
+        /* ==========================================
+           PASO 2: PANEL DE SENSIBILIDAD (OCULTO AL INICIO)
+        ========================================== */
+        #pantalla-sensi {
+            display: none; /* Se activa con JS */
+            max-width: 450px;
+            margin: 0 auto;
+        }
         .panel-container {
             background: linear-gradient(135deg, rgba(25, 12, 46, 0.85) 0%, rgba(10, 5, 20, 0.95) 100%);
             border: 1px solid rgba(255, 0, 124, 0.25);
             border-radius: 24px;
-            max-width: 450px;
-            margin: 0 auto;
             padding: 25px;
-            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 0, 124, 0.1);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
         }
-
         .opcion-grupo {
             text-align: left;
             margin-bottom: 20px;
         }
-
         label {
             display: block;
             color: #00f0ff;
@@ -82,9 +106,7 @@
             font-size: 15px;
             text-transform: uppercase;
             margin-bottom: 8px;
-            letter-spacing: 0.5px;
         }
-
         select {
             width: 100%;
             background: #07030e;
@@ -95,21 +117,14 @@
             font-weight: 600;
             border-radius: 12px;
             outline: none;
-            cursor: pointer;
-            transition: border 0.3s;
-        }
-        select:focus {
-            border-color: #ff007c;
         }
 
-        /* --- BOTONES DE MODO DE JUEGO (META ACTUAL) --- */
+        /* --- BOTONES DE MODOS --- */
         .modos-grid {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 5px;
         }
-        
         .btn-modo {
             background: #0d061a;
             border: 1px solid #3c1e5c;
@@ -120,20 +135,18 @@
             font-weight: 700;
             font-size: 15px;
             text-transform: uppercase;
-            transition: all 0.25s ease;
             text-align: center;
+            transition: all 0.25s;
         }
-        
         .btn-modo.seleccionado {
             background: linear-gradient(135deg, #ff007c 0%, #7b00ff 100%);
             color: #fff;
             border: none;
             box-shadow: 0 0 20px rgba(255, 0, 124, 0.6);
-            transform: scale(1.02);
         }
 
-        /* --- BOTÓN PRINCIPAL --- */
-        .btn-generar {
+        /* --- BOTONES DE ACCIÓN --- */
+        .btn-pro {
             width: 100%;
             background: linear-gradient(90deg, #00f0ff, #ff007c);
             color: white;
@@ -145,14 +158,13 @@
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
-            margin-top: 10px;
-            letter-spacing: 1px;
-            box-shadow: 0 5px 20px rgba(255, 0, 124, 0.3);
-            transition: transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 5px 20px rgba(255, 0, 124, 0.4);
         }
-        .btn-generar:active { transform: scale(0.97); }
+        .btn-pro:active { transform: scale(0.97); }
 
-        /* --- VENTANA FLOTANTE (VISOR PREMIUM) --- */
+        /* ==========================================
+           VENTANAS FLOTANTES (MODALS)
+        ========================================== */
         .modal {
             display: none;
             position: fixed;
@@ -169,21 +181,49 @@
             border-radius: 28px;
             width: 92%;
             max-width: 360px;
-            padding: 22px;
-            text-align: left;
-            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 40px rgba(0, 240, 255, 0.15);
+            padding: 25px;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9);
         }
+        
+        /* Modal Éxito Regalo */
+        .icono-regalo {
+            font-size: 45px;
+            margin-bottom: 10px;
+            animation: flotar 1.5s infinite ease-in-out;
+        }
+        @keyframes flotar {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+        .txt-exito {
+            color: #00ffaa;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+        .txt-mensaje-regalo {
+            color: #ffffff;
+            font-size: 17px;
+            line-height: 1.4;
+            margin-bottom: 20px;
+            font-weight: 600;
+            background: rgba(255, 0, 124, 0.1);
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px dashed #ff007c;
+        }
+
+        /* Filas de la Sensi */
         .modal-title {
             font-family: 'Orbitron', sans-serif;
             font-size: 17px;
             font-weight: 700;
-            color: #ffffff;
-            text-align: center;
             margin-bottom: 18px;
             text-transform: uppercase;
             border-bottom: 2px solid #ff007c;
             padding-bottom: 12px;
-            letter-spacing: 1px;
         }
         .sens-row {
             display: flex;
@@ -192,9 +232,10 @@
             padding: 10px 0;
             border-bottom: 1px solid #160b24;
             font-size: 16px;
+            text-align: left;
         }
         .sens-label { color: #ff007c; font-weight: 700; text-transform: uppercase; }
-        .sens-value { color: #00f0ff; font-family: monospace; font-weight: bold; font-size: 17px; text-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
+        .sens-value { color: #00f0ff; font-family: monospace; font-weight: bold; font-size: 17px; }
 
         .btn-close {
             width: 100%;
@@ -207,72 +248,98 @@
             cursor: pointer;
             margin-top: 18px;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: background 0.2s;
         }
-        .btn-close:hover { background: #1b0a2e; }
     </style>
 </head>
 <body>
 
-    <!-- CABECERA TEMÁTICA -->
+    <!-- CABECERA PRINCIPAL -->
     <div class="header-aniversario">
         <div class="badge-9">9th</div>
-        <h1>SENSI GENERATOR • META UPDATE</h1>
-        <p class="sub">Algoritmo de disparo optimizado para el 9° Aniversario</p>
+        <h1>SENSI PROFESIONAL ANIVERSARIO</h1>
     </div>
 
-    <div class="panel-container">
-        <!-- Selector de Dispositivo -->
-        <div class="opcion-grupo">
-            <label>Plataforma de Juego:</label>
-            <select id="selectDispositivo">
-                <option value="android">Android (Gama Baja / Media / Alta)</option>
-                <option value="ios">iOS (iPhone / iPad)</option>
-                <option value="emulador">PC (Emulador BlueStacks/MSI)</option>
-            </select>
-        </div>
+    <!-- ==========================================
+       PASO 1: LOGIN DE REQUERIMIENTO ID
+    ========================================== -->
+    <div id="pantalla-id">
+        <h2 style="color: #ffaa00; margin-top:0; font-size:18px; text-transform:uppercase;">Verificación de Jugador</h2>
+        <p style="color: #b0a1cf; font-size:14px;">Ingresa tu ID para vincular los parámetros de calibración:</p>
+        
+        <input type="number" id="inputPlayerID" class="input-id" placeholder="EJ: 284719482" oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12);">
+        
+        <button class="btn-pro" onclick="procesarVerificacion()">Verificar ID</button>
+    </div>
 
-        <!-- Selector de DPI -->
-        <div class="opcion-grupo">
-            <label>Sistema de DPI:</label>
-            <select id="selectDpi">
-                <option value="si">Activo (Recomendar DPI de Aniversario)</option>
-                <option value="no">Inactivo (Sin alterar DPI de fábrica)</option>
-            </select>
-        </div>
-
-        <!-- Selector Táctil de Modos META -->
-        <div class="opcion-grupo">
-            <label>Modo de Sensibilidad Ejecutiva:</label>
-            <div class="modos-grid">
-                <div id="btn-alta" class="btn-modo seleccionado" onclick="cambiarModo('alta')">⚡ Alta Sensibilidad (Full Rojo)</div>
-                <div id="btn-precision" class="btn-modo" onclick="cambiarModo('precision')">🎯 Alta Precisión (Cero Temblequeo)</div>
-                <div id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">📉 Sensibilidad Baja (Estable / Regulación)</div>
+    <!-- ==========================================
+       PASO 2: GENERADOR DE SENSIBILIDAD
+    ========================================== -->
+    <div id="pantalla-sensi">
+        <div class="panel-container">
+            <div class="opcion-grupo">
+                <label>Dispositivo Actual:</label>
+                <select id="selectDispositivo">
+                    <option value="android">Android (Gama Baja / Media / Alta)</option>
+                    <option value="ios">iOS (iPhone / iPad)</option>
+                    <option value="emulador">PC (Emulador BlueStacks)</option>
+                </select>
             </div>
-        </div>
 
-        <button class="btn-generar" onclick="generarConfig()">Cargar Configuración</button>
+            <div class="opcion-grupo">
+                <label>Configuración de DPI:</label>
+                <select id="selectDpi">
+                    <option value="si">Activo (Recomendar DPI Pro)</option>
+                    <option value="no">No DPI (Dejar de fábrica)</option>
+                </select>
+            </div>
+
+            <div class="opcion-grupo">
+                <label>Modo de Precisión Meta:</label>
+                <div class="modos-grid">
+                    <div id="btn-alta" class="btn-modo seleccionado" onclick="cambiarModo('alta')">⚡ Alta Sensibilidad (Full Rojo)</div>
+                    <div id="btn-precision" class="btn-modo" onclick="cambiarModo('precision')">🎯 Alta Precisión (Mejor Control)</div>
+                    <div id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">📉 Sensibilidad Baja (Más Estable)</div>
+                </div>
+            </div>
+
+            <button class="btn-pro" onclick="generarConfig()">Generar Sensi Profesional</button>
+        </div>
     </div>
 
-    <!-- VISOR FLOTANTE DE RESULTADOS DE ANIVERSARIO -->
+    <!-- ==========================================
+       VENTANA FLOTANTE 1: ÉXITO DEL REGALO
+    ========================================== -->
+    <div id="modalRegalo" class="modal">
+        <div class="modal-content">
+            <div class="icono-regalo">🎁</div>
+            <div class="txt-exito">¡VERIFICADO CON ÉXITO!</div>
+            <div class="txt-mensaje-regalo">
+                Te ha llegado 5 toke y un maquillaje de aniversario requerido prime
+            </div>
+            <button class="btn-pro" onclick="irAlPanelSensi()">Entrar a poner Sensi</button>
+        </div>
+    </div>
+
+    <!-- ==========================================
+       VENTANA FLOTANTE 2: RESULTADOS DE SENSI
+    ========================================== -->
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
-            <div class="modal-title" id="txtModoTitulo">REGISTRO DE SENSI</div>
+            <div class="modal-title" id="txtModoTitulo" style="color: #fff;">REGISTRO DE AJUSTES</div>
             
-            <div class="sens-row"><span class="sens-label">General:</span><span id="vGen">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Punto Rojo:</span><span id="vMira1">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Mira X2:</span><span id="vMira2">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Mira X4:</span><span id="vMira4">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Mira Franco:</span><span id="vFranco">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Cámara 360°:</span><span id="vCamara">0%</span></div>
+            <div class="sens-row"><span class="sens-label">General:</span><span id="vGen" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Punto Rojo:</span><span id="vMira1" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X2:</span><span id="vMira2" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X4:</span><span id="vMira4" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira Franco:</span><span id="vFranco" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Cámara 360°:</span><span id="vCamara" class="sens-value">0%</span></div>
             
-            <!-- Fila DPI Dinámica -->
-            <div class="sens-row" id="filaDpi"><span class="sens-label">DPI Recom:</span><span id="vDpi">0</span></div>
+            <!-- Fila del DPI -->
+            <div class="sens-row" id="filaDpi"><span class="sens-label">DPI Recom:</span><span id="vDpi" class="sens-value">0</span></div>
             
-            <div class="sens-row"><span class="sens-label">Botón de Disparo:</span><span id="vBoton">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Botón de Disparo:</span><span id="vBoton" class="sens-value">0%</span></div>
 
-            <button class="btn-close" onclick="cerrarModal()">Aplicar Ajustes</button>
+            <button class="btn-close" onclick="cerrarModal()">Aplicar a Free Fire</button>
         </div>
     </div>
 
