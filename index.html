@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚙️ Generador de Sensibilidad - Free Fire</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Rajdhani:wght@500;700&display=swap" rel="stylesheet">
+    <title>⚡ Sensi 9° Aniversario - Free Fire</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -13,7 +13,7 @@
         }
         
         body {
-            background: radial-gradient(circle at 50% 0%, #1a233a 0%, #080914 70%, #030408 100%);
+            background: radial-gradient(circle at 50% 0%, #2a0845 0%, #0b0518 60%, #020106 100%);
             color: #ffffff;
             text-align: center;
             margin: 0;
@@ -21,32 +21,53 @@
             min-height: 100vh;
         }
 
+        /* --- LOGO / ENCABEZADO 9° ANIVERSARIO --- */
+        .header-aniversario {
+            margin-bottom: 25px;
+            position: relative;
+        }
+        
+        .badge-9 {
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 56px;
+            background: linear-gradient(135deg, #00f0ff 0%, #ff007c 50%, #ffaa00 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin: 0;
+            line-height: 1;
+            filter: drop-shadow(0 0 15px rgba(255, 0, 124, 0.5));
+        }
+
         h1 { 
             font-family: 'Orbitron', sans-serif;
-            color: #ff5500; 
-            margin-bottom: 5px;
-            font-size: 28px;
+            font-weight: 700;
+            color: #ffffff; 
+            margin: 5px 0;
+            font-size: 22px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            text-shadow: 0 0 15px rgba(255, 85, 0, 0.4);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
         }
         
         .sub {
-            color: #7e8da2;
+            color: #b0a1cf;
             margin-top: 0;
-            font-size: 14px;
-            margin-bottom: 30px;
+            font-size: 13px;
+            margin-bottom: 25px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
+        /* --- PANEL DE CONFIGURACIÓN --- */
         .panel-container {
-            background: linear-gradient(135deg, rgba(20, 20, 35, 0.85) 0%, rgba(12, 12, 22, 0.95) 100%);
-            border: 1px solid rgba(255, 85, 0, 0.15);
-            border-radius: 20px;
+            background: linear-gradient(135deg, rgba(25, 12, 46, 0.85) 0%, rgba(10, 5, 20, 0.95) 100%);
+            border: 1px solid rgba(255, 0, 124, 0.25);
+            border-radius: 24px;
             max-width: 450px;
             margin: 0 auto;
             padding: 25px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.7);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(255, 0, 124, 0.1);
         }
 
         .opcion-grupo {
@@ -56,27 +77,32 @@
 
         label {
             display: block;
-            color: #ffaa00;
+            color: #00f0ff;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 15px;
             text-transform: uppercase;
             margin-bottom: 8px;
+            letter-spacing: 0.5px;
         }
 
         select {
             width: 100%;
-            background: #090a12;
-            border: 1px solid #252845;
+            background: #07030e;
+            border: 1px solid #3c1e5c;
             color: #fff;
             padding: 12px;
             font-size: 16px;
             font-weight: 600;
-            border-radius: 10px;
+            border-radius: 12px;
             outline: none;
             cursor: pointer;
+            transition: border 0.3s;
+        }
+        select:focus {
+            border-color: #ff007c;
         }
 
-        /* --- BOTONES DE MODOS DE DISPARO --- */
+        /* --- BOTONES DE MODO DE JUEGO (META ACTUAL) --- */
         .modos-grid {
             display: flex;
             flex-direction: column;
@@ -85,11 +111,11 @@
         }
         
         .btn-modo {
-            background: #0f1122;
-            border: 1px solid #252845;
-            color: #8fa3be;
+            background: #0d061a;
+            border: 1px solid #3c1e5c;
+            color: #a496c0;
             padding: 14px;
-            border-radius: 10px;
+            border-radius: 12px;
             cursor: pointer;
             font-weight: 700;
             font-size: 15px;
@@ -98,141 +124,155 @@
             text-align: center;
         }
         
-        /* Efecto cuando un modo está seleccionado */
         .btn-modo.seleccionado {
-            background: linear-gradient(135deg, #ff5500 0%, #cc1100 100%);
+            background: linear-gradient(135deg, #ff007c 0%, #7b00ff 100%);
             color: #fff;
             border: none;
-            box-shadow: 0 0 15px rgba(255, 50, 0, 0.5);
+            box-shadow: 0 0 20px rgba(255, 0, 124, 0.6);
             transform: scale(1.02);
         }
 
+        /* --- BOTÓN PRINCIPAL --- */
         .btn-generar {
             width: 100%;
-            background: linear-gradient(90deg, #ff8800, #ff3300);
+            background: linear-gradient(90deg, #00f0ff, #ff007c);
             color: white;
             border: none;
-            padding: 15px;
+            padding: 16px;
             font-size: 18px;
             font-weight: 700;
-            border-radius: 12px;
+            border-radius: 14px;
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
             margin-top: 10px;
-            box-shadow: 0 5px 15px rgba(255, 68, 0, 0.3);
-            transition: transform 0.2s;
+            letter-spacing: 1px;
+            box-shadow: 0 5px 20px rgba(255, 0, 124, 0.3);
+            transition: transform 0.2s, box-shadow 0.3s;
         }
-        .btn-generar:active { transform: scale(0.98); }
+        .btn-generar:active { transform: scale(0.97); }
 
-        /* --- VENTANA FLOTANTE (MODAL FLOATING) --- */
+        /* --- VENTANA FLOTANTE (VISOR PREMIUM) --- */
         .modal {
             display: none;
             position: fixed;
             z-index: 999;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(4px);
+            background: rgba(3, 1, 7, 0.9);
+            backdrop-filter: blur(6px);
             align-items: center;
             justify-content: center;
         }
         .modal-content {
-            background: #0a0a0f;
-            border: 1px solid #1f1f35;
-            border-radius: 24px;
-            width: 90%;
-            max-width: 350px;
-            padding: 20px;
+            background: #07030c;
+            border: 1px solid #4a156d;
+            border-radius: 28px;
+            width: 92%;
+            max-width: 360px;
+            padding: 22px;
             text-align: left;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            box-shadow: 0 25px 60px rgba(0,0,0,0.9), 0 0 40px rgba(0, 240, 255, 0.15);
         }
         .modal-title {
             font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
+            font-size: 17px;
             font-weight: 700;
             color: #ffffff;
             text-align: center;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
             text-transform: uppercase;
-            border-bottom: 2px solid #ff5500;
-            padding-bottom: 10px;
+            border-bottom: 2px solid #ff007c;
+            padding-bottom: 12px;
+            letter-spacing: 1px;
         }
         .sens-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 9px 0;
-            border-bottom: 1px solid #12121f;
-            font-size: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid #160b24;
+            font-size: 16px;
         }
-        .sens-label { color: #ff3b3b; font-weight: 700; text-transform: uppercase; }
-        .sens-value { color: #00ffaa; font-family: monospace; font-weight: bold; font-size: 16px; }
+        .sens-label { color: #ff007c; font-weight: 700; text-transform: uppercase; }
+        .sens-value { color: #00f0ff; font-family: monospace; font-weight: bold; font-size: 17px; text-shadow: 0 0 8px rgba(0, 240, 255, 0.3); }
 
         .btn-close {
             width: 100%;
-            background: #15151c;
+            background: #12071f;
             color: #fff;
-            border: 1px solid #333;
-            padding: 12px;
-            border-radius: 20px;
+            border: 1px solid #421b66;
+            padding: 13px;
+            border-radius: 25px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 18px;
             text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.2s;
         }
+        .btn-close:hover { background: #1b0a2e; }
     </style>
 </head>
 <body>
 
-    <h1>⚙️ CONFIG_SENS GENERATOR ⚙️</h1>
-    <p class="sub">Consigue la configuración perfecta para tu dispositivo</p>
+    <!-- CABECERA TEMÁTICA -->
+    <div class="header-aniversario">
+        <div class="badge-9">9th</div>
+        <h1>SENSI GENERATOR • META UPDATE</h1>
+        <p class="sub">Algoritmo de disparo optimizado para el 9° Aniversario</p>
+    </div>
 
     <div class="panel-container">
+        <!-- Selector de Dispositivo -->
         <div class="opcion-grupo">
-            <label>Dispositivo:</label>
+            <label>Plataforma de Juego:</label>
             <select id="selectDispositivo">
                 <option value="android">Android (Gama Baja / Media / Alta)</option>
                 <option value="ios">iOS (iPhone / iPad)</option>
-                <option value="emulador">PC (Emulador)</option>
+                <option value="emulador">PC (Emulador BlueStacks/MSI)</option>
             </select>
         </div>
 
+        <!-- Selector de DPI -->
         <div class="opcion-grupo">
-            <label>Uso de DPI:</label>
+            <label>Sistema de DPI:</label>
             <select id="selectDpi">
-                <option value="si">Sí (Recomendar un DPI óptimo)</option>
-                <option value="no">No DPI (Dejar de fábrica)</option>
+                <option value="si">Activo (Recomendar DPI de Aniversario)</option>
+                <option value="no">Inactivo (Sin alterar DPI de fábrica)</option>
             </select>
         </div>
 
+        <!-- Selector Táctil de Modos META -->
         <div class="opcion-grupo">
-            <label>Modo de Disparo Especial:</label>
+            <label>Modo de Sensibilidad Ejecutiva:</label>
             <div class="modos-grid">
                 <div id="btn-alta" class="btn-modo seleccionado" onclick="cambiarModo('alta')">⚡ Alta Sensibilidad (Full Rojo)</div>
-                <div id="btn-precision" class="btn-modo" onclick="cambiarModo('precision')">🎯 Alta Precisión (Mira Estable)</div>
-                <div id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">📉 Sensibilidad Baja (Control Total)</div>
+                <div id="btn-precision" class="btn-modo" onclick="cambiarModo('precision')">🎯 Alta Precisión (Cero Temblequeo)</div>
+                <div id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">📉 Sensibilidad Baja (Estable / Regulación)</div>
             </div>
         </div>
 
-        <button class="btn-generar" onclick="generarConfig()">Generar Sensibilidad</button>
+        <button class="btn-generar" onclick="generarConfig()">Cargar Configuración</button>
     </div>
 
+    <!-- VISOR FLOTANTE DE RESULTADOS DE ANIVERSARIO -->
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
-            <div class="modal-title" id="txtModoTitulo">Configuración</div>
+            <div class="modal-title" id="txtModoTitulo">REGISTRO DE SENSI</div>
             
-            <div class="sens-row"><span class="sens-label">General:</span><span id="vGen" class="sens-value">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Punto Rojo:</span><span id="vMira1" class="sens-value">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Mira X2:</span><span id="vMira2" class="sens-value">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Mira X4:</span><span id="vMira4" class="sens-value">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Franco:</span><span id="vFranco" class="sens-value">0%</span></div>
-            <div class="sens-row"><span class="sens-label">Cámara:</span><span id="vCamara" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">General:</span><span id="vGen">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Punto Rojo:</span><span id="vMira1">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X2:</span><span id="vMira2">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira X4:</span><span id="vMira4">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Mira Franco:</span><span id="vFranco">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Cámara 360°:</span><span id="vCamara">0%</span></div>
             
-            <div class="sens-row" id="filaDpi"><span class="sens-label">DPI Recomendado:</span><span id="vDpi" class="sens-value">0</span></div>
+            <!-- Fila DPI Dinámica -->
+            <div class="sens-row" id="filaDpi"><span class="sens-label">DPI Recom:</span><span id="vDpi">0</span></div>
             
-            <div class="sens-row"><span class="sens-label">Botón de Disparo:</span><span id="vBoton" class="sens-value">0%</span></div>
+            <div class="sens-row"><span class="sens-label">Botón de Disparo:</span><span id="vBoton">0%</span></div>
 
-            <button class="btn-close" onclick="cerrarModal()">Cerrar Ajustes</button>
+            <button class="btn-close" onclick="cerrarModal()">Aplicar Ajustes</button>
         </div>
     </div>
 
