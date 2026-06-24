@@ -1,16 +1,16 @@
-// Variable global para almacenar el modo seleccionado (inicia en 'alta')
+// Estado global del modo seleccionado
 let modoSeleccionado = 'alta';
 
-// Función para cambiar de modo de forma visual y guardar la opción
+// Función para cambiar los modos con respuesta táctil
 function cambiarModo(modo) {
     modoSeleccionado = modo;
     
-    // Quitamos la clase 'seleccionado' de los tres botones para reiniciarlos
+    // Resetear las clases activas
     document.getElementById("btn-alta").classList.remove("seleccionado");
     document.getElementById("btn-precision").classList.remove("seleccionado");
     document.getElementById("btn-baja").classList.remove("seleccionado");
     
-    // Le agregamos el color activo solo al botón que presionó el usuario
+    // Asignar estado activo al seleccionado
     if (modo === 'alta') {
         document.getElementById("btn-alta").classList.add("seleccionado");
     } else if (modo === 'precision') {
@@ -20,7 +20,7 @@ function cambiarModo(modo) {
     }
 }
 
-// Función principal conectada al botón "Generar Sensibilidad"
+// Generador de sensibilidades funcionales del meta actual
 function generarConfig() {
     const dispositivo = document.getElementById("selectDispositivo").value;
     const usaDpi = document.getElementById("selectDpi").value;
@@ -28,50 +28,85 @@ function generarConfig() {
     let general, puntoRojo, mira2, mira4, franco, camara, dpi, botonDisparo;
     let tituloModo = "";
 
-    // 1. CÁLCULOS MATEMÁTICOS DE ACUERDO AL MODO DE JUEGO SELECCIONADO
+    // 1. NUEVAS RANGOS DE PRECISIÓN SEGÚN EL MODO (9° ANIVERSARIO META)
     if (modoSeleccionado === 'alta') {
-        tituloModo = "⚡ MODO FULL ROJO";
-        general = Math.floor(Math.random() * (100 - 95 + 1)) + 95;      // Genera entre 95% y 100%
-        puntoRojo = Math.floor(Math.random() * (98 - 93 + 1)) + 93;    // Genera entre 93% y 98%
-        mira2 = Math.floor(Math.random() * (100 - 95 + 1)) + 95;
-        mira4 = Math.floor(Math.random() * (99 - 94 + 1)) + 94;
-        dpi = Math.floor(Math.random() * (760 - 620 + 1)) + 620;       // DPI rápido de levantar
-        botonDisparo = Math.floor(Math.random() * (44 - 37 + 1)) + 37;  // Botón pequeño
+        tituloModo = "🔥 Sensi 9th: Full Rojo";
+        general = Math.floor(Math.random() * (100 - 96 + 1)) + 96;      // Sensibilidades súper altas (96-100)
+        puntoRojo = Math.floor(Math.random() * (99 - 94 + 1)) + 94;     // Evita pasar por encima de la cabeza
+        mira2 = Math.floor(Math.random() * (100 - 97 + 1)) + 97;
+        mira4 = Math.floor(Math.random() * (98 - 95 + 1)) + 95;
+        dpi = Math.floor(Math.random() * (780 - 640 + 1)) + 640;        // DPI modificado para levantar veloz
+        botonDisparo = Math.floor(Math.random() * (43 - 36 + 1)) + 36;  // Botón ideal para SMG/Escopetas
     } 
     else if (modoSeleccionado === 'precision') {
-        tituloModo = "🎯 MODO ALTA PRECISIÓN";
-        general = Math.floor(Math.random() * (93 - 87 + 1)) + 87;       // Entre 87% y 93% para fijar la mira
-        puntoRojo = Math.floor(Math.random() * (89 - 81 + 1)) + 81;     // Menor para evitar el temblequeo
-        mira2 = Math.floor(Math.random() * (92 - 86 + 1)) + 86;
-        mira4 = Math.floor(Math.random() * (91 - 85 + 1)) + 85;
-        dpi = Math.floor(Math.random() * (540 - 460 + 1)) + 460;       // DPI equilibrado
-        botonDisparo = Math.floor(Math.random() * (52 - 46 + 1)) + 46;  // Botón mediano
+        tituloModo = "🎯 Sensi 9th: Alta Precisión";
+        general = Math.floor(Math.random() * (94 - 89 + 1)) + 89;       // Calibración para armas AR (Scar, Ak)
+        puntoRojo = Math.floor(Math.random() * (88 - 82 + 1)) + 82;     // Disparos directos al casco
+        mira2 = Math.floor(Math.random() * (94 - 88 + 1)) + 88;
+        mira4 = Math.floor(Math.random() * (92 - 86 + 1)) + 86;
+        dpi = Math.floor(Math.random() * (560 - 480 + 1)) + 480;
+        botonDisparo = Math.floor(Math.random() * (50 - 45 + 1)) + 45;  // Botón equilibrado para no errar balas
     } 
     else if (modoSeleccionado === 'baja') {
-        tituloModo = "📉 MODO SENSIBILIDAD BAJA";
-        general = Math.floor(Math.random() * (83 - 75 + 1)) + 75;       // Movimientos sumamente estables
-        puntoRojo = Math.floor(Math.random() * (79 - 71 + 1)) + 71;
-        mira2 = Math.floor(Math.random() * (82 - 74 + 1)) + 74;
-        mira4 = Math.floor(Math.random() * (80 - 72 + 1)) + 72;
-        dpi = Math.floor(Math.random() * (420 - 370 + 1)) + 370;
-        botonDisparo = Math.floor(Math.random() * (58 - 50 + 1)) + 50;  // Botón grande para tiros firmes
+        tituloModo = "📉 Sensi 9th: Control Estable";
+        general = Math.floor(Math.random() * (85 - 76 + 1)) + 76;       
+        puntoRojo = Math.floor(Math.random() * (80 - 72 + 1)) + 72;
+        mira2 = Math.floor(Math.random() * (84 - 76 + 1)) + 76;
+        mira4 = Math.floor(Math.random() * (82 - 74 + 1)) + 74;
+        dpi = Math.floor(Math.random() * (440 - 390 + 1)) + 390;
+        botonDisparo = Math.floor(Math.random() * (56 - 49 + 1)) + 49;  // Botón ancho para tiros consistentes
     }
 
-    // 2. EQUILIBRIO EXTRA DEPENDIENDO DE LA PLATAFORMA
+    // 2. MODIFICACIONES SEGÚN DISPOSITIVO (Balanceo de aceleración nativa)
     if (dispositivo === 'ios') {
-        // Los iPhones responden muy rápido por defecto, bajamos levemente el algoritmo
-        general = Math.max(75, general - 3);
+        // En iOS el táctil responde más rápido, se reduce la sensibilidad general un poco para compensar
+        general = Math.max(78, general - 4);
         botonDisparo = Math.max(36, botonDisparo - 2);
     } else if (dispositivo === 'emulador') {
-        // Modificación drástica para las sensis de mouse en PC
-        general = Math.floor(general * 0.45);
-        puntoRojo = Math.floor(puntoRojo * 0.55);
-        mira2 = Math.floor(mira2 * 0.60);
-        mira4 = Math.floor(mira4 * 0.60);
+        // Re-ajuste extremo obligatorio para punteros de mouse en emulador
+        general = Math.floor(general * 0.42);
+        puntoRojo = Math.floor(puntoRojo * 0.50);
+        mira2 = Math.floor(mira2 * 0.55);
+        mira4 = Math.floor(mira4 * 0.55);
     }
 
-    // Constantes dinámicas estándar para la mira de Francotirador y la de Cámara de 360°
-    franco = Math.floor(Math.random() * (35 - 15 + 1)) + 15;
+    // Ajustes estándar y dinámicos para miras pesadas (Franco y Cámara)
+    franco = Math.floor(Math.random() * (32 - 14 + 1)) + 14;
+    camara = Math.floor(Math.random() * (92 - 76 + 1)) + 76;
+
+    // 3. INYECTAR RESULTADOS AL MODAL FLOATING
+    document.getElementById("txtModoTitulo").innerText = tituloModo;
+    document.getElementById("vGen").innerText = general + "%";
+    document.getElementById("vMira1").innerText = puntoRojo + "%";
+    document.getElementById("vMira2").innerText = mira2 + "%";
+    document.getElementById("vMira4").innerText = mira4 + "%";
+    document.getElementById("vFranco").innerText = franco + "%";
+    document.getElementById("vCamara").innerText = camara + "%";
+    document.getElementById("vBoton").innerText = botonDisparo + "%";
+
+    // 4. REGLA DE SEGURIDAD DEL DPI: Si marca "no", se esconde la fila por completo de la app
+    const filaDpi = document.getElementById("filaDpi");
+    if (usaDpi === "no") {
+        filaDpi.style.display = "none";
+    } else {
+        filaDpi.style.display = "flex";
+        document.getElementById("vDpi").innerText = dpi;
+    }
+
+    // Abrir ventana flotante
+    document.getElementById("resultadoModal").style.display = "flex";
+}
+
+// Apagar ventana flotante
+function cerrarModal() {
+    document.getElementById("resultadoModal").style.display = "none";
+}
+
+// Cerrar si tocan la zona borrosa exterior del modal
+window.onclick = function(event) {
+    const modal = document.getElementById("resultadoModal");
+    if (event.target == modal) { cerrarModal(); }
+}    franco = Math.floor(Math.random() * (35 - 15 + 1)) + 15;
     camara = Math.floor(Math.random() * (95 - 75 + 1)) + 75;
 
     // 3. ENVIAR LOS RESULTADOS EN TIEMPO REAL A LA VENTANA FLOTANTE
