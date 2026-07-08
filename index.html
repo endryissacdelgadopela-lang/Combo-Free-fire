@@ -79,73 +79,9 @@
         }
 
         /* ==========================================
-           PASO 1: PANEL DE INGRESO DE ID DE JUGADOR
-        ========================================== */
-        #pantalla-id {
-            background: linear-gradient(135deg, rgba(22, 10, 43, 0.9) 0%, rgba(8, 4, 18, 0.98) 100%);
-            border: 1px solid rgba(255, 0, 124, 0.4);
-            border-radius: 24px;
-            max-width: 420px;
-            margin: 20px auto;
-            padding: 30px 20px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8), 0 0 25px rgba(255, 0, 124, 0.15);
-        }
-        .input-container {
-            position: relative;
-            margin: 20px 0;
-        }
-        .input-id {
-            width: 100%;
-            background: #040208;
-            border: 1px solid #3c1e5c;
-            color: #00f0ff;
-            padding: 15px;
-            font-size: 22px;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            text-align: center;
-            border-radius: 14px;
-            outline: none;
-            transition: all 0.3s;
-            letter-spacing: 2px;
-        }
-        .input-id:focus {
-            border-color: #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-        }
-
-        /* Barra de Carga Simulada */
-        .loading-box {
-            display: none;
-            margin: 20px 0;
-        }
-        .loading-text {
-            font-size: 14px;
-            color: #ffaa00;
-            font-weight: 600;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-        }
-        .progress-bar-bg {
-            width: 100%;
-            background: #0a0514;
-            height: 10px;
-            border-radius: 10px;
-            overflow: hidden;
-            border: 1px solid #1f0f33;
-        }
-        .progress-bar-fill {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #ff007c, #00f0ff);
-            transition: width 0.1s linear;
-        }
-
-        /* ==========================================
-           PASO 2: PANEL DE AJUSTES SENSI PROFESIONAL
+           PANEL DE AJUSTES SENSI PROFESIONAL (ABRE DIRECTO)
         ========================================== */
         #pantalla-sensi {
-            display: none;
             max-width: 460px;
             margin: 0 auto;
         }
@@ -154,7 +90,7 @@
             border: 1px solid rgba(0, 240, 255, 0.2);
             border-radius: 24px;
             padding: 22px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
         }
         .opcion-grupo {
             text-align: left;
@@ -254,36 +190,6 @@
             box-shadow: 0 25px 60px rgba(0,0,0,0.95);
         }
         
-        /* Regalo Modal */
-        .gift-icon {
-            font-size: 50px;
-            margin-bottom: 8px;
-            animation: vibrar 2s infinite ease-in-out;
-        }
-        @keyframes vibrar {
-            0%, 100% { transform: scale(1) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(3deg); }
-        }
-        .gift-title {
-            color: #00ffaa;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 20px;
-            margin-bottom: 12px;
-            letter-spacing: 1px;
-        }
-        .gift-msg {
-            color: #ffffff;
-            font-size: 16px;
-            line-height: 1.5;
-            background: rgba(255, 0, 124, 0.08);
-            padding: 16px;
-            border-radius: 14px;
-            border: 1px dashed rgba(255, 0, 124, 0.5);
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
         /* Visor de Sensi Avanzado */
         .grid-cards {
             display: grid;
@@ -342,30 +248,14 @@
 </head>
 <body>
 
+    <!-- LOGOTIPO Y BARRA DE ESTADO -->
     <div class="header-main">
         <div class="badge-9th">9th</div>
         <div class="title-sub">Sensi Profesional</div>
         <div class="status-bar"><span class="dot"></span>Sensi Inyectable Activa</div>
     </div>
 
-    <div id="pantalla-id">
-        <h2 style="color: #ffffff; margin: 0 0 10px 0; font-size:18px; text-transform:uppercase; font-family:'Orbitron', sans-serif;">Ingreso al Servidor</h2>
-        <p style="color: #a293c2; font-size:14px; margin: 0 0 15px 0;">Ingresa tu ID de Free Fire para cargar el script:</p>
-        
-        <div class="input-container">
-            <input type="number" id="inputPlayerID" class="input-id" placeholder="ID DE TU CUENTA" oninput="if(this.value.length > 12) this.value = this.value.slice(0, 12);">
-        </div>
-        
-        <div class="loading-box" id="loadingBox">
-            <div class="loading-text" id="loadingText">Conectando...</div>
-            <div class="progress-bar-bg">
-                <div class="progress-bar-fill" id="progressBarFill"></div>
-            </div>
-        </div>
-        
-        <button class="btn-action" id="btnVerificar" onclick="iniciarCargaServidor()">Vincular ID</button>
-    </div>
-
+    <!-- PANEL PRINCIPAL DE PARAMETROS (CARGA DIRECTA) -->
     <div id="pantalla-sensi">
         <div class="panel-container">
             <div class="opcion-grupo">
@@ -407,17 +297,7 @@
         </div>
     </div>
 
-    <div id="modalRegalo" class="modal">
-        <div class="modal-content">
-            <div class="gift-icon">🎁</div>
-            <div class="gift-title">¡REGISTRO CONFIRMADO!</div>
-            <div class="gift-msg">
-                Te ha llegado 5 toke y un maquillaje de aniversario requerido prime
-            </div>
-            <button class="btn-action" onclick="desbloquearSensiPanel()">Configurar Mi Sensi</button>
-        </div>
-    </div>
-
+    <!-- PANTALLA PREMIUM DE AJUSTES FINALES -->
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
             <div style="font-family:'Orbitron', sans-serif; font-size:16px; font-weight:700; border-bottom:2px solid #ff007c; padding-bottom:10px; margin-bottom:15px;" id="txtModoTitulo">REGISTRO DE INYECCIÓN</div>
@@ -430,8 +310,10 @@
                 <div class="card-sens"><span class="card-label">Franco</span><span id="vFranco" class="card-value">0%</span></div>
                 <div class="card-sens"><span class="card-label">Cámara</span><span id="vCamara" class="card-value">0%</span></div>
                 
+                <!-- Tarjeta Dinámica de DPI -->
                 <div class="card-sens card-sens-full" id="cardDpi"><span class="card-label" style="color:#ffaa00;">DPI Recomendado</span><span id="vDpi" class="card-value">0</span></div>
                 
+                <!-- Tarjeta de Botón -->
                 <div class="card-sens card-sens-full" style="border-color: #00f0ff;"><span class="card-label" style="color:#00f0ff;">Botón de Disparo Ideal</span><span id="vBoton" class="card-value">0%</span></div>
             </div>
 
