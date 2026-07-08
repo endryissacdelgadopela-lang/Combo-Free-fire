@@ -1,101 +1,140 @@
-// Variable global del modo seleccionado
+// Variable que guarda la opción elegida por el jugador
 let modoSeleccionado = 'alta';
 
-// 1. CONTROL DEL PASO 1 (INGRESO DE ID Y ALERTA DE PREMIOS)
-function procesarVerificacion() {
-    const idInput = document.getElementById("inputPlayerID").value.trim();
+// 1. SIMULADOR DE CARGA PROFESIONAL DE SERVIDOR (PASO 1)
+function iniciarCargaServidor() {
+    const playerID = document.getElementById("inputPlayerID").value.trim();
     
-    if (idInput === "" || idInput.length < 5) {
-        alert("⚠️ Por favor, ingresa un ID de Free Fire válido.");
+    if (playerID === "" || playerID.length < 5) {
+        alert("⚠️ Por favor, escribe un ID de Free Fire válido para enlazar.");
         return;
     }
     
-    // Si puso el ID correctamente, abrimos el aviso del regalo del 9° Aniversario
-    document.getElementById("modalRegalo").style.display = "flex";
+    // Desactivar botón y mostrar la animación hacker de carga
+    document.getElementById("btnVerificar").style.display = "none";
+    const loadingBox = document.getElementById("loadingBox");
+    const fill = document.getElementById("progressBarFill");
+    const textLog = document.getElementById("loadingText");
+    
+    loadingBox.style.display = "block";
+    
+    let porcentaje = 0;
+    const frases = [
+        "Localizando base de datos...",
+        "Buscando ID en los servidores...",
+        "Inyectando 5 tokens de aniversario...",
+        "Validando maquillaje Prime...",
+        "Finalizando inyección exitosa!"
+    ];
+    
+    const interval = setInterval(() => {
+        porcentaje += 2;
+        fill.style.width = porcentaje + "%";
+        
+        // Cambiar texto dinámicamente según avance
+        if (porcentaje < 25) textLog.innerText = frases[0];
+        else if (porcentaje < 50) textLog.innerText = frases[1];
+        else if (porcentaje < 75) textLog.innerText = frases[2];
+        else if (porcentaje < 90) textLog.innerText = frases[3];
+        else textLog.innerText = frases[4];
+        
+        if (porcentaje >= 100) {
+            clearInterval(interval);
+            // Cuando termina la carga, abre directo el aviso de éxito de los regalos
+            document.getElementById("modalRegalo").style.display = "flex";
+        }
+    }, 60); // Ajuste de velocidad de carga fluida
 }
 
-// Acción del botón del modal de regalo que desbloquea la sensi
-function irAlPanelSensi() {
-    // Cerramos el modal de regalos
+// Desbloquea la interfaz limpia de la Sensi (Paso 2)
+function desbloquearSensiPanel() {
     document.getElementById("modalRegalo").style.display = "none";
-    
-    // Escondemos la pantalla de ID por completo
     document.getElementById("pantalla-id").style.display = "none";
-    
-    // Hacemos aparecer el generador de sensibilidades profesional
     document.getElementById("pantalla-sensi").style.display = "block";
 }
 
-// 2. INTERRUPTOR DE BOTONES PARA EL MODO DE SENSIVILIDAD
+// 2. INTERRUPTOR DE ESTADOS DE BOTONES TÁCTILES
 function cambiarModo(modo) {
     modoSeleccionado = modo;
     
-    document.getElementById("btn-alta").classList.remove("seleccionado");
-    document.getElementById("btn-precision").classList.remove("seleccionado");
-    document.getElementById("btn-baja").classList.remove("seleccionado");
+    // Remover clases activas de todos
+    document.getElementById("btn-alta").classList.remove("active");
+    document.getElementById("btn-precision").classList.remove("active");
+    document.getElementById("btn-baja").classList.remove("active");
     
+    // Encender el que se presionó
     if (modo === 'alta') {
-        document.getElementById("btn-alta").classList.add("seleccionado");
+        document.getElementById("btn-alta").classList.add("active");
     } else if (modo === 'precision') {
-        document.getElementById("btn-precision").classList.add("seleccionado");
+        document.getElementById("btn-precision").classList.add("active");
     } else if (modo === 'baja') {
-        document.getElementById("btn-baja").classList.add("seleccionado");
+        document.getElementById("btn-baja").classList.add("active");
     }
 }
 
-// 3. GENERADOR DE SENSIBILIDADES PROFESIONAL
+// 3. CALCULADOR MATEMÁTICO AVANZADO DEL PASO 2
 function generarConfig() {
     const dispositivo = document.getElementById("selectDispositivo").value;
+    const tipoArma = document.getElementById("selectArma").value;
     const usaDpi = document.getElementById("selectDpi").value;
     
     let general, puntoRojo, mira2, mira4, franco, camara, dpi, botonDisparo;
-    let tituloModo = "";
+    let titulo = "";
 
-    // Algoritmos calibrados profesionales para pegar más rojo en el Meta Actual
+    // Rangos de calibración por algoritmo base
     if (modoSeleccionado === 'alta') {
-        tituloModo = "⚡ 9th: FULL ROJO (ALTA)";
+        titulo = "🔥 MODE: FULL ROJO (ALTA)";
         general = Math.floor(Math.random() * (100 - 96 + 1)) + 96;      
-        puntoRojo = Math.floor(Math.random() * (99 - 94 + 1)) + 94;     
-        mira2 = Math.floor(Math.random() * (100 - 96 + 1)) + 96;
-        mira4 = Math.floor(Math.random() * (98 - 94 + 1)) + 94;
-        dpi = Math.floor(Math.random() * (760 - 640 + 1)) + 640;        
-        botonDisparo = Math.floor(Math.random() * (44 - 36 + 1)) + 36;  
+        puntoRojo = Math.floor(Math.random() * (99 - 95 + 1)) + 95;     
+        mira2 = Math.floor(Math.random() * (100 - 97 + 1)) + 97;
+        mira4 = Math.floor(Math.random() * (99 - 94 + 1)) + 94;
+        dpi = Math.floor(Math.random() * (750 - 640 + 1)) + 640;        
+        botonDisparo = Math.floor(Math.random() * (42 - 35 + 1)) + 35;  
     } 
     else if (modoSeleccionado === 'precision') {
-        tituloModo = "🎯 9th: ALTA PRECISIÓN";
-        general = Math.floor(Math.random() * (94 - 88 + 1)) + 88;       
-        puntoRojo = Math.floor(Math.random() * (89 - 83 + 1)) + 83;     
-        mira2 = Math.floor(Math.random() * (93 - 87 + 1)) + 87;
-        mira4 = Math.floor(Math.random() * (91 - 85 + 1)) + 85;
-        dpi = Math.floor(Math.random() * (550 - 470 + 1)) + 470;
-        botonDisparo = Math.floor(Math.random() * (51 - 44 + 1)) + 44;  
+        titulo = "🎯 MODE: ALTA PRECISIÓN";
+        general = Math.floor(Math.random() * (94 - 89 + 1)) + 89;       
+        puntoRojo = Math.floor(Math.random() * (88 - 82 + 1)) + 82;     
+        mira2 = Math.floor(Math.random() * (93 - 88 + 1)) + 88;
+        mira4 = Math.floor(Math.random() * (91 - 86 + 1)) + 86;
+        dpi = Math.floor(Math.random() * (560 - 480 + 1)) + 480;
+        botonDisparo = Math.floor(Math.random() * (52 - 44 + 1)) + 44;  
     } 
     else if (modoSeleccionado === 'baja') {
-        tituloModo = "📉 9th: SENSI ESTABLE / BAJA";
-        general = Math.floor(Math.random() * (84 - 76 + 1)) + 76;       
-        puntoRojo = Math.floor(Math.random() * (81 - 73 + 1)) + 73;
-        mira2 = Math.floor(Math.random() * (83 - 75 + 1)) + 75;
-        mira4 = Math.floor(Math.random() * (81 - 73 + 1)) + 73;
-        dpi = Math.floor(Math.random() * (450 - 380 + 1)) + 380;
-        botonDisparo = Math.floor(Math.random() * (57 - 48 + 1)) + 48;  
+        titulo = "📉 MODE: CONTROL BALÍSTICO";
+        general = Math.floor(Math.random() * (85 - 77 + 1)) + 77;       
+        puntoRojo = Math.floor(Math.random() * (80 - 74 + 1)) + 74;
+        mira2 = Math.floor(Math.random() * (84 - 76 + 1)) + 76;
+        mira4 = Math.floor(Math.random() * (82 - 75 + 1)) + 75;
+        dpi = Math.floor(Math.random() * (460 - 390 + 1)) + 390;
+        botonDisparo = Math.floor(Math.random() * (58 - 48 + 1)) + 48;  
     }
 
-    // Adaptación física por plataforma
+    // Adaptaciones avanzadas por tipo de arma seleccionada
+    if (tipoArma === 'smg') {
+        puntoRojo = Math.min(100, puntoRojo + 2);
+        botonDisparo = Math.max(34, botonDisparo - 3); 
+    } else if (tipoArma === 'escopeta') {
+        general = Math.max(78, general - 3);
+        botonDisparo = Math.min(58, botonDisparo + 5); 
+    }
+
+    // Compensación física de pantalla
     if (dispositivo === 'ios') {
-        general = Math.max(76, general - 3);
+        general = Math.max(75, general - 4);
         botonDisparo = Math.max(35, botonDisparo - 2);
     } else if (dispositivo === 'emulador') {
-        general = Math.floor(general * 0.44);
-        puntoRojo = Math.floor(puntoRojo * 0.52);
-        mira2 = Math.floor(mira2 * 0.58);
-        mira4 = Math.floor(mira4 * 0.58);
+        general = Math.floor(general * 0.43);
+        puntoRojo = Math.floor(puntoRojo * 0.51);
+        mira2 = Math.floor(mira2 * 0.56);
+        mira4 = Math.floor(mira4 * 0.56);
     }
 
-    franco = Math.floor(Math.random() * (30 - 14 + 1)) + 14;
-    camara = Math.floor(Math.random() * (94 - 75 + 1)) + 75;
+    franco = Math.floor(Math.random() * (28 - 15 + 1)) + 15;
+    camara = Math.floor(Math.random() * (95 - 76 + 1)) + 76;
 
-    // Renderizar al visor flotante
-    document.getElementById("txtModoTitulo").innerText = tituloModo;
+    // Colocar datos en las tarjetas
+    document.getElementById("txtModoTitulo").innerText = titulo;
     document.getElementById("vGen").innerText = general + "%";
     document.getElementById("vMira1").innerText = puntoRojo + "%";
     document.getElementById("vMira2").innerText = mira2 + "%";
@@ -104,26 +143,25 @@ function generarConfig() {
     document.getElementById("vCamara").innerText = camara + "%";
     document.getElementById("vBoton").innerText = botonDisparo + "%";
 
-    // REGLA DE ORO: Validar "No DPI" para removerlo visualmente
-    const filaDpi = document.getElementById("filaDpi");
+    // REGLA CRÍTICA EXIGIDA: Si elige "No DPI", se oculta la tarjeta entera de la pantalla
+    const cardDpi = document.getElementById("cardDpi");
     if (usaDpi === "no") {
-        filaDpi.style.display = "none";
+        cardDpi.style.display = "none";
     } else {
-        filaDpi.style.display = "flex";
+        cardDpi.style.display = "block";
         document.getElementById("vDpi").innerText = dpi;
     }
 
-    // Desplegar modal de resultados
+    // Desplegar modal final de resultados
     document.getElementById("resultadoModal").style.display = "flex";
 }
 
-// Cerrar visor de sensibilidades
 function cerrarModal() {
     document.getElementById("resultadoModal").style.display = "none";
 }
 
-// Si hacen clic fuera de la caja de resultados, se cierra solo
+// Bloquear cierre si tocan por error afuera del recuadro
 window.onclick = function(event) {
-    const modalRes = document.getElementById("resultadoModal");
-    if (event.target == modalRes) { cerrarModal(); }
+    const mRes = document.getElementById("resultadoModal");
+    if (event.target == mRes) { cerrarModal(); }
         }
