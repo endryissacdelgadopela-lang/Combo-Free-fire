@@ -104,10 +104,9 @@
             text-transform: uppercase;
             margin-bottom: 10px;
             letter-spacing: 1px;
-            text-center: center;
+            text-align: center;
         }
 
-        /* Malla Táctil Exclusiva de Dos Botones */
         .modos-stack {
             display: flex;
             flex-direction: column;
@@ -133,7 +132,6 @@
             transform: translateY(-1px);
         }
 
-        /* BOTÓN DE ACCIÓN */
         .btn-action {
             width: 100%;
             background: linear-gradient(90deg, #0072ff, #00f0ff);
@@ -172,9 +170,11 @@
             border: 1px solid #0a2b5c;
             border-radius: 28px;
             width: 100%;
-            max-width: 380px;
-            padding: 25px 20px;
+            max-width: 410px;
+            padding: 22px 18px;
             box-shadow: 0 25px 60px rgba(0,0,0,0.95);
+            max-height: 90vh;
+            overflow-y: auto;
         }
         
         .grid-cards {
@@ -187,32 +187,55 @@
             background: #030d1f;
             border: 1px solid #0b2244;
             border-radius: 14px;
-            padding: 12px 8px;
+            padding: 10px 6px;
             text-align: center;
         }
         .card-label {
             color: #8faed9;
-            font-size: 12px;
+            font-size: 11px;
             text-transform: uppercase;
             font-weight: 700;
             display: block;
-            margin-bottom: 4px;
+            margin-bottom: 3px;
         }
         .card-value {
             color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 20px;
+            font-size: 19px;
             text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
         }
-        .card-sens-full {
-            grid-column: span 2;
-            background: linear-gradient(135deg, #051633 0%, #030d1f 100%);
-            border-color: rgba(0, 240, 255, 0.4);
+
+        /* --- SECCIÓN DE AJUSTES RECOMENDADOS --- */
+        .seccion-ajustes {
+            background: rgba(0, 114, 255, 0.05);
+            border: 1px dashed rgba(0, 240, 255, 0.3);
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 15px;
+            text-align: left;
         }
-        .card-sens-full .card-value {
+        .ajustes-titulo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 12px;
+            font-weight: 700;
+            color: #ffaa00;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 1px solid rgba(255, 170, 0, 0.2);
+            padding-bottom: 4px;
+        }
+        .ajuste-item {
+            font-size: 14px;
+            font-weight: 600;
+            color: #ffffff;
+            margin: 5px 0;
+            display: flex;
+            justify-content: space-between;
+        }
+        .ajuste-item span {
             color: #00f0ff;
-            font-size: 22px;
         }
 
         .btn-close {
@@ -232,31 +255,33 @@
 </head>
 <body>
 
+    <!-- LOGOTIPO Y BARRA DE ESTADO -->
     <div class="header-main">
         <div class="badge-blue">BLUE SENSI</div>
         <div class="title-sub">Configuración Premium</div>
         <div class="status-bar"><span class="dot"></span>Algoritmo Inyectado</div>
     </div>
 
+    <!-- PANEL PRINCIPAL -->
     <div id="pantalla-sensi">
         <div class="panel-container">
-            
             <div class="opcion-grupo">
-                <label style="text-align: center;">Selecciona tu algoritmo de disparo:</label>
+                <label>Selecciona tu algoritmo de disparo:</label>
                 <div class="modos-stack">
                     <button id="btn-alta" class="btn-modo active" onclick="cambiarModo('alta')">⚡ Alta Sensibilidad (Full Rojo)</button>
                     <button id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">📉 Sensibilidad Baja (Más Estable)</button>
                 </div>
             </div>
-
             <button class="btn-action" onclick="generarConfig()">Calcular Sensi</button>
         </div>
     </div>
 
+    <!-- MODAL FINAL CON SENSI Y AJUSTES EXTRA -->
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
-            <div style="font-family:'Orbitron', sans-serif; font-size:16px; font-weight:700; border-bottom:2px solid #00f0ff; padding-bottom:10px; margin-bottom:15px; color:#00f0ff;" id="txtModoTitulo">REGISTRO BLUE</div>
+            <div style="font-family:'Orbitron', sans-serif; font-size:15px; font-weight:700; border-bottom:2px solid #00f0ff; padding-bottom:8px; margin-bottom:12px; color:#00f0ff;" id="txtModoTitulo">REGISTRO BLUE</div>
             
+            <!-- Bloque de Sensibilidades -->
             <div class="grid-cards">
                 <div class="card-sens"><span class="card-label">General</span><span id="vGen" class="card-value">0%</span></div>
                 <div class="card-sens"><span class="card-label">Mira 1X</span><span id="vMira1" class="card-value">0%</span></div>
@@ -264,8 +289,15 @@
                 <div class="card-sens"><span class="card-label">Mira X4</span><span id="vMira4" class="card-value">0%</span></div>
                 <div class="card-sens"><span class="card-label">Franco</span><span id="vFranco" class="card-value">0%</span></div>
                 <div class="card-sens"><span class="card-label">Cámara</span><span id="vCamara" class="card-value">0%</span></div>
-                
-                <div class="card-sens card-sens-full"><span class="card-label">Botón de Disparo Ideal</span><span id="vBoton" class="card-value">0%</span></div>
+            </div>
+
+            <!-- Bloque Dinámico de Ajustes del Teléfono/Juego -->
+            <div class="seccion-ajustes">
+                <div class="ajustes-titulo">🛠️ Ajustes Internos Recomendados</div>
+                <div class="ajuste-item">Botón de Disparo: <span id="vBoton">0%</span></div>
+                <div class="ajuste-item">DPI del Sistema: <span id="vDpi">0</span></div>
+                <div class="ajuste-item">Velocidad de Puntero: <span id="vPuntero">Máxima</span></div>
+                <div class="ajuste-item">Supresor (Accesibilidad): <span id="vSupresor">Desactivado</span></div>
             </div>
 
             <button class="btn-close" onclick="cerrarModal()">Aplicar en el Juego</button>
