@@ -1,5 +1,7 @@
+// [[ BLUE SENSI SYSTEM - ALGORITMO DE CONFIGURACIÓN ]]
 let modoSeleccionado = 'alta';
 
+// Alternar entre los dos modos principales (Alta y Baja)
 function cambiarModo(modo) {
     modoSeleccionado = modo;
     document.getElementById("btn-alta").classList.remove("active");
@@ -12,6 +14,7 @@ function cambiarModo(modo) {
     }
 }
 
+// Generar los valores exactos y los ajustes internos recomendados
 function generarConfig() {
     let general, puntoRojo, mira2, mira4, franco, camara, botonDisparo, dpi, puntero, supresor;
     let titulo = "";
@@ -23,7 +26,7 @@ function generarConfig() {
         mira2 = Math.floor(Math.random() * (100 - 97 + 1)) + 97;
         mira4 = Math.floor(Math.random() * (99 - 94 + 1)) + 94;
         
-        // Ajustes para levantar la mira rápido
+        // Ajustes para levantar la mira rápido (Full Rojo)
         botonDisparo = Math.floor(Math.random() * (42 - 35 + 1)) + 35;  
         dpi = Math.floor(Math.random() * (720 - 580 + 1)) + 580;
         puntero = "Al Máximo (+3)";
@@ -36,17 +39,18 @@ function generarConfig() {
         mira2 = Math.floor(Math.random() * (84 - 76 + 1)) + 76;
         mira4 = Math.floor(Math.random() * (82 - 75 + 1)) + 75;
         
-        // Ajustes para no pasar la mira por encima de la cabeza
+        // Ajustes para un disparo más controlado (Cero Temblequeo)
         botonDisparo = Math.floor(Math.random() * (55 - 47 + 1)) + 47;  
         dpi = "Por Defecto (No DPI)";
         puntero = "Mitad / Estable";
         supresor = "Desactivado";
     }
 
+    // Valores estándar para Franco y Cámara
     franco = Math.floor(Math.random() * (28 - 15 + 1)) + 15;
     camara = Math.floor(Math.random() * (95 - 76 + 1)) + 76;
 
-    // Meter los datos en la interfaz
+    // Insertar los números en las tarjetas flotantes
     document.getElementById("txtModoTitulo").innerText = titulo;
     document.getElementById("vGen").innerText = general + "%";
     document.getElementById("vMira1").innerText = puntoRojo + "%";
@@ -55,12 +59,13 @@ function generarConfig() {
     document.getElementById("vFranco").innerText = franco + "%";
     document.getElementById("vCamara").innerText = camara + "%";
     
-    // Meter los ajustes recomendados extra
+    // Insertar las recomendaciones internas de Free Fire
     document.getElementById("vBoton").innerText = botonDisparo + "%";
     document.getElementById("vDpi").innerText = dpi;
     document.getElementById("vPuntero").innerText = puntero;
     document.getElementById("vSupresor").innerText = supresor;
 
+    // Mostrar el modal holográfico en la pantalla
     document.getElementById("resultadoModal").style.display = "flex";
 }
 
@@ -68,7 +73,8 @@ function cerrarModal() {
     document.getElementById("resultadoModal").style.display = "none";
 }
 
+// Cerrar si tocan fuera de la caja del modal
 window.onclick = function(event) {
     const mRes = document.getElementById("resultadoModal");
     if (event.target == mRes) { cerrarModal(); }
-}
+        }
