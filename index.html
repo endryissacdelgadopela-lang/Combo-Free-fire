@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ BLUE LOCK: Egoist Sensi</title>
+    <title>⚡ BLUE LOCK X SAIYAJIN: Ultra Sensi</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -14,8 +14,8 @@
         }
         
         body {
-            /* Fondo inspirado en el campo de fútbol futurista de Blue Lock */
-            background: radial-gradient(circle at 50% 30%, #001133 0%, #020a17 60%, #000105 100%);
+            /* Fondo con degradado espacio neón cósmico y Ki azul ultra instinto */
+            background: radial-gradient(circle at 50% 30%, #001f4d 0%, #020a1c 60%, #000000 100%);
             color: #ffffff;
             text-align: center;
             margin: 0;
@@ -24,32 +24,39 @@
             overflow-x: hidden;
         }
 
-        /* --- ENCABEZADO BLUE LOCK --- */
+        /* --- ENCABEZADO EVENTO COLABORACIÓN --- */
         .header-main {
             margin: 20px auto 25px auto;
             max-width: 480px;
-            position: relative;
         }
-        
-        /* Efecto de Cadenas / Hexágonos de Blue Lock en el título */
+        .colab-tag {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 11px;
+            font-weight: 900;
+            color: #ff5500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            text-shadow: 0 0 10px rgba(255, 85, 0, 0.6);
+        }
         .badge-blue {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 46px;
-            background: linear-gradient(135deg, #00f0ff 0%, #0055ff 50%, #00aaff 100%);
+            font-size: 42px;
+            background: linear-gradient(135deg, #00f0ff 0%, #0077ff 50%, #00d2ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.5));
+            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.6));
             letter-spacing: 1px;
         }
         .title-sub {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 15px;
-            letter-spacing: 5px;
-            color: #8faed9;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+            font-size: 14px;
+            letter-spacing: 4px;
+            color: #a3c2e0;
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
             margin: 5px 0 0 0;
             text-transform: uppercase;
         }
@@ -59,14 +66,14 @@
             background: rgba(0, 240, 255, 0.08);
             border: 1px solid #00f0ff;
             padding: 4px 14px;
-            border-radius: 6px;
+            border-radius: 4px;
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #00f0ff;
             margin-top: 12px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
         }
         .dot {
             display: inline-block;
@@ -83,31 +90,18 @@
         }
 
         /* ==========================================
-           PANEL PRINCIPAL DE SELECCIÓN
+           PANEL DE CONTROL
         ========================================== */
         #pantalla-sensi {
             max-width: 460px;
             margin: 0 auto;
         }
         .panel-container {
-            background: linear-gradient(135deg, rgba(2, 10, 28, 0.9) 0%, rgba(1, 4, 12, 0.98) 100%);
-            border: 2px solid #0044cc;
-            border-radius: 16px;
+            background: linear-gradient(135deg, rgba(2, 12, 36, 0.9) 0%, rgba(1, 4, 15, 0.98) 100%);
+            border: 2px solid #0055ff;
+            border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.9);
-            position: relative;
-        }
-        
-        /* Decoración de hexágono de fútbol de fondo */
-        .panel-container::before {
-            content: "⚽";
-            position: absolute;
-            font-size: 120px;
-            opacity: 0.03;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
         }
 
         .opcion-grupo {
@@ -131,35 +125,33 @@
             gap: 12px;
         }
         .btn-modo {
-            background: rgba(3, 15, 38, 0.6);
-            border: 1px solid #0033aa;
+            background: rgba(3, 16, 41, 0.6);
+            border: 1px solid #003cdb;
             color: #8faed9;
             padding: 16px;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             font-weight: 700;
             font-size: 15px;
             text-transform: uppercase;
-            transition: all 0.25s ease;
-            position: relative;
+            transition: all 0.2s ease;
         }
         .btn-modo.active {
-            background: linear-gradient(135deg, #0044ff 0%, #00d2ff 100%);
+            background: linear-gradient(135deg, #0055ff 0%, #ff5500 100%);
             color: #ffffff;
             border: 1px solid #00f0ff;
-            box-shadow: 0 0 20px rgba(0, 114, 255, 0.5);
-            transform: translateY(-1px);
+            box-shadow: 0 0 20px rgba(255, 85, 0, 0.4);
         }
 
         .btn-action {
             width: 100%;
-            background: linear-gradient(90deg, #0044ff, #00f0ff);
+            background: linear-gradient(90deg, #0055ff, #00f0ff);
             color: #ffffff;
             border: none;
             padding: 16px;
             font-size: 18px;
             font-weight: 700;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
@@ -170,15 +162,13 @@
         }
         .btn-action:active { transform: scale(0.98); }
 
-        /* ==========================================
-           SECCIÓN DE CRÉDITOS FIJOS EN PANTALLA
-        ========================================== */
+        /* CRÉDITOS FIJOS EN PANTALLA */
         .creditos-box {
             margin-top: 25px;
             background: rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(0, 240, 255, 0.15);
             padding: 12px;
-            border-radius: 10px;
+            border-radius: 8px;
             max-width: 460px;
             margin-left: auto;
             margin-right: auto;
@@ -203,16 +193,16 @@
             position: fixed;
             z-index: 9999;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(1, 4, 12, 0.96);
+            background: rgba(1, 4, 14, 0.96);
             backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             padding: 15px;
         }
         .modal-content {
-            background: #020714;
-            border: 2px solid #0055ff;
-            border-radius: 16px;
+            background: #020716;
+            border: 2px solid #ff5500;
+            border-radius: 12px;
             width: 100%;
             max-width: 410px;
             padding: 22px 18px;
@@ -228,9 +218,9 @@
             margin: 15px 0;
         }
         .card-sens {
-            background: rgba(3, 15, 38, 0.8);
-            border: 1px solid #0033aa;
-            border-radius: 8px;
+            background: rgba(3, 16, 41, 0.8);
+            border: 1px solid #003cdb;
+            border-radius: 6px;
             padding: 12px 6px;
             text-align: center;
         }
@@ -252,9 +242,9 @@
         }
 
         .seccion-ajustes {
-            background: rgba(0, 68, 255, 0.08);
-            border: 1px dashed #00f0ff;
-            border-radius: 10px;
+            background: rgba(255, 85, 0, 0.05);
+            border: 1px dashed #ff5500;
+            border-radius: 8px;
             padding: 14px;
             margin-top: 15px;
             text-align: left;
@@ -263,11 +253,11 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
             font-weight: 700;
-            color: #ffb700;
+            color: #ffcc00;
             margin-bottom: 10px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            border-bottom: 1px solid rgba(255, 183, 0, 0.2);
+            border-bottom: 1px solid rgba(255, 204, 0, 0.2);
             padding-bottom: 4px;
         }
         .ajuste-item {
@@ -279,61 +269,58 @@
             justify-content: space-between;
         }
         .ajuste-item span {
-            color: #00f0ff;
+            color: #ff5500;
             font-weight: 700;
         }
 
         .btn-close {
             width: 100%;
-            background: linear-gradient(180deg, #041635 0%, #020a17 100%);
+            background: linear-gradient(180deg, #1c0b02 0%, #0c0501 100%);
             color: #ffffff;
-            border: 1px solid #0055ff;
+            border: 1px solid #ff5500;
             padding: 14px;
-            border-radius: 8px;
+            border-radius: 6px;
             font-weight: 700;
             cursor: pointer;
             margin-top: 15px;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: background 0.2s;
-        }
-        .btn-close:hover {
-            background: #002288;
         }
     </style>
 </head>
 <body>
 
-    <!-- ENCABEZADO PRO BLUE LOCK -->
+    <!-- ENCABEZADO PRO EVENTO -->
     <div class="header-main">
-        <div class="badge-blue">BLUE LOCK</div>
-        <div class="title-sub">Egoist Sensibility</div>
-        <div class="status-bar"><span class="dot"></span>Flujo del Ego Activado</div>
+        <div class="colab-tag">SPECIAL CROSSOVER EVENT</div>
+        <div class="badge-blue">BLUE LOCK X DBZ</div>
+        <div class="title-sub">Ultra Instinto Config</div>
+        <div class="status-bar"><span class="dot"></span>Fusión De Ki RompeLímites</div>
     </div>
 
-    <!-- PANEL DE SELECCIÓN DE DOS BOTONES -->
+    <!-- PANEL PRINCIPAL -->
     <div id="pantalla-sensi">
         <div class="panel-container">
             <div class="opcion-grupo">
-                <label>Selecciona tu estilo de juego en el campo:</label>
+                <label>Selecciona tu nivel de poder saiyajin:</label>
                 <div class="modos-stack">
-                    <button id="btn-alta" class="btn-modo active" onclick="cambiarModo('alta')">⚽ Delantero: Alta Sensi (Full Rojo)</button>
-                    <button id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">🛡️ Defensa: Sensi Baja (Más Control)</button>
+                    <button id="btn-alta" class="btn-modo active" onclick="cambiarModo('alta')">🔥 Fusión Ultra Instinto (Alta Sensi / Rojo)</button>
+                    <button id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">⚡ Fase Dios Azul (Sensi Baja / Control Total)</button>
                 </div>
             </div>
-            <button class="btn-action" onclick="generarConfig()">Despertar Instinto</button>
+            <button class="btn-action" onclick="generarConfig()">Desatar Ki Absoluto</button>
         </div>
 
-        <!-- TUS CRÉDITOS OFICIALES VISIBLES SIEMPRE ABAJO -->
+        <!-- TUS CRÉDITOS OFICIALES -->
         <div class="creditos-box">
             <p>Crédito de IA & Desarrollado por: <strong>Endry</strong></p>
         </div>
     </div>
 
-    <!-- MODAL FINAL CON RECOMENDACIONES -->
+    <!-- MODAL FINAL CON DETALLES -->
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
-            <div style="font-family:'Orbitron', sans-serif; font-size:15px; font-weight:700; border-bottom:2px solid #00f0ff; padding-bottom:8px; margin-bottom:12px; color:#00f0ff;" id="txtModoTitulo">REGISTRO BLUE LOCK</div>
+            <div style="font-family:'Orbitron', sans-serif; font-size:15px; font-weight:700; border-bottom:2px solid #ff5500; padding-bottom:8px; margin-bottom:12px; color:#ff5500;" id="txtModoTitulo">REGISTRO GUERRERO Z</div>
             
             <!-- Cuadrícula de Sensi -->
             <div class="grid-cards">
@@ -345,20 +332,20 @@
                 <div class="card-sens"><span class="card-label">Cámara</span><span id="vCamara" class="card-value">0%</span></div>
             </div>
 
-            <!-- Ajustes Internos Recomendados -->
+            <!-- Ajustes Internos -->
             <div class="seccion-ajustes">
-                <div class="ajustes-titulo">🛠️ Ajustes de Arma del Egoísta</div>
+                <div class="ajustes-titulo">🛠️ Especificaciones de Combate</div>
                 <div class="ajuste-item">Botón de Disparo: <span id="vBoton">0%</span></div>
-                <div class="ajuste-item">DPI Recomendado: <span id="vDpi">0</span></div>
+                <div class="ajuste-item">DPI del Sistema: <span id="vDpi">0</span></div>
                 <div class="ajuste-item">Velocidad de Puntero: <span id="vPuntero">Máxima</span></div>
-                <div class="ajuste-item">Supresor: <span id="vSupresor">Desactivado</span></div>
+                <div class="ajuste-item">Supresor de Rastreo: <span id="vSupresor">Desactivado</span></div>
             </div>
 
-            <button class="btn-close" onclick="cerrarModal()">Dominar la Partida</button>
+            <button class="btn-close" onclick="cerrarModal()">Entrar a la Arena</button>
         </div>
     </div>
 
-    <!-- Script blindado contra caché -->
-    <script src="sens.js?v=3"></script>
+    <!-- Script blindado contra caché v4 -->
+    <script src="sens.js?v=4"></script>
 </body>
 </html>
