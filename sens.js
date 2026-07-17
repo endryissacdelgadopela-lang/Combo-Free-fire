@@ -1,4 +1,4 @@
-// [[ BLUE LOCK SENSI SYSTEM - BY ENDRY ]]
+// [[ BLUE LOCK X DBZ SYSTEM - BY ENDRY ]]
 let modoSeleccionado = 'alta';
 
 function cambiarModo(modo) {
@@ -18,34 +18,34 @@ function generarConfig() {
     let titulo = "";
 
     if (modoSeleccionado === 'alta') {
-        titulo = "⚽ MODO EGOÍSTA: ALTA SENSI";
-        general = Math.floor(Math.random() * (100 - 96 + 1)) + 96;      
-        puntoRojo = Math.floor(Math.random() * (99 - 95 + 1)) + 95;     
-        mira2 = Math.floor(Math.random() * (100 - 97 + 1)) + 97;
-        mira4 = Math.floor(Math.random() * (99 - 94 + 1)) + 94;
+        titulo = "💥 CÓDIGO ULTRA INSTINTO ACTIVO";
+        general = Math.floor(Math.random() * (100 - 97 + 1)) + 97;      
+        puntoRojo = Math.floor(Math.random() * (99 - 96 + 1)) + 96;     
+        mira2 = Math.floor(Math.random() * (100 - 98 + 1)) + 98;
+        mira4 = Math.floor(Math.random() * (99 - 95 + 1)) + 95;
         
-        botonDisparo = Math.floor(Math.random() * (42 - 35 + 1)) + 35;  
-        dpi = Math.floor(Math.random() * (720 - 610 + 1)) + 610;
-        puntero = "Al Máximo (Veloz)";
-        supresor = "0.2s (Disparo Inmediato)";
+        botonDisparo = Math.floor(Math.random() * (41 - 34 + 1)) + 34;  
+        dpi = Math.floor(Math.random() * (750 - 620 + 1)) + 620;
+        puntero = "Máximo Nivel (+3)";
+        supresor = "0.1s (Velocidad Luz)";
     } 
     else if (modoSeleccionado === 'baja') {
-        titulo = "⚽ MODO IMPERIAL: SENSI BAJA";
-        general = Math.floor(Math.random() * (85 - 77 + 1)) + 77;       
-        puntoRojo = Math.floor(Math.random() * (81 - 74 + 1)) + 74;
-        mira2 = Math.floor(Math.random() * (84 - 76 + 1)) + 76;
-        mira4 = Math.floor(Math.random() * (82 - 75 + 1)) + 75;
+        titulo = "⚡ PODER DIOS AZUL CONTROLADO";
+        general = Math.floor(Math.random() * (86 - 78 + 1)) + 78;       
+        puntoRojo = Math.floor(Math.random() * (82 - 75 + 1)) + 75;
+        mira2 = Math.floor(Math.random() * (85 - 77 + 1)) + 77;
+        mira4 = Math.floor(Math.random() * (83 - 76 + 1)) + 76;
         
-        botonDisparo = Math.floor(Math.random() * (54 - 46 + 1)) + 46;  
+        botonDisparo = Math.floor(Math.random() * (53 - 45 + 1)) + 45;  
         dpi = "Por Defecto (Sin DPI)";
-        puntero = "Predeterminada / Estable";
+        puntero = "Estable / Por Defecto";
         supresor = "Desactivado";
     }
 
-    franco = Math.floor(Math.random() * (30 - 16 + 1)) + 16;
-    camara = Math.floor(Math.random() * (95 - 78 + 1)) + 78;
+    franco = Math.floor(Math.random() * (32 - 17 + 1)) + 17;
+    camara = Math.floor(Math.random() * (96 - 79 + 1)) + 79;
 
-    // Colocar valores en el modal holográfico
+    // Asignar los valores al modal flotante
     document.getElementById("txtModoTitulo").innerText = titulo;
     document.getElementById("vGen").innerText = general + "%";
     document.getElementById("vMira1").innerText = puntoRojo + "%";
@@ -54,13 +54,13 @@ function generarConfig() {
     document.getElementById("vFranco").innerText = franco + "%";
     document.getElementById("vCamara").innerText = camara + "%";
     
-    // Ajustes recomendados de Free Fire
+    // Inyectar configuraciones internas recomendadas
     document.getElementById("vBoton").innerText = botonDisparo + "%";
     document.getElementById("vDpi").innerText = dpi;
     document.getElementById("vPuntero").innerText = puntero;
     document.getElementById("vSupresor").innerText = supresor;
 
-    // Mostrar modal en pantalla
+    // Lanzar el modal en pantalla
     document.getElementById("resultadoModal").style.display = "flex";
 }
 
