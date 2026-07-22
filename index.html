@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ MEGA COLLAB SYSTEM: Ultra Sensi Pro</title>
+    <title>ULTIMATE SENSI - PERFIL Y MONEDAS</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -14,62 +14,61 @@
         }
         
         body {
-            background: radial-gradient(circle at 50% 30%, #1a0033 0%, #0a001a 60%, #000000 100%);
+            background: radial-gradient(circle at 50% 30%, #001f4d 0%, #020a1c 60%, #000000 100%);
             color: #ffffff;
             text-align: center;
             margin: 0;
             padding: 15px;
             min-height: 100vh;
-            overflow-x: hidden;
         }
 
         .header-main {
-            margin: 20px auto 25px auto;
+            margin: 15px auto 20px auto;
             max-width: 480px;
         }
-        .colab-tag {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 11px;
-            font-weight: 900;
-            color: #00f0ff;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
-        }
-        .badge-mega {
+        
+        .badge-blue {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 32px;
-            background: linear-gradient(135deg, #ffea00 0%, #ff0055 50%, #00f0ff 100%);
+            font-size: 28px;
+            background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            filter: drop-shadow(0 0 18px rgba(255, 0, 85, 0.6));
             letter-spacing: 1px;
         }
-        .title-sub {
+
+        /* BARRA DE PERFIL Y MONEDAS */
+        .user-bar {
+            background: rgba(2, 12, 36, 0.9);
+            border: 1px solid #00f0ff;
+            border-radius: 8px;
+            padding: 10px 15px;
+            max-width: 460px;
+            margin: 0 auto 20px auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .user-info {
+            font-weight: 700;
+            color: #00f0ff;
+            font-size: 14px;
+        }
+        .coins-info {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 3px;
-            color: #d1b3ff;
-            margin: 5px 0 0 0;
-            text-transform: uppercase;
+            color: #ffcc00;
+            font-size: 15px;
         }
-        
-        .status-bar {
-            display: inline-block;
-            background: rgba(255, 0, 85, 0.1);
-            border: 1px solid #ff0055;
-            padding: 4px 14px;
+        .btn-reg {
+            background: #0055ff;
+            color: #fff;
+            border: none;
+            padding: 6px 12px;
             border-radius: 4px;
-            font-size: 11px;
             font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #ff3377;
-            margin-top: 12px;
+            cursor: pointer;
         }
 
         #pantalla-sensi {
@@ -77,144 +76,94 @@
             margin: 0 auto;
         }
         .panel-container {
-            background: linear-gradient(135deg, rgba(20, 0, 40, 0.92) 0%, rgba(5, 0, 10, 0.98) 100%);
-            border: 2px solid #8800ff;
+            background: linear-gradient(135deg, rgba(2, 12, 36, 0.9) 0%, rgba(1, 4, 15, 0.98) 100%);
+            border: 2px solid #0055ff;
             border-radius: 12px;
             padding: 22px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.95);
         }
 
-        .opcion-grupo {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 14px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            letter-spacing: 1.5px;
-            text-align: center;
-        }
-
         .modos-stack {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
         .btn-modo {
-            background: rgba(30, 0, 60, 0.6);
-            border: 1px solid #6600cc;
-            color: #d1b3ff;
+            background: rgba(3, 16, 41, 0.6);
+            border: 1px solid #003cdb;
+            color: #8faed9;
             padding: 14px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 15px;
             text-transform: uppercase;
-            transition: all 0.2s ease;
         }
-        .btn-modo.zenitsu-active {
-            background: linear-gradient(135deg, #ffe600 0%, #ff8800 100%);
-            color: #1a1200;
-            border: 1px solid #ffffff;
-            box-shadow: 0 0 15px rgba(255, 230, 0, 0.7);
-            font-weight: 900;
-        }
-        .btn-modo.bluelock-active {
+        .btn-modo.active {
             background: linear-gradient(135deg, #0055ff 0%, #00f0ff 100%);
             color: #ffffff;
             border: 1px solid #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
-            font-weight: 900;
-        }
-        .btn-modo.dbz-active {
-            background: linear-gradient(135deg, #ff5500 0%, #ffaa00 100%);
-            color: #ffffff;
-            border: 1px solid #ffea00;
-            box-shadow: 0 0 15px rgba(255, 85, 0, 0.7);
-            font-weight: 900;
-        }
-        .btn-modo.naruto-active {
-            background: linear-gradient(135deg, #ff0055 0%, #ff5500 100%);
-            color: #ffffff;
-            border: 1px solid #ff0055;
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
-            font-weight: 900;
-        }
-        .btn-modo.custom-active {
-            background: linear-gradient(135deg, #8800ff 0%, #00f0ff 100%);
-            color: #ffffff;
-            border: 1px solid #d1b3ff;
-            box-shadow: 0 0 15px rgba(136, 0, 255, 0.7);
-            font-weight: 900;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
         }
 
         .btn-action {
             width: 100%;
-            background: linear-gradient(90deg, #8800ff, #00f0ff);
+            background: linear-gradient(90deg, #0055ff, #00f0ff);
             color: #ffffff;
             border: none;
             padding: 16px;
             font-size: 18px;
-            font-weight: 900;
+            font-weight: 700;
             border-radius: 6px;
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
-            box-shadow: 0 4px 20px rgba(136, 0, 255, 0.5);
-            margin-top: 5px;
-            letter-spacing: 2px;
+            margin-top: 15px;
         }
-        .btn-action:active { transform: scale(0.98); }
 
         .creditos-box {
             margin-top: 25px;
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(136, 0, 255, 0.3);
+            border: 1px solid rgba(0, 240, 255, 0.15);
             padding: 12px;
             border-radius: 8px;
             max-width: 460px;
             margin-left: auto;
             margin-right: auto;
         }
-        .creditos-box p {
-            margin: 0;
-            font-size: 13px;
-            letter-spacing: 1px;
-            color: #d1b3ff;
-        }
-        .creditos-box strong {
-            color: #00f0ff;
-            font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
-        }
 
+        /* MODALES */
         .modal {
             display: none;
             position: fixed;
             z-index: 9999;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 0, 10, 0.96);
+            background: rgba(1, 4, 14, 0.96);
             backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             padding: 15px;
         }
         .modal-content {
-            background: #0a0014;
-            border: 2px solid #8800ff;
+            background: #020716;
+            border: 2px solid #00f0ff;
             border-radius: 12px;
             width: 100%;
             max-width: 410px;
             padding: 22px 18px;
-            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.95);
-            max-height: 90vh;
-            overflow-y: auto;
         }
-        
+
+        .input-reg {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background: #00112c;
+            border: 1px solid #00f0ff;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+
         .grid-cards {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -222,19 +171,10 @@
             margin: 15px 0;
         }
         .card-sens {
-            background: rgba(30, 0, 60, 0.8);
-            border: 1px solid #6600cc;
+            background: rgba(3, 16, 41, 0.8);
+            border: 1px solid #003cdb;
             border-radius: 6px;
             padding: 10px 6px;
-            text-align: center;
-        }
-        .card-label {
-            color: #d1b3ff;
-            font-size: 11px;
-            text-transform: uppercase;
-            font-weight: 700;
-            display: block;
-            margin-bottom: 3px;
         }
         .card-value {
             color: #00f0ff;
@@ -243,133 +183,79 @@
             font-size: 20px;
         }
 
-        .input-custom {
-            width: 80%;
-            background: #1a0033;
-            border: 1px solid #00f0ff;
-            color: #00f0ff;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 16px;
-            text-align: center;
-            border-radius: 4px;
-            padding: 2px;
-        }
-
-        .seccion-ajustes {
-            background: rgba(136, 0, 255, 0.08);
-            border: 1px dashed #8800ff;
-            border-radius: 8px;
-            padding: 14px;
-            margin-top: 15px;
-            text-align: left;
-        }
-        .ajustes-titulo {
-            font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            color: #ff0055;
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-        .ajuste-item {
-            font-size: 14px;
-            font-weight: 600;
-            color: #ffffff;
-            margin: 6px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .ajuste-item span {
-            color: #00f0ff;
-            font-weight: 700;
-        }
-
-        .consecuencias-box {
-            background: rgba(255, 0, 85, 0.08);
-            border: 1px solid #ff0055;
-            border-radius: 8px;
-            padding: 10px;
-            margin-top: 12px;
-            text-align: left;
-            font-size: 12px;
-            color: #ff99bb;
-            display: none;
-        }
-
         .btn-close {
             width: 100%;
-            background: linear-gradient(180deg, #6600cc 0%, #220044 100%);
+            background: #0055ff;
             color: #ffffff;
-            border: 1px solid #00f0ff;
-            padding: 14px;
+            border: none;
+            padding: 12px;
             border-radius: 6px;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 15px;
-            text-transform: uppercase;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
 
     <div class="header-main">
-        <div class="colab-tag">ULTRA COLLAB EDITION</div>
-        <div class="badge-mega">ALL-STAR SENSI</div>
-        <div class="title-sub">Zenitsu x Blue Lock x DBZ x Naruto</div>
-        <div class="status-bar">Modo Dios Activado</div>
+        <div class="badge-blue">PANEL SENSI PRO</div>
+    </div>
+
+    <!-- BARRA DE PERFIL Y MONEDAS -->
+    <div class="user-bar">
+        <div class="user-info" id="txtUsuario">👤 Invitado</div>
+        <div class="coins-info" id="txtMonedas">🪙 0 Monedas</div>
+        <button class="btn-reg" id="btnAbrirReg" onclick="abrirRegistro()">Registrarse</button>
     </div>
 
     <div id="pantalla-sensi">
         <div class="panel-container">
-            <div class="opcion-grupo">
-                <label>Selecciona tu Colaboración Favorita:</label>
-                <div class="modos-stack">
-                    <button id="btn-zenitsu" class="btn-modo zenitsu-active" onclick="cambiarModo('zenitsu')">⚡ Zenitsu (Velocidad del Trueno)</button>
-                    <button id="btn-bluelock" class="btn-modo" onclick="cambiarModo('bluelock')">⚽ Blue Lock (Egoísta Full Rojo)</button>
-                    <button id="btn-dbz" class="btn-modo" onclick="cambiarModo('dbz')">🔥 DBZ (Super Saiyan God)</button>
-                    <button id="btn-naruto" class="btn-modo" onclick="cambiarModo('naruto')">🌀 Naruto (Modo Sabio Precision)</button>
-                    <button id="btn-custom" class="btn-modo" onclick="cambiarModo('custom')">🛠️ Personaliza Tu Propia Sensi (En 0)</button>
-                </div>
+            <div class="modos-stack">
+                <button id="btn-alta" class="btn-modo active" onclick="cambiarModo('alta')">⚡ Sensibilidad Alta</button>
+                <button id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">🛡️ Sensibilidad Baja</button>
+                <button id="btn-pro" class="btn-modo" onclick="cambiarModo('pro')">🎯 Sensibilidad Profesional</button>
             </div>
-            <button class="btn-action" onclick="generarConfig()">Cargar Configuración Pro</button>
+            <button class="btn-action" onclick="generarConfig()">Cargar Configuración</button>
         </div>
 
         <div class="creditos-box">
-            <p>Crédito de IA & Desarrollado por: <strong>Endry</strong></p>
+            <p>Desarrollado por: <strong style="color:#00f0ff;">Endry</strong></p>
         </div>
     </div>
 
+    <!-- MODAL DE REGISTRO -->
+    <div id="registroModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:#00f0ff; margin-top:0;">CREAR CUENTA</h3>
+            <p style="font-size:13px; color:#aaa;">Regístrate para recibir tu bono semanal de monedas.</p>
+            <input type="text" id="regNombre" class="input-reg" placeholder="Tu Nombre o Nombre de Usuario">
+            <button class="btn-action" onclick="confirmarRegistro()">Registrarse & Ganar Monedas</button>
+            <button class="btn-close" style="background:#333;" onclick="cerrarRegistro()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE RESULTADOS -->
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
-            <div style="font-family:'Orbitron', sans-serif; font-size:14px; font-weight:700; border-bottom:2px solid #00f0ff; padding-bottom:8px; margin-bottom:12px; color:#00f0ff;" id="txtModoTitulo">REGISTRO DE COMBATE</div>
+            <div style="font-family:'Orbitron', sans-serif; font-size:14px; font-weight:700; color:#00f0ff;" id="txtModoTitulo">CONFIGURACIÓN</div>
             
             <div class="grid-cards">
-                <div class="card-sens"><span class="card-label">General</span><span id="vGen" class="card-value">0%</span></div>
-                <div class="card-sens"><span class="card-label">Mira 1X</span><span id="vMira1" class="card-value">0%</span></div>
-                <div class="card-sens"><span class="card-label">Mira X2</span><span id="vMira2" class="card-value">0%</span></div>
-                <div class="card-sens"><span class="card-label">Mira X4</span><span id="vMira4" class="card-value">0%</span></div>
-                <div class="card-sens"><span class="card-label">Franco</span><span id="vFranco" class="card-value">0%</span></div>
-                <div class="card-sens"><span class="card-label">Cámara</span><span id="vCamara" class="card-value">0%</span></div>
+                <div class="card-sens"><span style="display:block; font-size:11px;">General</span><span id="vGen" class="card-value">0%</span></div>
+                <div class="card-sens"><span style="display:block; font-size:11px;">Punto Rojo</span><span id="vMira1" class="card-value">0%</span></div>
+                <div class="card-sens"><span style="display:block; font-size:11px;">Mira X2</span><span id="vMira2" class="card-value">0%</span></div>
+                <div class="card-sens"><span style="display:block; font-size:11px;">Mira X4</span><span id="vMira4" class="card-value">0%</span></div>
             </div>
 
-            <div class="seccion-ajustes">
-                <div class="ajustes-titulo">🛠️ Ajustes Recomendados</div>
-                <div class="ajuste-item">Botón de Disparo: <span id="vBoton">0%</span></div>
-                <div class="ajuste-item">DPI del Sistema: <span id="vDpi">0</span></div>
-                <div class="ajuste-item">Velocidad de Puntero: <span id="vPuntero">Máxima</span></div>
-                <div class="ajuste-item">Supresor: <span id="vSupresor">Desactivado</span></div>
+            <div style="text-align:left; background:rgba(0,240,255,0.05); padding:10px; border-radius:6px; font-size:13px;">
+                <div>Botón de Disparo: <span id="vBoton" style="color:#00f0ff; font-weight:700;">0%</span></div>
+                <div>DPI Recomendado: <span id="vDpi" style="color:#00f0ff; font-weight:700;">0</span></div>
             </div>
 
-            <div id="cajaConsecuencias" class="consecuencias-box">
-                <strong>⚠️ Análisis de Consecuencias:</strong> <span id="txtConsecuencia">Escribe tus valores para ver el diagnóstico...</span>
-            </div>
-
-            <button class="btn-close" onclick="cerrarModal()">Guardar & Salir</button>
+            <button class="btn-close" onclick="cerrarModal()">Guardar Configuración</button>
         </div>
     </div>
 
-    <script src="sens.js?v=9"></script>
+    <script src="sens.js?v=10"></script>
 </body>
-                </html>
-                
+</html>
