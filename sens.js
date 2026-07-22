@@ -1,15 +1,15 @@
-// [[ SENSI SYSTEM CON REGISTRO, MONEDAS Y MINIJUEGO - BY ENDRY ]]
+// PANEL SENSI PRO - SISTEMA DE MONEDAS Y MINIJUEGO POR ENDRY
 let modoSeleccionado = 'alta';
 let usuarioRegistrado = false;
 let monedas = 0;
 
-// VARIABLES DEL MINIJUEGO
+// Variables del minijuego
 let gamePuntos = 0;
 let gameTiempo = 15;
 let gameInterval = null;
 let targetTimeout = null;
 
-// Cargar datos al iniciar
+// Cargar datos al iniciar la página
 window.onload = function() {
     let userGuardado = localStorage.getItem("usuario_sensi");
     let monedasGuardadas = localStorage.getItem("monedas_sensi");
@@ -50,7 +50,7 @@ function confirmarRegistro() {
     }
 
     usuarioRegistrado = true;
-    monedas = 100; // Monedas iniciales otorgadas por registrarse
+    monedas = 100;
 
     localStorage.setItem("usuario_sensi", nombre);
     localStorage.setItem("monedas_sensi", monedas);
@@ -107,7 +107,7 @@ function cerrarModal() {
     document.getElementById("resultadoModal").style.display = "none";
 }
 
-// LÓGICA DEL MINIJUEGO
+// Funciones del minijuego
 function abrirMinijuego() {
     document.getElementById("minijuegoModal").style.display = "flex";
     resetJuegoUI();
@@ -181,3 +181,4 @@ function finalizarJuego() {
 
     alert("¡Tiempo agotado! Hiciste " + gamePuntos + " puntos y ganaste +" + monedasGanadas + " Monedas.");
 }
+
