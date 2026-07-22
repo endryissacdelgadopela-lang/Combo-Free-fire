@@ -1,7 +1,13 @@
-// [[ SENSI SYSTEM CON REGISTRO Y MONEDAS - BY ENDRY ]]
+// [[ SENSI SYSTEM CON REGISTRO, MONEDAS Y MINIJUEGO - BY ENDRY ]]
 let modoSeleccionado = 'alta';
 let usuarioRegistrado = false;
 let monedas = 0;
+
+// VARIABLES DEL MINIJUEGO
+let gamePuntos = 0;
+let gameTiempo = 15;
+let gameInterval = null;
+let targetTimeout = null;
 
 // Cargar datos al iniciar
 window.onload = function() {
@@ -99,4 +105,79 @@ function generarConfig() {
 
 function cerrarModal() {
     document.getElementById("resultadoModal").style.display = "none";
+}
+
+// LÓGICA DEL MINIJUEGO
+function abrirMinijuego() {
+    document.getElementById("minijuegoModal").style.display = "flex";
+    resetJuegoUI();
+}
+
+function cerrarMinijuego() {
+    clearInterval(gameInterval);
+    clearTimeout(targetTimeout);
+    document.getElementById("minijuegoModal").style.display = "none";
+}
+
+function resetJuegoUI() {
+    gamePuntos = 0;
+    gameTiempo = 15;
+    document.getElementById("gameScore").innerText = gamePuntos;
+    document.getElementById("gameTimer").innerText = gameTiempo;
+    document.getElementById("btnStartGame").style.display = "block";
+    document.getElementById("target").style.display = "none";
+}
+
+function iniciarJuego() {
+    gamePuntos = 0;
+    gameTiempo = 15;
+    document.getElementById("gameScore").innerText = gamePuntos;
+    document.getElementById("gameTimer").innerText = gameTiempo;
+    document.getElementById("btnStartGame").style.display = "none";
+
+    moverDiana();
+
+    gameInterval = setInterval(function() {
+        gameTiempo--;
+        document.getElementById("gameTimer").innerText = gameTiempo;
+
+        if (gameTiempo <= 0) {
+            finalizarJuego();
+        }
+    }, 1000);
+}
+
+function moverDiana() {
+    const area = document.getElementById("gameArea");
+    const target = document.getElementById("target");
+
+    const maxLeft = area.clientWidth - 60;
+    const maxTop = area.clientHeight - 60;
+
+    const randomLeft = Math.floor(Math.random() * maxLeft);
+    const randomTop = Math.floor(Math.random() * maxTop);
+
+    target.style.left = randomLeft + "px";
+    target.style.top = randomTop + "px";
+    target.style.display = "block";
+}
+
+function hitTarget() {
+    gamePuntos += 10;
+    document.getElementById("gameScore").innerText = gamePuntos;
+    moverDiana();
+}
+
+function finalizarJuego() {
+    clearInterval(gameInterval);
+    document.getElementById("target").style.display = "none";
+    document.getElementById("btnStartGame").style.display = "block";
+
+    let monedasGanadas = Math.floor(gamePuntos / 2);
+    monedas += monedasGanadas;
+
+    localStorage.setItem("monedas_sensi", monedas);
+    document.getElementById("txtMonedas").innerText = "🪙 " + monedas + " Monedas";
+
+    alert("¡Tiempo agotado! Hiciste " + gamePuntos + " puntos y ganaste +" + monedasGanadas + " Monedas.");
 }
