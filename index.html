@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ULTIMATE SENSI - PERFIL Y MONEDAS</title>
+    <title>ULTIMATE SENSI - PERFIL, MONEDAS Y MINIJUEGO</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -121,6 +121,22 @@
             margin-top: 15px;
         }
 
+        .btn-minijuego {
+            width: 100%;
+            background: linear-gradient(90deg, #ffaa00, #ffea00);
+            color: #1a1200;
+            border: none;
+            padding: 14px;
+            font-size: 16px;
+            font-weight: 900;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+            margin-top: 12px;
+            box-shadow: 0 4px 15px rgba(255, 170, 0, 0.4);
+        }
+
         .creditos-box {
             margin-top: 25px;
             background: rgba(0, 0, 0, 0.4);
@@ -194,6 +210,32 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
+        /* ESTILOS DEL MINIJUEGO */
+        .game-area {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            background: #010a1a;
+            border: 2px solid #ffaa00;
+            border-radius: 8px;
+            margin: 15px 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .target-btn {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, #ffea00 0%, #ff5500 100%);
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 0 15px rgba(255, 234, 0, 0.8);
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -217,6 +259,7 @@
                 <button id="btn-pro" class="btn-modo" onclick="cambiarModo('pro')">🎯 Sensibilidad Profesional</button>
             </div>
             <button class="btn-action" onclick="generarConfig()">Cargar Configuración</button>
+            <button class="btn-minijuego" onclick="abrirMinijuego()">🎯 Minijuego de Puntería (+Monedas)</button>
         </div>
 
         <div class="creditos-box">
@@ -232,6 +275,26 @@
             <input type="text" id="regNombre" class="input-reg" placeholder="Tu Nombre o Nombre de Usuario">
             <button class="btn-action" onclick="confirmarRegistro()">Registrarse & Ganar Monedas</button>
             <button class="btn-close" style="background:#333;" onclick="cerrarRegistro()">Cancelar</button>
+        </div>
+    </div>
+
+    <!-- MODAL DE MINIJUEGO -->
+    <div id="minijuegoModal" class="modal">
+        <div class="modal-content">
+            <h3 style="color:#ffaa00; margin-top:0; font-family:'Orbitron', sans-serif;">🎯 PRUEBA DE PUNTERÍA</h3>
+            <p style="font-size:13px; color:#aaa; margin-bottom:5px;">Toca las dianas rojas antes de que se acabe el tiempo para ganar monedas.</p>
+            
+            <div style="display:flex; justify-content:space-between; font-weight:700; color:#ffea00; font-size:14px; margin-top:5px;">
+                <span>Puntos: <strong id="gameScore">0</strong></span>
+                <span>Tiempo: <strong id="gameTimer">15</strong>s</span>
+            </div>
+
+            <div class="game-area" id="gameArea">
+                <button id="btnStartGame" class="btn-action" style="width:80%;" onclick="iniciarJuego()">¡Empezar Juego!</button>
+                <div id="target" class="target-btn" onclick="hitTarget()"></div>
+            </div>
+
+            <button class="btn-close" style="background:#333;" onclick="cerrarMinijuego()">Cerrar</button>
         </div>
     </div>
 
@@ -256,6 +319,6 @@
         </div>
     </div>
 
-    <script src="sens.js?v=10"></script>
+    <script src="sens.js?v=11"></script>
 </body>
 </html>
