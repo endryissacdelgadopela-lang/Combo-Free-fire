@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ ZENITSU X FREE FIRE: Thunder Sensi</title>
+    <title>⚡ MEGA COLLAB SYSTEM: Ultra Sensi Pro</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -14,8 +14,7 @@
         }
         
         body {
-            /* Fondo inspirado en el rayo amarillo y destellos eléctricos de Zenitsu */
-            background: radial-gradient(circle at 50% 30%, #3d2c00 0%, #120d00 60%, #030200 100%);
+            background: radial-gradient(circle at 50% 30%, #1a0033 0%, #0a001a 60%, #000000 100%);
             color: #ffffff;
             text-align: center;
             margin: 0;
@@ -32,44 +31,44 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 11px;
             font-weight: 900;
-            color: #ffcc00;
+            color: #00f0ff;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
         }
-        .badge-zenitsu {
+        .badge-mega {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 38px;
-            background: linear-gradient(135deg, #ffea00 0%, #ff6600 50%, #ffcc00 100%);
+            font-size: 32px;
+            background: linear-gradient(135deg, #ffea00 0%, #ff0055 50%, #00f0ff 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            filter: drop-shadow(0 0 18px rgba(255, 204, 0, 0.7));
+            filter: drop-shadow(0 0 18px rgba(255, 0, 85, 0.6));
             letter-spacing: 1px;
         }
         .title-sub {
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 3px;
-            color: #ffe680;
+            color: #d1b3ff;
             margin: 5px 0 0 0;
             text-transform: uppercase;
         }
         
         .status-bar {
             display: inline-block;
-            background: rgba(255, 204, 0, 0.08);
-            border: 1px solid #ffcc00;
+            background: rgba(255, 0, 85, 0.1);
+            border: 1px solid #ff0055;
             padding: 4px 14px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #ffcc00;
+            color: #ff3377;
             margin-top: 12px;
         }
 
@@ -78,8 +77,8 @@
             margin: 0 auto;
         }
         .panel-container {
-            background: linear-gradient(135deg, rgba(26, 18, 2, 0.92) 0%, rgba(8, 5, 0, 0.98) 100%);
-            border: 2px solid #ffaa00;
+            background: linear-gradient(135deg, rgba(20, 0, 40, 0.92) 0%, rgba(5, 0, 10, 0.98) 100%);
+            border: 2px solid #8800ff;
             border-radius: 12px;
             padding: 22px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.95);
@@ -106,41 +105,57 @@
             gap: 10px;
         }
         .btn-modo {
-            background: rgba(36, 25, 2, 0.6);
-            border: 1px solid #b37700;
-            color: #ffd666;
+            background: rgba(30, 0, 60, 0.6);
+            border: 1px solid #6600cc;
+            color: #d1b3ff;
             padding: 14px;
             border-radius: 6px;
             cursor: pointer;
             font-weight: 700;
-            font-size: 14px;
+            font-size: 13px;
             text-transform: uppercase;
             transition: all 0.2s ease;
-        }
-        .btn-modo.active {
-            background: linear-gradient(135deg, #ffaa00 0%, #ff3300 100%);
-            color: #ffffff;
-            border: 1px solid #ffea00;
-            box-shadow: 0 0 15px rgba(255, 170, 0, 0.5);
         }
         .btn-modo.zenitsu-active {
             background: linear-gradient(135deg, #ffe600 0%, #ff8800 100%);
             color: #1a1200;
             border: 1px solid #ffffff;
-            box-shadow: 0 0 20px rgba(255, 230, 0, 0.8);
+            box-shadow: 0 0 15px rgba(255, 230, 0, 0.7);
+            font-weight: 900;
+        }
+        .btn-modo.bluelock-active {
+            background: linear-gradient(135deg, #0055ff 0%, #00f0ff 100%);
+            color: #ffffff;
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.7);
+            font-weight: 900;
+        }
+        .btn-modo.dbz-active {
+            background: linear-gradient(135deg, #ff5500 0%, #ffaa00 100%);
+            color: #ffffff;
+            border: 1px solid #ffea00;
+            box-shadow: 0 0 15px rgba(255, 85, 0, 0.7);
+            font-weight: 900;
+        }
+        .btn-modo.naruto-active {
+            background: linear-gradient(135deg, #ff0055 0%, #ff5500 100%);
+            color: #ffffff;
+            border: 1px solid #ff0055;
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.7);
             font-weight: 900;
         }
         .btn-modo.custom-active {
-            background: linear-gradient(135deg, #00d2ff 0%, #0055ff 100%);
+            background: linear-gradient(135deg, #8800ff 0%, #00f0ff 100%);
             color: #ffffff;
-            border: 1px solid #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
+            border: 1px solid #d1b3ff;
+            box-shadow: 0 0 15px rgba(136, 0, 255, 0.7);
+            font-weight: 900;
         }
 
         .btn-action {
             width: 100%;
-            background: linear-gradient(90deg, #ffaa00, #ffea00);
-            color: #1a1200;
+            background: linear-gradient(90deg, #8800ff, #00f0ff);
+            color: #ffffff;
             border: none;
             padding: 16px;
             font-size: 18px;
@@ -149,7 +164,7 @@
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
-            box-shadow: 0 4px 20px rgba(255, 170, 0, 0.5);
+            box-shadow: 0 4px 20px rgba(136, 0, 255, 0.5);
             margin-top: 5px;
             letter-spacing: 2px;
         }
@@ -158,7 +173,7 @@
         .creditos-box {
             margin-top: 25px;
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 170, 0, 0.2);
+            border: 1px solid rgba(136, 0, 255, 0.3);
             padding: 12px;
             border-radius: 8px;
             max-width: 460px;
@@ -169,12 +184,12 @@
             margin: 0;
             font-size: 13px;
             letter-spacing: 1px;
-            color: #ffd666;
+            color: #d1b3ff;
         }
         .creditos-box strong {
-            color: #ffea00;
+            color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 8px rgba(255, 234, 0, 0.6);
+            text-shadow: 0 0 8px rgba(0, 240, 255, 0.8);
         }
 
         .modal {
@@ -182,15 +197,15 @@
             position: fixed;
             z-index: 9999;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(5, 3, 0, 0.96);
+            background: rgba(5, 0, 10, 0.96);
             backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             padding: 15px;
         }
         .modal-content {
-            background: #140d00;
-            border: 2px solid #ffcc00;
+            background: #0a0014;
+            border: 2px solid #8800ff;
             border-radius: 12px;
             width: 100%;
             max-width: 410px;
@@ -207,14 +222,14 @@
             margin: 15px 0;
         }
         .card-sens {
-            background: rgba(36, 25, 2, 0.8);
-            border: 1px solid #b37700;
+            background: rgba(30, 0, 60, 0.8);
+            border: 1px solid #6600cc;
             border-radius: 6px;
             padding: 10px 6px;
             text-align: center;
         }
         .card-label {
-            color: #ffd666;
+            color: #d1b3ff;
             font-size: 11px;
             text-transform: uppercase;
             font-weight: 700;
@@ -222,7 +237,7 @@
             margin-bottom: 3px;
         }
         .card-value {
-            color: #ffea00;
+            color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             font-size: 20px;
@@ -230,9 +245,9 @@
 
         .input-custom {
             width: 80%;
-            background: #241902;
-            border: 1px solid #ffcc00;
-            color: #ffea00;
+            background: #1a0033;
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
             font-size: 16px;
             text-align: center;
@@ -241,8 +256,8 @@
         }
 
         .seccion-ajustes {
-            background: rgba(255, 204, 0, 0.05);
-            border: 1px dashed #ffcc00;
+            background: rgba(136, 0, 255, 0.08);
+            border: 1px dashed #8800ff;
             border-radius: 8px;
             padding: 14px;
             margin-top: 15px;
@@ -252,7 +267,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
             font-weight: 700;
-            color: #ffaa00;
+            color: #ff0055;
             margin-bottom: 10px;
             text-transform: uppercase;
         }
@@ -266,27 +281,27 @@
             align-items: center;
         }
         .ajuste-item span {
-            color: #ffea00;
+            color: #00f0ff;
             font-weight: 700;
         }
 
         .consecuencias-box {
-            background: rgba(255, 88, 0, 0.08);
-            border: 1px solid #ff5500;
+            background: rgba(255, 0, 85, 0.08);
+            border: 1px solid #ff0055;
             border-radius: 8px;
             padding: 10px;
             margin-top: 12px;
             text-align: left;
             font-size: 12px;
-            color: #ffbb88;
+            color: #ff99bb;
             display: none;
         }
 
         .btn-close {
             width: 100%;
-            background: linear-gradient(180deg, #b37700 0%, #362400 100%);
+            background: linear-gradient(180deg, #6600cc 0%, #220044 100%);
             color: #ffffff;
-            border: 1px solid #ffea00;
+            border: 1px solid #00f0ff;
             padding: 14px;
             border-radius: 6px;
             font-weight: 700;
@@ -299,24 +314,25 @@
 <body>
 
     <div class="header-main">
-        <div class="colab-tag">SPECIAL COLLAB EXCLUSIVE</div>
-        <div class="badge-zenitsu">ZENITSU AGATSUMA</div>
-        <div class="title-sub">Respiración del Trueno - Primera Postura</div>
-        <div class="status-bar">Destello Relámpago Activo</div>
+        <div class="colab-tag">ULTRA COLLAB EDITION</div>
+        <div class="badge-mega">ALL-STAR SENSI</div>
+        <div class="title-sub">Zenitsu x Blue Lock x DBZ x Naruto</div>
+        <div class="status-bar">Modo Dios Activado</div>
     </div>
 
     <div id="pantalla-sensi">
         <div class="panel-container">
             <div class="opcion-grupo">
-                <label>Selecciona tu Modo de Batalla:</label>
+                <label>Selecciona tu Colaboración Favorita:</label>
                 <div class="modos-stack">
-                    <button id="btn-alta" class="btn-modo active" onclick="cambiarModo('alta')">⚡ Destello de Velocidad (Alta Sensi)</button>
-                    <button id="btn-zenitsu" class="btn-modo" onclick="cambiarModo('zenitsu')">⚡ Zenitsu Dormido (God Mode Full Rojo)</button>
-                    <button id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">🛡️ Postura Defensiva (Sensi Baja)</button>
-                    <button id="btn-custom" class="btn-modo" onclick="cambiarModo('custom')">🛠️ Personaliza Tu Propia Sensi (Todo en 0)</button>
+                    <button id="btn-zenitsu" class="btn-modo zenitsu-active" onclick="cambiarModo('zenitsu')">⚡ Zenitsu (Velocidad del Trueno)</button>
+                    <button id="btn-bluelock" class="btn-modo" onclick="cambiarModo('bluelock')">⚽ Blue Lock (Egoísta Full Rojo)</button>
+                    <button id="btn-dbz" class="btn-modo" onclick="cambiarModo('dbz')">🔥 DBZ (Super Saiyan God)</button>
+                    <button id="btn-naruto" class="btn-modo" onclick="cambiarModo('naruto')">🌀 Naruto (Modo Sabio Precision)</button>
+                    <button id="btn-custom" class="btn-modo" onclick="cambiarModo('custom')">🛠️ Personaliza Tu Propia Sensi (En 0)</button>
                 </div>
             </div>
-            <button class="btn-action" onclick="generarConfig()">Liberar El Trueno</button>
+            <button class="btn-action" onclick="generarConfig()">Cargar Configuración Pro</button>
         </div>
 
         <div class="creditos-box">
@@ -326,7 +342,7 @@
 
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
-            <div style="font-family:'Orbitron', sans-serif; font-size:14px; font-weight:700; border-bottom:2px solid #ffcc00; padding-bottom:8px; margin-bottom:12px; color:#ffea00;" id="txtModoTitulo">REGISTRO DEL TRUENO</div>
+            <div style="font-family:'Orbitron', sans-serif; font-size:14px; font-weight:700; border-bottom:2px solid #00f0ff; padding-bottom:8px; margin-bottom:12px; color:#00f0ff;" id="txtModoTitulo">REGISTRO DE COMBATE</div>
             
             <div class="grid-cards">
                 <div class="card-sens"><span class="card-label">General</span><span id="vGen" class="card-value">0%</span></div>
@@ -338,7 +354,7 @@
             </div>
 
             <div class="seccion-ajustes">
-                <div class="ajustes-titulo">🛠️ Ajustes del Trueno</div>
+                <div class="ajustes-titulo">🛠️ Ajustes Recomendados</div>
                 <div class="ajuste-item">Botón de Disparo: <span id="vBoton">0%</span></div>
                 <div class="ajuste-item">DPI del Sistema: <span id="vDpi">0</span></div>
                 <div class="ajuste-item">Velocidad de Puntero: <span id="vPuntero">Máxima</span></div>
@@ -349,10 +365,11 @@
                 <strong>⚠️ Análisis de Consecuencias:</strong> <span id="txtConsecuencia">Escribe tus valores para ver el diagnóstico...</span>
             </div>
 
-            <button class="btn-close" onclick="cerrarModal()">Cortar Al Enemigo</button>
+            <button class="btn-close" onclick="cerrarModal()">Guardar & Salir</button>
         </div>
     </div>
 
-    <script src="sens.js?v=8"></script>
+    <script src="sens.js?v=9"></script>
 </body>
-</html>
+                </html>
+                
