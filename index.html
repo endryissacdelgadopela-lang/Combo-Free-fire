@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚡ ULTIMATE COLLAB: Sensibility System</title>
+    <title>⚡ ZENITSU X FREE FIRE: Thunder Sensi</title>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
     
     <style>
@@ -14,7 +14,8 @@
         }
         
         body {
-            background: radial-gradient(circle at 50% 30%, #001f4d 0%, #020a1c 60%, #000000 100%);
+            /* Fondo inspirado en el rayo amarillo y destellos eléctricos de Zenitsu */
+            background: radial-gradient(circle at 50% 30%, #3d2c00 0%, #120d00 60%, #030200 100%);
             color: #ffffff;
             text-align: center;
             margin: 0;
@@ -23,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* ENCABEZADO */
         .header-main {
             margin: 20px auto 25px auto;
             max-width: 480px;
@@ -32,21 +32,21 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 11px;
             font-weight: 900;
-            color: #ff9900;
+            color: #ffcc00;
             letter-spacing: 2px;
             text-transform: uppercase;
             margin-bottom: 5px;
-            text-shadow: 0 0 10px rgba(255, 153, 0, 0.6);
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.8);
         }
-        .badge-blue {
+        .badge-zenitsu {
             font-family: 'Orbitron', sans-serif;
             font-weight: 900;
-            font-size: 34px;
-            background: linear-gradient(135deg, #00f0ff 0%, #ff5500 50%, #ffcc00 100%);
+            font-size: 38px;
+            background: linear-gradient(135deg, #ffea00 0%, #ff6600 50%, #ffcc00 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin: 0;
-            filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.6));
+            filter: drop-shadow(0 0 18px rgba(255, 204, 0, 0.7));
             letter-spacing: 1px;
         }
         .title-sub {
@@ -54,33 +54,32 @@
             font-weight: 700;
             font-size: 13px;
             letter-spacing: 3px;
-            color: #a3c2e0;
+            color: #ffe680;
             margin: 5px 0 0 0;
             text-transform: uppercase;
         }
         
         .status-bar {
             display: inline-block;
-            background: rgba(0, 240, 255, 0.08);
-            border: 1px solid #00f0ff;
+            background: rgba(255, 204, 0, 0.08);
+            border: 1px solid #ffcc00;
             padding: 4px 14px;
             border-radius: 4px;
             font-size: 11px;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #00f0ff;
+            color: #ffcc00;
             margin-top: 12px;
         }
 
-        /* PANEL PRINCIPAL */
         #pantalla-sensi {
             max-width: 460px;
             margin: 0 auto;
         }
         .panel-container {
-            background: linear-gradient(135deg, rgba(2, 12, 36, 0.9) 0%, rgba(1, 4, 15, 0.98) 100%);
-            border: 2px solid #0055ff;
+            background: linear-gradient(135deg, rgba(26, 18, 2, 0.92) 0%, rgba(8, 5, 0, 0.98) 100%);
+            border: 2px solid #ffaa00;
             border-radius: 12px;
             padding: 22px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.95);
@@ -107,9 +106,9 @@
             gap: 10px;
         }
         .btn-modo {
-            background: rgba(3, 16, 41, 0.6);
-            border: 1px solid #003cdb;
-            color: #8faed9;
+            background: rgba(36, 25, 2, 0.6);
+            border: 1px solid #b37700;
+            color: #ffd666;
             padding: 14px;
             border-radius: 6px;
             cursor: pointer;
@@ -119,41 +118,47 @@
             transition: all 0.2s ease;
         }
         .btn-modo.active {
-            background: linear-gradient(135deg, #0055ff 0%, #ff5500 100%);
+            background: linear-gradient(135deg, #ffaa00 0%, #ff3300 100%);
             color: #ffffff;
-            border: 1px solid #00f0ff;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            border: 1px solid #ffea00;
+            box-shadow: 0 0 15px rgba(255, 170, 0, 0.5);
+        }
+        .btn-modo.zenitsu-active {
+            background: linear-gradient(135deg, #ffe600 0%, #ff8800 100%);
+            color: #1a1200;
+            border: 1px solid #ffffff;
+            box-shadow: 0 0 20px rgba(255, 230, 0, 0.8);
+            font-weight: 900;
         }
         .btn-modo.custom-active {
-            background: linear-gradient(135deg, #ff9900 0%, #ff0055 100%);
+            background: linear-gradient(135deg, #00d2ff 0%, #0055ff 100%);
             color: #ffffff;
-            border: 1px solid #ffcc00;
-            box-shadow: 0 0 15px rgba(255, 153, 0, 0.5);
+            border: 1px solid #00f0ff;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.5);
         }
 
         .btn-action {
             width: 100%;
-            background: linear-gradient(90deg, #0055ff, #00f0ff);
-            color: #ffffff;
+            background: linear-gradient(90deg, #ffaa00, #ffea00);
+            color: #1a1200;
             border: none;
             padding: 16px;
             font-size: 18px;
-            font-weight: 700;
+            font-weight: 900;
             border-radius: 6px;
             cursor: pointer;
             text-transform: uppercase;
             font-family: 'Orbitron', sans-serif;
-            box-shadow: 0 4px 20px rgba(0, 114, 255, 0.4);
+            box-shadow: 0 4px 20px rgba(255, 170, 0, 0.5);
             margin-top: 5px;
             letter-spacing: 2px;
         }
         .btn-action:active { transform: scale(0.98); }
 
-        /* CRÉDITOS */
         .creditos-box {
             margin-top: 25px;
             background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(0, 240, 255, 0.15);
+            border: 1px solid rgba(255, 170, 0, 0.2);
             padding: 12px;
             border-radius: 8px;
             max-width: 460px;
@@ -164,29 +169,28 @@
             margin: 0;
             font-size: 13px;
             letter-spacing: 1px;
-            color: #a0b0c5;
+            color: #ffd666;
         }
         .creditos-box strong {
-            color: #00f0ff;
+            color: #ffea00;
             font-family: 'Orbitron', sans-serif;
-            text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+            text-shadow: 0 0 8px rgba(255, 234, 0, 0.6);
         }
 
-        /* MODAL DE RESULTADOS */
         .modal {
             display: none;
             position: fixed;
             z-index: 9999;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(1, 4, 14, 0.96);
+            background: rgba(5, 3, 0, 0.96);
             backdrop-filter: blur(10px);
             align-items: center;
             justify-content: center;
             padding: 15px;
         }
         .modal-content {
-            background: #020716;
-            border: 2px solid #00f0ff;
+            background: #140d00;
+            border: 2px solid #ffcc00;
             border-radius: 12px;
             width: 100%;
             max-width: 410px;
@@ -203,14 +207,14 @@
             margin: 15px 0;
         }
         .card-sens {
-            background: rgba(3, 16, 41, 0.8);
-            border: 1px solid #003cdb;
+            background: rgba(36, 25, 2, 0.8);
+            border: 1px solid #b37700;
             border-radius: 6px;
             padding: 10px 6px;
             text-align: center;
         }
         .card-label {
-            color: #8faed9;
+            color: #ffd666;
             font-size: 11px;
             text-transform: uppercase;
             font-weight: 700;
@@ -218,28 +222,27 @@
             margin-bottom: 3px;
         }
         .card-value {
-            color: #00f0ff;
+            color: #ffea00;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             font-size: 20px;
         }
 
-        /* ESTILO PARA LOS EDITS DE PERSONALIZADO */
         .input-custom {
             width: 80%;
-            background: #00112c;
-            border: 1px solid #00f0ff;
-            color: #00f0ff;
+            background: #241902;
+            border: 1px solid #ffcc00;
+            color: #ffea00;
             font-family: 'Orbitron', sans-serif;
-            font-size: 18px;
+            font-size: 16px;
             text-align: center;
             border-radius: 4px;
             padding: 2px;
         }
 
         .seccion-ajustes {
-            background: rgba(0, 240, 255, 0.05);
-            border: 1px dashed #00f0ff;
+            background: rgba(255, 204, 0, 0.05);
+            border: 1px dashed #ffcc00;
             border-radius: 8px;
             padding: 14px;
             margin-top: 15px;
@@ -249,7 +252,7 @@
             font-family: 'Orbitron', sans-serif;
             font-size: 12px;
             font-weight: 700;
-            color: #ffcc00;
+            color: #ffaa00;
             margin-bottom: 10px;
             text-transform: uppercase;
         }
@@ -263,15 +266,27 @@
             align-items: center;
         }
         .ajuste-item span {
-            color: #00f0ff;
+            color: #ffea00;
             font-weight: 700;
+        }
+
+        .consecuencias-box {
+            background: rgba(255, 88, 0, 0.08);
+            border: 1px solid #ff5500;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 12px;
+            text-align: left;
+            font-size: 12px;
+            color: #ffbb88;
+            display: none;
         }
 
         .btn-close {
             width: 100%;
-            background: linear-gradient(180deg, #041635 0%, #020a17 100%);
+            background: linear-gradient(180deg, #b37700 0%, #362400 100%);
             color: #ffffff;
-            border: 1px solid #0055ff;
+            border: 1px solid #ffea00;
             padding: 14px;
             border-radius: 6px;
             font-weight: 700;
@@ -283,40 +298,36 @@
 </head>
 <body>
 
-    <!-- ENCABEZADO MULTI COLLAB -->
     <div class="header-main">
-        <div class="colab-tag">BLUE LOCK X DBZ X NARUTO</div>
-        <div class="badge-blue">MODO MODO SABIO</div>
-        <div class="title-sub">Panel de Sensibilidad Pro</div>
-        <div class="status-bar">Chakra & Ki al Máximo</div>
+        <div class="colab-tag">SPECIAL COLLAB EXCLUSIVE</div>
+        <div class="badge-zenitsu">ZENITSU AGATSUMA</div>
+        <div class="title-sub">Respiración del Trueno - Primera Postura</div>
+        <div class="status-bar">Destello Relámpago Activo</div>
     </div>
 
-    <!-- PANEL PRINCIPAL -->
     <div id="pantalla-sensi">
         <div class="panel-container">
             <div class="opcion-grupo">
-                <label>Selecciona tu Modo de Combate:</label>
+                <label>Selecciona tu Modo de Batalla:</label>
                 <div class="modos-stack">
-                    <button id="btn-alta" class="btn-modo active" onclick="cambiarModo('alta')">⚽ Blue Lock / DBZ: Alta Sensi (Full Rojo)</button>
-                    <button id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">🌀 Modo Sabio: Sensi Baja (Control)</button>
+                    <button id="btn-alta" class="btn-modo active" onclick="cambiarModo('alta')">⚡ Destello de Velocidad (Alta Sensi)</button>
+                    <button id="btn-zenitsu" class="btn-modo" onclick="cambiarModo('zenitsu')">⚡ Zenitsu Dormido (God Mode Full Rojo)</button>
+                    <button id="btn-baja" class="btn-modo" onclick="cambiarModo('baja')">🛡️ Postura Defensiva (Sensi Baja)</button>
                     <button id="btn-custom" class="btn-modo" onclick="cambiarModo('custom')">🛠️ Personaliza Tu Propia Sensi (Todo en 0)</button>
                 </div>
             </div>
-            <button class="btn-action" onclick="generarConfig()">Cargar Configuración</button>
+            <button class="btn-action" onclick="generarConfig()">Liberar El Trueno</button>
         </div>
 
-        <!-- TUS CRÉDITOS OFICIALES -->
         <div class="creditos-box">
             <p>Crédito de IA & Desarrollado por: <strong>Endry</strong></p>
         </div>
     </div>
 
-    <!-- MODAL DE RESULTADOS -->
     <div id="resultadoModal" class="modal">
         <div class="modal-content">
-            <div style="font-family:'Orbitron', sans-serif; font-size:14px; font-weight:700; border-bottom:2px solid #00f0ff; padding-bottom:8px; margin-bottom:12px; color:#00f0ff;" id="txtModoTitulo">REGISTRO DE COMBATE</div>
+            <div style="font-family:'Orbitron', sans-serif; font-size:14px; font-weight:700; border-bottom:2px solid #ffcc00; padding-bottom:8px; margin-bottom:12px; color:#ffea00;" id="txtModoTitulo">REGISTRO DEL TRUENO</div>
             
-            <!-- Cuadrícula de Sensi -->
             <div class="grid-cards">
                 <div class="card-sens"><span class="card-label">General</span><span id="vGen" class="card-value">0%</span></div>
                 <div class="card-sens"><span class="card-label">Mira 1X</span><span id="vMira1" class="card-value">0%</span></div>
@@ -326,19 +337,22 @@
                 <div class="card-sens"><span class="card-label">Cámara</span><span id="vCamara" class="card-value">0%</span></div>
             </div>
 
-            <!-- Ajustes Internos -->
             <div class="seccion-ajustes">
-                <div class="ajustes-titulo">🛠️ Ajustes Recomendados</div>
+                <div class="ajustes-titulo">🛠️ Ajustes del Trueno</div>
                 <div class="ajuste-item">Botón de Disparo: <span id="vBoton">0%</span></div>
                 <div class="ajuste-item">DPI del Sistema: <span id="vDpi">0</span></div>
                 <div class="ajuste-item">Velocidad de Puntero: <span id="vPuntero">Máxima</span></div>
                 <div class="ajuste-item">Supresor: <span id="vSupresor">Desactivado</span></div>
             </div>
 
-            <button class="btn-close" onclick="cerrarModal()">Guardar & Salir</button>
+            <div id="cajaConsecuencias" class="consecuencias-box">
+                <strong>⚠️ Análisis de Consecuencias:</strong> <span id="txtConsecuencia">Escribe tus valores para ver el diagnóstico...</span>
+            </div>
+
+            <button class="btn-close" onclick="cerrarModal()">Cortar Al Enemigo</button>
         </div>
     </div>
 
-    <script src="sens.js?v=5"></script>
+    <script src="sens.js?v=8"></script>
 </body>
 </html>
