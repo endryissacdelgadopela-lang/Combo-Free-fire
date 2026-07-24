@@ -3,151 +3,144 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Configurador de Sensibilidad - Free Fire</title>
+    <title>Calculadora de Sensibilidad - Free Fire</title>
     <style>
-        :root {
-            --bg-color: #121214;
-            --card-bg: #1e1e24;
-            --accent-color: #ff4655;
-            --text-color: #ffffff;
-            --subtext: #a0a0a0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            padding: 20px;
+        * {
             margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
-
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
         .container {
-            width: 100%;
             max-width: 450px;
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+            margin: 0 auto;
+            background: rgba(0,0,0,0.3);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 0 15px rgba(0,255,255,0.2);
         }
-
-        h2 {
+        h1 {
             text-align: center;
-            color: var(--accent-color);
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #00f0ff;
+            margin-bottom: 25px;
         }
-
+        .bloque {
+            margin-bottom: 20px;
+        }
         label {
-            font-size: 14px;
-            color: var(--subtext);
             display: block;
             margin-bottom: 8px;
-        }
-
-        select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 8px;
-            background: #2a2a32;
-            color: var(--text-color);
-            border: 1px solid #3a3a46;
-            font-size: 16px;
-            outline: none;
-            margin-bottom: 20px;
-        }
-
-        .results {
-            background: #18181c;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 20px;
-        }
-
-        .row {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid #2a2a32;
-        }
-
-        .row:last-child {
-            border-bottom: none;
-        }
-
-        .label-name {
-            font-weight: 500;
-        }
-
-        .value {
             font-weight: bold;
-            color: var(--accent-color);
+            color: #b8f2ff;
         }
-
-        .btn-copy {
+        select, input[type="number"] {
             width: 100%;
-            padding: 14px;
-            background: var(--accent-color);
-            color: white;
+            padding: 10px;
             border: none;
             border-radius: 8px;
-            font-weight: bold;
-            font-size: 16px;
-            cursor: pointer;
-            transition: background 0.2s;
+            background: #0f3460;
+            color: white;
+            font-size: 15px;
         }
-
-        .btn-copy:hover {
-            background: #e03e4d;
+        .opcion-fila {
+            display: flex;
+            gap: 15px;
+            margin-top: 5px;
+        }
+        .opcion {
+            flex: 1;
+            padding: 10px;
+            background: #0f3460;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .opcion.activo {
+            background: #00f0ff;
+            color: #000;
+            font-weight: bold;
+        }
+        .resultado {
+            margin-top: 25px;
+            padding: 18px;
+            background: rgba(0,240,255,0.1);
+            border-radius: 10px;
+            border-left: 4px solid #00f0ff;
+        }
+        .valor-sens {
+            font-size: 22px;
+            font-weight: bold;
+            color: #00ff9d;
+            margin-top: 8px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+            background: #00f0ff;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #00d0e0;
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <h2>Sensibilidad FF</h2>
+    <h1>🎯 Sensibilidad Free Fire</h1>
 
-    <label for="device">Selecciona tu gama o dispositivo:</label>
-    <select id="device" onchange="actualizarSensibilidad()">
-        <option value="baja">Gama Baja (2GB - 3GB RAM)</option>
-        <option value="media">Gama Media (4GB - 6GB RAM)</option>
-        <option value="alta">Gama Alta / iPhone (8GB+ RAM)</option>
-    </select>
+    <div class="bloque">
+        <label>Elige tu dispositivo</label>
+        <select id="dispositivo">
+            <option value="bajo">Gama Baja</option>
+            <option value="medio" selected>Gama Media</option>
+            <option value="alto">Gama Alta</option>
+        </select>
+    </div>
 
-    <div class="results">
-        <div class="row">
-            <span class="label-name">General:</span>
-            <span class="value" id="general">100</span>
-        </div>
-        <div class="row">
-            <span class="label-name">Punto Rojo:</span>
-            <span class="value" id="reddot">98</span>
-        </div>
-        <div class="row">
-            <span class="label-name">Mira 2x:</span>
-            <span class="value" id="scope2x">95</span>
-        </div>
-        <div class="row">
-            <span class="label-name">Mira 4x:</span>
-            <span class="value" id="scope4x">90</span>
-        </div>
-        <div class="row">
-            <span class="label-name">Francotirador:</span>
-            <span class="value" id="sniper">50</span>
-        </div>
-        <div class="row">
-            <span class="label-name">Cámara 360:</span>
-            <span class="value" id="freelook">65</span>
+    <div class="bloque">
+        <label>¿Usas DPI personalizado?</label>
+        <div class="opcion-fila">
+            <div class="opcion activo" id="dpiSi" onclick="seleccionarDPI('si')">✅ Con DPI</div>
+            <div class="opcion" id="dpiNo" onclick="seleccionarDPI('no')">❌ Sin DPI</div>
         </div>
     </div>
 
-    <button class="btn-copy" onclick="copiarConfiguracion()">Copiar Configuración</button>
+    <div class="bloque" id="campoDPI">
+        <label>Valor de DPI</label>
+        <input type="number" id="valorDPI" placeholder="Ej: 450" value="450">
+    </div>
+
+    <div class="bloque">
+        <label>Botón de disparo</label>
+        <div class="opcion-fila">
+            <div class="opcion activo" id="botonSi" onclick="seleccionarBoton('si')">✅ Botón Grande</div>
+            <div class="opcion" id="botonNo" onclick="seleccionarBoton('no')">❌ Botón Pequeño</div>
+        </div>
+    </div>
+
+    <button onclick="calcularSensibilidad()">Calcular Sensibilidad</button>
+
+    <div class="resultado">
+        <h3>Tu sensibilidad recomendada:</h3>
+        <div class="valor-sens" id="resultadoSens">Esperando datos...</div>
+    </div>
 </div>
 
-<!-- Enlace al archivo JavaScript externo -->
 <script src="sens.js"></script>
-
 </body>
 </html>
