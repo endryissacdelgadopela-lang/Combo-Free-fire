@@ -1,83 +1,75 @@
-// Variables globales
 let usaDPI = 'si';
 let usaBotonGrande = 'si';
 
-// Seleccionar opción DPI
-function seleccionarDPI(opcion) {
+// Seleccionar DPI
+function selDPI(opcion) {
     usaDPI = opcion;
-    document.getElementById('dpiSi').classList.remove('activo');
-    document.getElementById('dpiNo').classList.remove('activo');
-    if (opcion === 'si') {
-        document.getElementById('dpiSi').classList.add('activo');
-        document.getElementById('campoDPI').style.display = 'block';
-    } else {
-        document.getElementById('dpiNo').classList.add('activo');
-        document.getElementById('campoDPI').style.display = 'none';
-    }
+    dpiSi.classList.toggle('activo', opcion==='si');
+    dpiNo.classList.toggle('activo', opcion==='no');
+    campoDPI.classList.toggle('oculto', opcion==='no');
+    calcular();
 }
 
-// Seleccionar tipo de botón de disparo
-function seleccionarBoton(opcion) {
+// Seleccionar botón
+function selBoton(opcion) {
     usaBotonGrande = opcion;
-    document.getElementById('botonSi').classList.remove('activo');
-    document.getElementById('botonNo').classList.remove('activo');
-    if (opcion === 'si') {
-        document.getElementById('botonSi').classList.add('activo');
-    } else {
-        document.getElementById('botonNo').classList.add('activo');
+    botonSi.classList.toggle('activo', opcion==='si');
+    botonNo.classList.toggle('activo', opcion==='no');
+    calcular();
+}
+
+// Base según dispositivo
+function getBase(marca) {
+    switch(marca) {
+        case 'iphone':     return {g:92, r:88, x2:84, x4:78, f:50, c:65};
+        case 'samsung':   return {g:96, r:93, x2:88, x4:83, f:52, c:68};
+        case 'xiaomi':    return {g:98, r:95, x2:90, x4:86, f:54, c:70};
+        case 'motorola':   return {g:95, r:92, x2:87, x4:82, f:51, c:67};
+        case 'huawei':    return {g:94, r:91, x2:86, x4:81, f:50, c:66};
+        case 'oppo':      return {g:97, r:94, x2:89, x4:84, f:53, c:69};
+        case 'vivo':      return {g:96, r:93, x2:88, x4:83, f:52, c:68};
+        default:          return {g:95, r:92, x2:87, x4:82, f:51, c:67};
     }
 }
 
-// Función principal para calcular sensibilidad
-function calcularSensibilidad() {
-    const dispositivo = document.getElementById('dispositivo').value;
-    const valorDPI = parseInt(document.getElementById('valorDPI').value) || 400;
-
-    // Base de sensibilidad según dispositivo
-    let base = { general: 95, mira: 90, x2: 85, x4: 80, francotirador: 50 };
-
-    // Ajuste por gama
-    if (dispositivo === 'bajo') {
-        base = { general: 100, mira: 98, x2: 92, x4: 88, francotirador: 55 };
-    } else if (dispositivo === 'alto') {
-        base = { general: 88, mira: 85, x2: 80, x4: 75, francotirador: 45 };
-    }
+function calcular() {
+    const marca = dispositivo.value;
+    let s = getBase(marca);
+    const dpi = parseInt(valorDPI.value) || 480;
 
     // Ajuste por DPI
     if (usaDPI === 'si') {
-        const ajusteDPI = (valorDPI - 400) / 100;
-        base.general += ajusteDPI * 2;
-        base.mira += ajusteDPI * 1.5;
-        base.x2 += ajusteDPI * 1.2;
-        base.x4 += ajusteDPI * 1;
+        const dif = (dpi - 480) / 100;
+        s.g += dif * 2.5;
+        s.r += dif * 2;
+        s.x2 += dif * 1.5;
+        s.x4 += dif * 1.2;
+        s.c += dif * 1.8;
     } else {
-        // Sin DPI → reducir un poco
-        base.general -= 3;
-        base.mira -= 2;
-        base.x2 -= 2;
-        base.x4 -= 1;
+        s.g -= 4;
+        s.r -= 3;
+        s.x2 -= 2;
+        s.x4 -= 2;
+        s.c -= 3;
     }
 
     // Ajuste por botón de disparo
     if (usaBotonGrande === 'no') {
-        base.general += 4;
-        base.mira += 3;
+        s.g += 5;
+        s.r += 4;
+        s.c += 3;
     }
 
-    // Limitar valores entre 1 y 100
-    for (let clave in base) {
-        base[clave] = Math.max(1, Math.min(100, Math.round(base[clave])));
-    }
+    // Limitar entre 1 y 100
+    for(let k in s) s[k] = Math.max(1, Math.min(100, Math.round(s[k])));
 
-    // Mostrar resultado
-    document.getElementById('resultadoSens').innerHTML = `
-        🎯 General: ${base.general}<br>
-        🔴 Mira de Punto: ${base.mira}<br>
-        🔭 Mira x2: ${base.x2}<br>
-        🎯 Mira x4: ${base.x4}<br>
-        💥 Francotirador: ${base.francotirador}
-    `;
+    // Mostrar
+    vGeneral.textContent = s.g;
+    vRojo.textContent = s.r;
+    vX2.textContent = s.x2;
+    vX4.textContent = s.x4;
+    vFran.textContent = s.f;
+    vCam.textContent = s.c;
 }
 
-// Calcular al cargar la página
-window.onload = calcularSensibilidad;
+window.onload = calcular;
