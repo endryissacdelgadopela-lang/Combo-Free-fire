@@ -3,367 +3,151 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ULTIMATE SENSI - DISPOSITIVOS, SUPRESOR & MINIJUEGO</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
-    
+    <title>Configurador de Sensibilidad - Free Fire</title>
     <style>
-        * {
-            box-sizing: border-box;
-            font-family: 'Rajdhani', sans-serif;
-            -webkit-tap-highlight-color: transparent;
-        }
-        
-        body {
-            background: radial-gradient(circle at 50% 30%, #001f4d 0%, #020a1c 60%, #000000 100%);
-            color: #ffffff;
-            text-align: center;
-            margin: 0;
-            padding: 15px;
-            min-height: 100vh;
+        :root {
+            --bg-color: #121214;
+            --card-bg: #1e1e24;
+            --accent-color: #ff4655;
+            --text-color: #ffffff;
+            --subtext: #a0a0a0;
         }
 
-        .header-main {
-            margin: 15px auto 20px auto;
-            max-width: 480px;
-        }
-        
-        .badge-blue {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 900;
-            font-size: 24px;
-            background: linear-gradient(135deg, #00f0ff 0%, #a855f7 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            display: flex;
+            justify-content: center;
+            padding: 20px;
             margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: var(--card-bg);
+            padding: 24px;
+            border-radius: 16px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            text-align: center;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        /* BARRA DE PERFIL Y MONEDAS */
-        .user-bar {
-            background: rgba(2, 12, 36, 0.9);
-            border: 1px solid #00f0ff;
+        label {
+            font-size: 14px;
+            color: var(--subtext);
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
             border-radius: 8px;
-            padding: 10px 15px;
-            max-width: 460px;
-            margin: 0 auto 20px auto;
+            background: #2a2a32;
+            color: var(--text-color);
+            border: 1px solid #3a3a46;
+            font-size: 16px;
+            outline: none;
+            margin-bottom: 20px;
+        }
+
+        .results {
+            background: #18181c;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 20px;
+        }
+
+        .row {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-        .user-info {
-            font-weight: 700;
-            color: #00f0ff;
-            font-size: 14px;
-        }
-        .coins-info {
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            color: #ffcc00;
-            font-size: 15px;
-        }
-        .btn-reg {
-            background: #0055ff;
-            color: #fff;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            font-weight: 700;
-            cursor: pointer;
+            padding: 10px 0;
+            border-bottom: 1px solid #2a2a32;
         }
 
-        #pantalla-sensi {
-            max-width: 460px;
-            margin: 0 auto;
-        }
-        .panel-container {
-            background: linear-gradient(135deg, rgba(2, 12, 36, 0.9) 0%, rgba(1, 4, 15, 0.98) 100%);
-            border: 2px solid #0055ff;
-            border-radius: 12px;
-            padding: 22px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.95);
+        .row:last-child {
+            border-bottom: none;
         }
 
-        .select-group {
-            margin-bottom: 15px;
-            text-align: left;
+        .label-name {
+            font-weight: 500;
         }
-        .select-group label {
-            display: block;
-            color: #00f0ff;
-            font-weight: 700;
-            margin-bottom: 5px;
-            font-size: 14px;
+
+        .value {
+            font-weight: bold;
+            color: var(--accent-color);
         }
-        .select-input {
+
+        .btn-copy {
             width: 100%;
-            padding: 12px;
-            background: #00112c;
-            border: 1px solid #003cdb;
-            color: #ffffff;
-            border-radius: 6px;
-            font-size: 15px;
-            font-weight: 600;
-            outline: none;
-        }
-
-        .btn-action {
-            width: 100%;
-            background: linear-gradient(90deg, #0055ff, #00f0ff);
-            color: #ffffff;
-            border: none;
-            padding: 16px;
-            font-size: 17px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
-            margin-top: 10px;
-        }
-
-        .btn-minijuego {
-            width: 100%;
-            background: linear-gradient(90deg, #ffaa00, #ffea00);
-            color: #1a1200;
-            border: none;
             padding: 14px;
-            font-size: 15px;
-            font-weight: 900;
-            border-radius: 6px;
-            cursor: pointer;
-            text-transform: uppercase;
-            font-family: 'Orbitron', sans-serif;
-            margin-top: 12px;
-            box-shadow: 0 4px 15px rgba(255, 170, 0, 0.4);
-        }
-
-        .creditos-box {
-            margin-top: 25px;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(0, 240, 255, 0.15);
-            padding: 12px;
-            border-radius: 8px;
-            max-width: 460px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        /* MODALES */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(1, 4, 14, 0.96);
-            backdrop-filter: blur(10px);
-            align-items: center;
-            justify-content: center;
-            padding: 15px;
-            overflow-y: auto;
-        }
-        .modal-content {
-            background: #020716;
-            border: 2px solid #00f0ff;
-            border-radius: 12px;
-            width: 100%;
-            max-width: 430px;
-            padding: 20px 16px;
-            max-height: 90vh;
-            overflow-y: auto;
-        }
-
-        .input-reg {
-            width: 100%;
-            padding: 12px;
-            margin: 10px 0;
-            background: #00112c;
-            border: 1px solid #00f0ff;
-            color: #fff;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
-        .grid-cards {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 8px;
-            margin: 12px 0;
-        }
-        .card-sens {
-            background: rgba(3, 16, 41, 0.8);
-            border: 1px solid #003cdb;
-            border-radius: 6px;
-            padding: 8px 4px;
-        }
-        .card-value {
-            color: #00f0ff;
-            font-family: 'Orbitron', sans-serif;
-            font-weight: 700;
-            font-size: 18px;
-        }
-
-        .guide-box {
-            text-align: left;
-            background: rgba(0, 240, 255, 0.05);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 13px;
-            margin-top: 10px;
-        }
-
-        .guide-title {
-            color: #ffea00;
-            font-family: 'Orbitron', sans-serif;
-            font-size: 12px;
-            font-weight: 700;
-            margin-bottom: 6px;
-            text-transform: uppercase;
-        }
-
-        .btn-close {
-            width: 100%;
-            background: #0055ff;
-            color: #ffffff;
+            background: var(--accent-color);
+            color: white;
             border: none;
-            padding: 12px;
-            border-radius: 6px;
-            font-weight: 700;
+            border-radius: 8px;
+            font-weight: bold;
+            font-size: 16px;
             cursor: pointer;
-            margin-top: 12px;
+            transition: background 0.2s;
         }
 
-        /* MINIJUEGO */
-        .game-area {
-            position: relative;
-            width: 100%;
-            height: 230px;
-            background: #010a1a;
-            border: 2px solid #ffaa00;
-            border-radius: 8px;
-            margin: 15px 0;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .target-btn {
-            position: absolute;
-            width: 48px;
-            height: 48px;
-            background: radial-gradient(circle, #ffea00 0%, #ff5500 100%);
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(255, 234, 0, 0.8);
-            display: none;
+        .btn-copy:hover {
+            background: #e03e4d;
         }
     </style>
 </head>
 <body>
 
-    <div class="header-main">
-        <div class="badge-blue">GENERADOR SENSI PRO</div>
-    </div>
+<div class="container">
+    <h2>Sensibilidad FF</h2>
 
-    <!-- BARRA DE PERFIL Y MONEDAS -->
-    <div class="user-bar">
-        <div class="user-info" id="txtUsuario">👤 Invitado</div>
-        <div class="coins-info" id="txtMonedas">🪙 0 Monedas</div>
-        <button class="btn-reg" id="btnAbrirReg" onclick="abrirRegistro()">Registrarse</button>
-    </div>
+    <label for="device">Selecciona tu gama o dispositivo:</label>
+    <select id="device" onchange="actualizarSensibilidad()">
+        <option value="baja">Gama Baja (2GB - 3GB RAM)</option>
+        <option value="media">Gama Media (4GB - 6GB RAM)</option>
+        <option value="alta">Gama Alta / iPhone (8GB+ RAM)</option>
+    </select>
 
-    <div id="pantalla-sensi">
-        <div class="panel-container">
-            <!-- SELECTOR DE MARCA -->
-            <div class="select-group">
-                <label for="brandSelect">MARCA DEL DISPOSITIVO:</label>
-                <select id="brandSelect" class="select-input" onchange="actualizarModelos()">
-                    <option value="">-- Selecciona Marca --</option>
-                    <option value="samsung">Samsung</option>
-                    <option value="xiaomi">Xiaomi / Poco</option>
-                    <option value="motorola">Motorola</option>
-                    <option value="apple">iPhone / iPad</option>
-                    <option value="zte">ZTE / Tecno / Infinix</option>
-                    <option value="generic">Gama Baja / Estándar</option>
-                </select>
-            </div>
-
-            <!-- SELECTOR DE MODELO -->
-            <div class="select-group">
-                <label for="modelSelect">MODELO DEL DISPOSITIVO:</label>
-                <select id="modelSelect" class="select-input" disabled>
-                    <option value="">-- Elige Marca Primero --</option>
-                </select>
-            </div>
-
-            <button class="btn-action" onclick="generarConfig()">Generar Sensi & Supresor</button>
-            <button class="btn-minijuego" onclick="abrirMinijuego()">🎯 Minijuego de Puntería (+Monedas)</button>
+    <div class="results">
+        <div class="row">
+            <span class="label-name">General:</span>
+            <span class="value" id="general">100</span>
         </div>
-
-        <div class="creditos-box">
-            <p>Desarrollado por: <strong style="color:#00f0ff;">Endry</strong></p>
+        <div class="row">
+            <span class="label-name">Punto Rojo:</span>
+            <span class="value" id="reddot">98</span>
+        </div>
+        <div class="row">
+            <span class="label-name">Mira 2x:</span>
+            <span class="value" id="scope2x">95</span>
+        </div>
+        <div class="row">
+            <span class="label-name">Mira 4x:</span>
+            <span class="value" id="scope4x">90</span>
+        </div>
+        <div class="row">
+            <span class="label-name">Francotirador:</span>
+            <span class="value" id="sniper">50</span>
+        </div>
+        <div class="row">
+            <span class="label-name">Cámara 360:</span>
+            <span class="value" id="freelook">65</span>
         </div>
     </div>
 
-    <!-- MODAL REGISTRO -->
-    <div id="registroModal" class="modal">
-        <div class="modal-content">
-            <h3 style="color:#00f0ff; margin-top:0;">CREAR CUENTA</h3>
-            <p style="font-size:13px; color:#aaa;">Regístrate para recibir tus monedas iniciales.</p>
-            <input type="text" id="regNombre" class="input-reg" placeholder="Nombre de Usuario">
-            <button class="btn-action" onclick="confirmarRegistro()">Registrarse (+100 Monedas)</button>
-            <button class="btn-close" style="background:#333;" onclick="cerrarRegistro()">Cancelar</button>
-        </div>
-    </div>
+    <button class="btn-copy" onclick="copiarConfiguracion()">Copiar Configuración</button>
+</div>
 
-    <!-- MODAL MINIJUEGO -->
-    <div id="minijuegoModal" class="modal">
-        <div class="modal-content">
-            <h3 style="color:#ffaa00; margin-top:0; font-family:'Orbitron', sans-serif;">🎯 PRUEBA DE PUNTERÍA</h3>
-            <p style="font-size:13px; color:#aaa; margin-bottom:5px;">Toca las dianas rápidamente para sumar puntos y convertirlos en monedas.</p>
-            
-            <div style="display:flex; justify-content:space-between; font-weight:700; color:#ffea00; font-size:14px; margin-top:5px;">
-                <span>Puntos: <strong id="gameScore">0</strong></span>
-                <span>Tiempo: <strong id="gameTimer">15</strong>s</span>
-            </div>
+<!-- Enlace al archivo JavaScript externo -->
+<script src="sens.js"></script>
 
-            <div class="game-area" id="gameArea">
-                <button id="btnStartGame" class="btn-action" style="width:80%;" onclick="iniciarJuego()">¡Empezar Juego!</button>
-                <div id="target" class="target-btn" onclick="hitTarget()"></div>
-            </div>
-
-            <button class="btn-close" style="background:#333;" onclick="cerrarMinijuego()">Cerrar</button>
-        </div>
-    </div>
-
-    <!-- MODAL RESULTADOS -->
-    <div id="resultadoModal" class="modal">
-        <div class="modal-content">
-            <div style="font-family:'Orbitron', sans-serif; font-size:14px; font-weight:700; color:#00f0ff;" id="txtModoTitulo">CONFIGURACIÓN</div>
-            
-            <div class="grid-cards">
-                <div class="card-sens"><span style="display:block; font-size:11px;">General</span><span id="vGen" class="card-value">0%</span></div>
-                <div class="card-sens"><span style="display:block; font-size:11px;">Punto Rojo</span><span id="vMira1" class="card-value">0%</span></div>
-                <div class="card-sens"><span style="display:block; font-size:11px;">Mira X2</span><span id="vMira2" class="card-value">0%</span></div>
-                <div class="card-sens"><span style="display:block; font-size:11px;">Mira X4</span><span id="vMira4" class="card-value">0%</span></div>
-            </div>
-
-            <div style="text-align:left; background:rgba(0,240,255,0.08); padding:10px; border-radius:6px; font-size:13px; display:flex; flex-direction:column; gap:4px;">
-                <div><strong>Botón de Disparo:</strong> <span id="vBoton" style="color:#00f0ff;">0%</span></div>
-                <div><strong>DPI Recomendado:</strong> <span id="vDpi" style="color:#00f0ff;">0</span></div>
-            </div>
-
-            <!-- GUÍA PASO A PASO DE CONFIGURACIÓN DE SISTEMA -->
-            <div class="guide-box">
-                <div class="guide-title">⚙️ Ajustes del Sistema (Supresor & Táctil)</div>
-                <div id="txtGuiaAjustes" style="line-height: 1.4; color: #ddd;"></div>
-            </div>
-
-            <button class="btn-close" onclick="cerrarModal()">Guardar / Cerrar</button>
-        </div>
-    </div>
-
-    <script src="sens.js?v=14"></script>
 </body>
 </html>
