@@ -1,64 +1,83 @@
-// Base de datos de sensibilidades según la gama seleccionada
-const sensibilidades = {
-    baja: {
-        general: "100",
-        reddot: "98",
-        scope2x: "95",
-        scope4x: "90",
-        sniper: "50",
-        freelook: "65"
-    },
-    media: {
-        general: "95",
-        reddot: "90",
-        scope2x: "85",
-        scope4x: "80",
-        sniper: "45",
-        freelook: "50"
-    },
-    alta: {
-        general: "88",
-        reddot: "82",
-        scope2x: "78",
-        scope4x: "72",
-        sniper: "40",
-        freelook: "40"
+// Variables globales
+let usaDPI = 'si';
+let usaBotonGrande = 'si';
+
+// Seleccionar opción DPI
+function seleccionarDPI(opcion) {
+    usaDPI = opcion;
+    document.getElementById('dpiSi').classList.remove('activo');
+    document.getElementById('dpiNo').classList.remove('activo');
+    if (opcion === 'si') {
+        document.getElementById('dpiSi').classList.add('activo');
+        document.getElementById('campoDPI').style.display = 'block';
+    } else {
+        document.getElementById('dpiNo').classList.add('activo');
+        document.getElementById('campoDPI').style.display = 'none';
     }
-};
-
-// Función para actualizar los valores en la vista cuando cambia el selector
-function actualizarSensibilidad() {
-    const seleccion = document.getElementById("device").value;
-    const datos = sensibilidades[seleccion];
-
-    document.getElementById("general").innerText = datos.general;
-    document.getElementById("reddot").innerText = datos.reddot;
-    document.getElementById("scope2x").innerText = datos.scope2x;
-    document.getElementById("scope4x").innerText = datos.scope4x;
-    document.getElementById("sniper").innerText = datos.sniper;
-    document.getElementById("freelook").innerText = datos.freelook;
 }
 
-// Función para copiar la configuración al portapapeles
-function copiarConfiguracion() {
-    const gen = document.getElementById("general").innerText;
-    const red = document.getElementById("reddot").innerText;
-    const s2x = document.getElementById("scope2x").innerText;
-    const s4x = document.getElementById("scope4x").innerText;
-    const snp = document.getElementById("sniper").innerText;
-    const cam = document.getElementById("freelook").innerText;
-    
-    const texto = `🔥 Sensibilidad Free Fire 🔥\n` +
-                  `• General: ${gen}\n` +
-                  `• Punto Rojo: ${red}\n` +
-                  `• Mira 2x: ${s2x}\n` +
-                  `• Mira 4x: ${s4x}\n` +
-                  `• Francotirador: ${snp}\n` +
-                  `• Cámara 360: ${cam}`;
-    
-    navigator.clipboard.writeText(texto).then(() => {
-        alert("¡Configuración copiada al portapapeles!");
-    }).catch(err => {
-        console.error("Error al copiar: ", err);
-    });
+// Seleccionar tipo de botón de disparo
+function seleccionarBoton(opcion) {
+    usaBotonGrande = opcion;
+    document.getElementById('botonSi').classList.remove('activo');
+    document.getElementById('botonNo').classList.remove('activo');
+    if (opcion === 'si') {
+        document.getElementById('botonSi').classList.add('activo');
+    } else {
+        document.getElementById('botonNo').classList.add('activo');
+    }
 }
+
+// Función principal para calcular sensibilidad
+function calcularSensibilidad() {
+    const dispositivo = document.getElementById('dispositivo').value;
+    const valorDPI = parseInt(document.getElementById('valorDPI').value) || 400;
+
+    // Base de sensibilidad según dispositivo
+    let base = { general: 95, mira: 90, x2: 85, x4: 80, francotirador: 50 };
+
+    // Ajuste por gama
+    if (dispositivo === 'bajo') {
+        base = { general: 100, mira: 98, x2: 92, x4: 88, francotirador: 55 };
+    } else if (dispositivo === 'alto') {
+        base = { general: 88, mira: 85, x2: 80, x4: 75, francotirador: 45 };
+    }
+
+    // Ajuste por DPI
+    if (usaDPI === 'si') {
+        const ajusteDPI = (valorDPI - 400) / 100;
+        base.general += ajusteDPI * 2;
+        base.mira += ajusteDPI * 1.5;
+        base.x2 += ajusteDPI * 1.2;
+        base.x4 += ajusteDPI * 1;
+    } else {
+        // Sin DPI → reducir un poco
+        base.general -= 3;
+        base.mira -= 2;
+        base.x2 -= 2;
+        base.x4 -= 1;
+    }
+
+    // Ajuste por botón de disparo
+    if (usaBotonGrande === 'no') {
+        base.general += 4;
+        base.mira += 3;
+    }
+
+    // Limitar valores entre 1 y 100
+    for (let clave in base) {
+        base[clave] = Math.max(1, Math.min(100, Math.round(base[clave])));
+    }
+
+    // Mostrar resultado
+    document.getElementById('resultadoSens').innerHTML = `
+        🎯 General: ${base.general}<br>
+        🔴 Mira de Punto: ${base.mira}<br>
+        🔭 Mira x2: ${base.x2}<br>
+        🎯 Mira x4: ${base.x4}<br>
+        💥 Francotirador: ${base.francotirador}
+    `;
+}
+
+// Calcular al cargar la página
+window.onload = calcularSensibilidad;
