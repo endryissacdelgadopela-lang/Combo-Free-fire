@@ -3,343 +3,212 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🎯 Sensibilidad Free Fire</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+    <title>Configurador Sensibilidad Free Fire</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ff0000',
+                        dark: '#0f0f0f',
+                        card: '#1a1a1a',
+                    },
+                    fontFamily: {
+                        sans: ['Segoe UI', 'sans-serif'],
+                    },
+                }
+            }
         }
-        body {
-            background: linear-gradient(135deg, #0c0c1e, #1a1a3f, #0f2847);
-            color: #fff;
-            min-height: 100vh;
-            padding: 20px;
+    </script>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .content-auto {
+                content-visibility: auto;
+            }
+            .input-range {
+                -webkit-appearance: none;
+                height: 8px;
+                border-radius: 4px;
+                background: #333;
+                outline: none;
+            }
+            .input-range::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #ff0000;
+                cursor: pointer;
+                box-shadow: 0 0 10px #ff0000;
+            }
+            .input-range::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: #ff0000;
+                cursor: pointer;
+                box-shadow: 0 0 10px #ff0000;
+            }
         }
-        .container {
-            max-width: 460px;
-            margin: 0 auto;
-            background: rgba(20, 25, 45, 0.85);
-            padding: 28px;
-            border-radius: 24px;
-            box-shadow: 0 0 40px rgba(0, 170, 255, 0.18), inset 0 1px 0 rgba(255,255,255,0.08);
-            border: 1px solid rgba(0, 170, 255, 0.25);
-            backdrop-filter: blur(10px);
-        }
-        h1 {
-            text-align: center;
-            color: #00ccff;
-            margin-bottom: 20px;
-            font-size: 23px;
-            text-shadow: 0 0 12px rgba(0, 204, 255, 0.4);
-            letter-spacing: 0.5px;
-        }
-        .pestanas {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-        .pestana {
-            flex: 1;
-            padding: 12px;
-            text-align: center;
-            border-radius: 12px;
-            background: linear-gradient(180deg, #1e2948, #172038);
-            cursor: pointer;
-            transition: .3s;
-            border: 1px solid rgba(0, 170, 255, 0.2);
-            font-weight: 500;
-            font-size: 14px;
-        }
-        .pestana.activa {
-            background: linear-gradient(180deg, #00aaff, #0077dd);
-            border-color: #00ccff;
-            box-shadow: 0 0 15px rgba(0, 170, 255, 0.35);
-            color: #fff;
-            font-weight: bold;
-        }
-        .seccion { display: none; }
-        .seccion.activa {
-            display: block;
-            animation: aparecer .3s ease;
-        }
-        @keyframes aparecer {
-            from {opacity:0; transform: translateY(8px);}
-            to {opacity:1; transform: translateY(0);}
-        }
-        .bloque { margin-bottom: 22px; }
-        label {
-            display: block;
-            margin-bottom: 10px;
-            color: #b3e5ff;
-            font-weight: 500;
-            font-size: 15px;
-        }
-        select, input {
-            width: 100%;
-            padding: 13px 15px;
-            border-radius: 12px;
-            border: none;
-            background: linear-gradient(180deg, #1e2948, #172038);
-            color: #fff;
-            font-size: 15px;
-            border: 1px solid rgba(0, 170, 255, 0.2);
-            outline: none;
-            transition: .3s;
-        }
-        select:focus, input:focus {
-            border-color: #00ccff;
-            box-shadow: 0 0 0 3px rgba(0, 204, 255, 0.15);
-        }
-        .fila-opciones { display: flex; gap: 12px; flex-wrap: wrap; }
-        .opcion {
-            flex: 1;
-            min-width: 100px;
-            padding: 13px 10px;
-            text-align: center;
-            border-radius: 12px;
-            background: linear-gradient(180deg, #1e2948, #172038);
-            cursor: pointer;
-            transition: .3s;
-            border: 1px solid rgba(0, 170, 255, 0.2);
-            font-weight: 500;
-            font-size: 14px;
-        }
-        .opcion.activo {
-            background: linear-gradient(180deg, #00aaff, #0077dd);
-            border-color: #00ccff;
-            box-shadow: 0 0 15px rgba(0, 170, 255, 0.35);
-            color: #fff;
-            font-weight: bold;
-        }
-        button {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(90deg, #00aaff, #0077ee);
-            color: #fff;
-            border: none;
-            border-radius: 14px;
-            font-size: 17px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 8px;
-            box-shadow: 0 6px 18px rgba(0, 119, 238, 0.35);
-            transition: .3s;
-        }
-        button:hover { transform: translateY(-2px); }
-        .resultado {
-            margin-top: 28px;
-            padding: 22px;
-            background: linear-gradient(180deg, rgba(0, 170, 255, 0.08), rgba(0, 119, 238, 0.05));
-            border-radius: 16px;
-            border-left: 4px solid #00ccff;
-        }
-        .resultado h3 { color: #99ddff; margin-bottom: 15px; font-size: 16px; }
-        .item {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(0, 170, 255, 0.1);
-            font-size: 15px;
-        }
-        .item:last-child { border-bottom: none; }
-        .valor {
-            font-weight: bold;
-            color: #66ffaa;
-            text-shadow: 0 0 6px rgba(102, 255, 170, 0.25);
-        }
-        .boton-info {
-            margin-top: 12px;
-            padding: 12px;
-            background: rgba(255, 170, 0, 0.08);
-            border-radius: 10px;
-            border-left: 3px solid #ffaa00;
-            font-size: 14px;
-            color: #ffdd88;
-        }
-        .opcion-pro {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 14px;
-            background: rgba(0,170,255,0.05);
-            border-radius: 12px;
-            margin-bottom: 10px;
-            border: 1px solid rgba(0,170,255,0.15);
-        }
-        .switch {
-            width: 50px;
-            height: 26px;
-            background: #2a3a5f;
-            border-radius: 13px;
-            position: relative;
-            cursor: pointer;
-            transition: .3s;
-        }
-        .switch.activo {
-            background: #00cc66;
-            box-shadow: 0 0 10px rgba(0,204,102,0.3);
-        }
-        .switch::after {
-            content: '';
-            position: absolute;
-            width: 22px;
-            height: 22px;
-            background: #fff;
-            border-radius: 50%;
-            top: 2px;
-            left: 2px;
-            transition: .3s;
-        }
-        .switch.activo::after { left: 26px; }
-        .info-pro {
-            margin-top: 18px;
-            padding: 15px;
-            background: rgba(0,204,102,0.06);
-            border-radius: 12px;
-            border-left: 3px solid #00cc66;
-            font-size: 14px;
-            color: #b3ffd9;
-            line-height: 1.6;
-        }
-        .credito {
-            margin-top: 25px;
-            padding: 12px;
-            text-align: center;
-            background: linear-gradient(90deg, rgba(255,170,0,0.1), rgba(255,100,0,0.08));
-            border-radius: 12px;
-            border: 1px solid rgba(255,170,0,0.25);
-            color: #ffdd66;
-            font-weight: bold;
-            font-size: 15px;
-            text-shadow: 0 0 8px rgba(255,170,0,0.3);
-            letter-spacing: 0.5px;
-        }
-        .oculto { display: none !important; }
     </style>
 </head>
-<body>
-<div class="container">
-    <h1>🎯 Herramientas Free Fire</h1>
-
-    <div class="pestanas">
-        <div class="pestana activa" onclick="cambiarPestana('sensi')">🎯 Sensibilidad</div>
-        <div class="pestana" onclick="cambiarPestana('ffpro')">⚙️ FF PRO</div>
+<body class="bg-dark text-white min-h-screen pb-20">
+    <!-- Crédito Permanente -->
+    <div class="w-full bg-gradient-to-r from-red-700 to-red-500 py-2 text-center font-bold text-sm sticky top-0 z-50 shadow-lg">
+        Freestyle Credit: Endry + Dola 🎮
     </div>
 
-    <!-- SECCIÓN SENSIBILIDAD -->
-    <div class="seccion activa" id="secSensi">
-        <div class="bloque">
-            <label>📱 Tu dispositivo</label>
-            <select id="dispositivo">
-                <option value="iphone">iPhone</option>
-                <option value="samsung">Samsung</option>
-                <option value="xiaomi">Xiaomi / Redmi</option>
-                <option value="motorola">Motorola</option>
-                <option value="huawei">Huawei</option>
-                <option value="oppo">Oppo</option>
-                <option value="vivo">Vivo</option>
-            </select>
+    <div class="container mx-auto px-4 py-6 max-w-2xl">
+        <h1 class="text-[clamp(1.8rem,5vw,2.5rem)] font-black text-center mb-8 bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+            Configurador FF
+        </h1>
+
+        <!-- Pestañas -->
+        <div class="flex gap-2 mb-6 bg-card p-2 rounded-xl">
+            <button id="tabSensi" class="flex-1 py-3 rounded-lg font-bold bg-primary shadow-lg shadow-red-600/30 transition-all">
+                <i class="fa-solid fa-crosshairs mr-2"></i>SENSIBILIDAD
+            </button>
+            <button id="tabProxy" class="flex-1 py-3 rounded-lg font-bold transition-all hover:bg-red-900/30">
+                <i class="fa-solid fa-gear mr-2"></i>FF PROXY
+            </button>
         </div>
 
-        <div class="bloque">
-            <label>🔧 ¿Usas DPI personalizado?</label>
-            <div class="fila-opciones">
-                <div class="opcion activo" id="dpiSi" onclick="selDPI('si')">✅ Con DPI</div>
-                <div class="opcion" id="dpiNo" onclick="selDPI('no')">❌ Sin DPI</div>
+        <!-- SECCIÓN SENSIBILIDAD -->
+        <div id="seccionSensi" class="space-y-6">
+            <!-- Selección Dispositivo -->
+            <div class="bg-card p-5 rounded-xl shadow">
+                <label class="block font-bold mb-3 text-lg">Elige tu dispositivo</label>
+                <select id="dispositivo" class="w-full bg-dark border border-gray-700 rounded-lg p-3 focus:border-primary outline-none">
+                    <option value="iphone">iPhone / iPad</option>
+                    <option value="android">Android Gama Alta</option>
+                    <option value="samsung">Samsung</option>
+                    <option value="xiaomi">Xiaomi / Redmi</option>
+                </select>
+            </div>
+
+            <!-- DPI y Botón Disparo -->
+            <div class="grid grid-cols-2 gap-4">
+                <div class="bg-card p-4 rounded-xl">
+                    <label class="block font-bold mb-2">Usar DPI</label>
+                    <div class="flex gap-2">
+                        <button id="dpiSi" class="flex-1 py-2 rounded-lg bg-primary font-bold">SI</button>
+                        <button id="dpiNo" class="flex-1 py-2 rounded-lg bg-gray-700 font-bold">NO</button>
+                    </div>
+                    <input type="number" id="valorDpi" class="w-full mt-3 bg-dark border border-gray-700 rounded-lg p-2 focus:border-primary outline-none" placeholder="Valor DPI" min="200" max="1200">
+                </div>
+                <div class="bg-card p-4 rounded-xl">
+                    <label class="block font-bold mb-2">Botón de disparo</label>
+                    <div class="flex gap-2">
+                        <button id="botonSi" class="flex-1 py-2 rounded-lg bg-primary font-bold">SI</button>
+                        <button id="botonNo" class="flex-1 py-2 rounded-lg bg-gray-700 font-bold">NO</button>
+                    </div>
+                    <input type="number" id="tamBoton" class="w-full mt-3 bg-dark border border-gray-700 rounded-lg p-2 focus:border-primary outline-none" placeholder="Tamaño %" min="20" max="100">
+                </div>
+            </div>
+
+            <!-- Sensibilidades TODO ROJO -->
+            <div class="bg-card p-5 rounded-xl shadow space-y-5">
+                <h3 class="text-xl font-bold text-primary">Sensibilidad Todo Rojo</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold">Mira de Punto Rojo</label>
+                            <span id="puntRojoValor" class="font-bold text-primary">100</span>
+                        </div>
+                        <input type="range" id="puntRojo" min="0" max="100" value="100" class="input-range w-full">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold">Mira x2</label>
+                            <span id="mira2Valor" class="font-bold text-primary">98</span>
+                        </div>
+                        <input type="range" id="mira2" min="0" max="100" value="98" class="input-range w-full">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold">Mira x4</label>
+                            <span id="mira4Valor" class="font-bold text-primary">95</span>
+                        </div>
+                        <input type="range" id="mira4" min="0" max="100" value="95" class="input-range w-full">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold">Mira Francotirador</label>
+                            <span id="francoValor" class="font-bold text-primary">90</span>
+                        </div>
+                        <input type="range" id="franco" min="0" max="100" value="90" class="input-range w-full">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between mb-1">
+                            <label class="font-semibold">Cámara 360</label>
+                            <span id="camaraValor" class="font-bold text-primary">100</span>
+                        </div>
+                        <input type="range" id="camara" min="0" max="100" value="100" class="input-range w-full">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botones Acción -->
+            <div class="grid grid-cols-2 gap-4">
+                <button id="btnCargar" class="py-4 bg-gradient-to-r from-red-600 to-red-500 rounded-xl font-bold text-lg shadow-lg hover:shadow-red-600/40 transition-all">
+                    <i class="fa-solid fa-download mr-2"></i>CARGAR TODO ROJO
+                </button>
+                <button id="btnCopiar" class="py-4 bg-gradient-to-r from-red-800 to-red-700 rounded-xl font-bold text-lg shadow-lg hover:shadow-red-700/40 transition-all">
+                    <i class="fa-solid fa-copy mr-2"></i>COPIAR AJUSTES
+                </button>
             </div>
         </div>
 
-        <div class="bloque" id="campoDPI">
-            <label>Valor de DPI</label>
-            <input type="number" id="valorDPI" value="480" placeholder="Ej: 480, 550, 600">
-        </div>
+        <!-- SECCIÓN FF PROXY -->
+        <div id="seccionProxy" class="space-y-6 hidden">
+            <div class="bg-card p-5 rounded-xl shadow">
+                <h3 class="text-xl font-bold mb-4 text-primary">Estabiliza Free Fire</h3>
+                
+                <div class="space-y-4">
+                    <div>
+                        <label class="block font-bold mb-2">Abrir versión:</label>
+                        <select id="versionFF" class="w-full bg-dark border border-gray-700 rounded-lg p-3 focus:border-primary outline-none">
+                            <option value="max">Free Fire MAX</option>
+                            <option value="normal">Free Fire Normal</option>
+                        </select>
+                    </div>
 
-        <div class="bloque">
-            <label>🔥 Tamaño del botón de disparo</label>
-            <div class="fila-opciones">
-                <div class="opcion activo" id="botonSi" onclick="selBoton('si')">✅ Grande</div>
-                <div class="opcion" id="botonNo" onclick="selBoton('no')">❌ Pequeño</div>
-            </div>
-        </div>
+                    <div class="flex items-center justify-between p-3 bg-dark rounded-lg">
+                        <label class="font-semibold">Quitar llamadas y notificaciones</label>
+                        <button id="opcion1" class="w-12 h-6 bg-gray-700 rounded-full relative transition-all">
+                            <span class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-all"></span>
+                        </button>
+                    </div>
 
-        <div class="resultado">
-            <h3>📋 Sensibilidad Recomendada</h3>
-            <div class="item"><span>🎯 General</span><span class="valor" id="vGeneral">—</span></div>
-            <div class="item"><span>🔴 Mira de Punto Rojo</span><span class="valor" id="vRojo">—</span></div>
-            <div class="item"><span>🔭 Mira x2</span><span class="valor" id="vX2">—</span></div>
-            <div class="item"><span>🎯 Mira x4</span><span class="valor" id="vX4">—</span></div>
-            <div class="item"><span>💥 Francotirador</span><span class="valor" id="vFran">—</span></div>
-            <div class="item"><span>🔄 Cámara 360</span><span class="valor" id="vCam">—</span></div>
-            <div class="boton-info">
-                🔥 <strong>Tamaño recomendado del botón:</strong> <span id="tamañoBoton">—</span>
+                    <div class="flex items-center justify-between p-3 bg-dark rounded-lg">
+                        <label class="font-semibold">Aceleración GPU</label>
+                        <button id="opcion2" class="w-12 h-6 bg-gray-700 rounded-full relative transition-all">
+                            <span class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-all"></span>
+                        </button>
+                    </div>
+
+                    <div class="flex items-center justify-between p-3 bg-dark rounded-lg">
+                        <label class="font-semibold">Modo Alto Rendimiento</label>
+                        <button id="opcion3" class="w-12 h-6 bg-gray-700 rounded-full relative transition-all">
+                            <span class="absolute top-1 left-1 w-4 h-4 bg-white rounded-full transition-all"></span>
+                        </button>
+                    </div>
+                </div>
             </div>
+
+            <button class="w-full py-4 bg-gradient-to-r from-red-600 to-red-500 rounded-xl font-bold text-lg shadow-lg">
+                <i class="fa-solid fa-bolt mr-2"></i>APLICAR Y ABRIR FF
+            </button>
         </div>
     </div>
 
-    <!-- SECCIÓN FF PRO -->
-    <div class="seccion" id="secFFPro">
-        <div class="bloque">
-            <label>🎮 Versión del juego</label>
-            <div class="fila-opciones">
-                <div class="opcion activo" id="vNormal" onclick="selVersion('normal')">Free Fire Normal</div>
-                <div class="opcion" id="vMax" onclick="selVersion('max')">Free Fire MAX</div>
-            </div>
-        </div>
-
-        <div class="bloque">
-            <label>🚀 Estabilizar y mejorar rendimiento</label>
-            
-            <div class="opcion-pro">
-                <span>📵 Bloquear llamadas entrantes</span>
-                <div class="switch" id="swLlamadas" onclick="toggleSwitch(this)"></div>
-            </div>
-
-            <div class="opcion-pro">
-                <span>🔇 Ocultar notificaciones</span>
-                <div class="switch" id="swNotif" onclick="toggleSwitch(this)"></div>
-            </div>
-
-            <div class="opcion-pro">
-                <span>🎨 Aceleración GPU</span>
-                <div class="switch" id="swGPU" onclick="toggleSwitch(this)"></div>
-            </div>
-
-            <div class="opcion-pro">
-                <span>⚡ Forzar renderizado GPU</span>
-                <div class="switch" id="swRender" onclick="toggleSwitch(this)"></div>
-            </div>
-
-            <div class="opcion-pro">
-                <span>📶 Optimizar conexión (FF Proxy)</span>
-                <div class="switch" id="swProxy" onclick="toggleSwitch(this)"></div>
-            </div>
-
-            <div class="opcion-pro">
-                <span>🔋 Optimizar batería al jugar</span>
-                <div class="switch" id="swBateria" onclick="toggleSwitch(this)"></div>
-            </div>
-
-            <div class="opcion-pro">
-                <span>📺 Resolución y gráficos</span>
-                <div class="switch" id="swGraficos" onclick="toggleSwitch(this)"></div>
-            </div>
-        </div>
-
-        <button onclick="generarConfig()">⚙️ Generar Configuración FF PRO</button>
-
-        <div class="info-pro" id="configPro">
-            ✅ Activa las opciones arriba y presiona el botón para ver los ajustes recomendados.
-        </div>
-    </div>
-
-    <!-- TEXTO PERMANENTE -->
-    <div class="credito">
-        ✨ Freestyle Credit Endry + Dola ✨
-    </div>
-
-</div>
-<script src="sens.js"></script>
+    <script src="sens.js"></script>
 </body>
 </html>
