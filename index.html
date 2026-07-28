@@ -3,232 +3,135 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free Fire - Sensibilidad & Optimización</title>
+    <title>Configurador FF - Endry + Dola</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="sens.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        primary: '#FF6B00',
-                        secondary: '#1A1A2E',
-                        dark: '#0F0F1A',
-                        light: '#F5F5F5'
-                    },
-                    fontFamily: {
-                        sans: ['Segoe UI', 'sans-serif']
+                        on: '#FFD700',
+                        off: '#27272a',
+                        bg: '#09090b',
+                        card: '#18181b'
                     }
                 }
             }
         }
     </script>
-    <style type="text/tailwindcss">
-        @layer utilities {
-            .content-auto {
-                content-visibility: auto;
-            }
-            .gradient-bg {
-                background: linear-gradient(135deg, #1A1A2E 0%, #0F0F1A 100%);
-            }
-            .card-glass {
-                background: rgba(255,255,255,0.05);
-                backdrop-filter: blur(10px);
-                border: 1px solid rgba(255,255,255,0.1);
-            }
-            .input-range {
-                -webkit-appearance: none;
-                height: 8px;
-                border-radius: 4px;
-                background: #333;
-                outline: none;
-            }
-            .input-range::-webkit-slider-thumb {
-                -webkit-appearance: none;
-                width: 20px;
-                height: 20px;
-                border-radius: 50%;
-                background: #FF6B00;
-                cursor: pointer;
-                transition: all 0.2s;
-            }
-            .input-range::-webkit-slider-thumb:hover {
-                transform: scale(1.2);
-                box-shadow: 0 0 10px #FF6B00;
-            }
-            .tab-active {
-                border-bottom: 3px solid #FF6B00;
-                color: #FF6B00;
-            }
+    <style>
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 22px; height: 22px;
+            background: #FFD700; border-radius: 50%;
+            cursor: pointer; box-shadow: 0 0 10px #FFD700;
         }
+        .slider { -webkit-appearance: none; height: 8px; background: #3f3f46; border-radius: 4px; }
     </style>
 </head>
-<body class="gradient-bg min-h-screen text-light font-sans">
-    <!-- Crédito Permanente -->
-    <div class="fixed top-0 left-0 right-0 bg-primary/90 backdrop-blur-sm py-2 text-center text-sm font-bold z-50">
-        Freestyle Credit: Endry + Dola 🎯
+<body class="bg-bg text-white min-h-screen">
+
+    <!-- Crédito permanente -->
+    <div class="w-full bg-on text-black py-2 text-center font-bold text-sm sticky top-0 z-50">
+        Freestyle Credit: Endry + Dola 🎮
     </div>
 
-    <div class="container mx-auto px-4 pt-12 pb-8 max-w-2xl">
-        <!-- Encabezado -->
-        <header class="text-center mb-8">
-            <h1 class="text-[clamp(1.8rem,5vw,2.5rem)] font-bold text-primary mb-2">FREE FIRE TOOL</h1>
-            <p class="text-gray-300">Configuración profesional para dispositivos iPhone y gama alta</p>
-        </header>
+    <div class="container mx-auto px-4 py-6 max-w-lg">
+        <h1 class="text-2xl font-black text-center text-on mb-6">🎯 SENSIBILIDAD FF</h1>
 
         <!-- Pestañas -->
-        <div class="flex justify-around mb-6 border-b border-gray-700">
-            <button id="tabSensi" class="py-3 px-4 font-bold text-lg tab-active transition-all" onclick="mostrarSeccion('sensibilidad')">
-                <i class="fa fa-crosshairs mr-2"></i>Sensibilidad
+        <div class="flex gap-2 mb-6">
+            <button id="tabS" class="flex-1 py-3 rounded-lg font-bold bg-on text-black" onclick="irA(1)">
+                <i class="fa-solid fa-crosshairs mr-1"></i> SENSIBILIDAD
             </button>
-            <button id="tabProxy" class="py-3 px-4 font-bold text-lg text-gray-400 transition-all" onclick="mostrarSeccion('proxy')">
-                <i class="fa fa-bolt mr-2"></i>FF PROXY
+            <button id="tabF" class="flex-1 py-3 rounded-lg font-bold bg-off" onclick="irA(2)">
+                <i class="fa-solid fa-bolt mr-1"></i> FF PROXY
             </button>
         </div>
 
         <!-- SECCIÓN SENSIBILIDAD -->
-        <section id="seccionSensibilidad" class="space-y-6">
-            <!-- Selección de Dispositivo -->
-            <div class="card-glass rounded-xl p-5">
-                <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa fa-mobile mr-2"></i>Elige tu Dispositivo</h3>
-                <select id="dispositivo" class="w-full bg-dark border border-gray-600 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-primary" onchange="cargarConfiguracion()">
-                    <option value="iphone">iPhone / Gama Alta</option>
-                    <option value="android">Android Gama Alta</option>
-                    <option value="media">Gama Media</option>
+        <div id="s1" class="space-y-4">
+            <div class="bg-card p-4 rounded-xl">
+                <label class="font-bold block mb-2">Elige tu dispositivo</label>
+                <select class="w-full bg-bg border border-zinc-600 rounded-lg p-3">
+                    <option>iPhone / iPad</option>
+                    <option>Android Gama Alta</option>
+                    <option>Samsung / Xiaomi</option>
                 </select>
             </div>
 
-            <!-- Opciones Generales -->
-            <div class="card-glass rounded-xl p-5">
-                <div class="flex items-center justify-between mb-4">
-                    <h3 class="text-xl font-bold"><i class="fa fa-sliders mr-2"></i>Configuración</h3>
+            <div class="bg-card p-4 rounded-xl space-y-4">
+                <h3 class="font-bold text-lg text-on">🔥 Sensibilidad Todo Rojo</h3>
+
+                <div>
+                    <div class="flex justify-between mb-1"><span>Punto Rojo</span><span id="v1" class="text-on font-bold">100</span></div>
+                    <input type="range" min="0" max="100" value="100" class="slider w-full" oninput="actVal(1)">
                 </div>
-                <div class="flex gap-4 mb-4">
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="usarDpi" class="w-4 h-4 accent-primary" onchange="toggleDpi()">
-                        <span>Usar DPI</span>
-                    </label>
-                    <label class="flex items-center gap-2 cursor-pointer">
-                        <input type="checkbox" id="usarBoton" class="w-4 h-4 accent-primary" checked>
-                        <span>Botón de disparo</span>
-                    </label>
+                <div>
+                    <div class="flex justify-between mb-1"><span>Mira x2</span><span id="v2" class="text-on font-bold">98</span></div>
+                    <input type="range" min="0" max="100" value="98" class="slider w-full" oninput="actVal(2)">
                 </div>
-                <div id="dpiContainer" class="hidden mb-4">
-                    <label class="block mb-2">Valor DPI: <span id="dpiValor">411</span></label>
-                    <input type="range" id="dpi" min="360" max="600" value="411" class="w-full input-range" oninput="actualizarDpi()">
+                <div>
+                    <div class="flex justify-between mb-1"><span>Mira x4</span><span id="v3" class="text-on font-bold">95</span></div>
+                    <input type="range" min="0" max="100" value="95" class="slider w-full" oninput="actVal(3)">
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1"><span>Francotirador</span><span id="v4" class="text-on font-bold">92</span></div>
+                    <input type="range" min="0" max="100" value="92" class="slider w-full" oninput="actVal(4)">
+                </div>
+                <div>
+                    <div class="flex justify-between mb-1"><span>Cámara 360</span><span id="v5" class="text-on font-bold">100</span></div>
+                    <input type="range" min="0" max="100" value="100" class="slider w-full" oninput="actVal(5)">
                 </div>
             </div>
 
-            <!-- Ajustes de Mira -->
-            <div class="card-glass rounded-xl p-5 space-y-5">
-                <h3 class="text-xl font-bold"><i class="fa fa-bullseye mr-2"></i>Sensibilidad por Mira</h3>
-
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label>Punto Rojo</label>
-                        <span id="rojoValor">95</span>
-                    </div>
-                    <input type="range" id="rojo" min="0" max="100" value="95" class="w-full input-range" oninput="actualizarValor('rojo')">
-                </div>
-
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label>Mira x2</label>
-                        <span id="x2Valor">90</span>
-                    </div>
-                    <input type="range" id="x2" min="0" max="100" value="90" class="w-full input-range" oninput="actualizarValor('x2')">
-                </div>
-
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label>Mira x4</label>
-                        <span id="x4Valor">85</span>
-                    </div>
-                    <input type="range" id="x4" min="0" max="100" value="85" class="w-full input-range" oninput="actualizarValor('x4')">
-                </div>
-
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label>Mira Francotirador</label>
-                        <span id="sniperValor">50</span>
-                    </div>
-                    <input type="range" id="sniper" min="0" max="100" value="50" class="w-full input-range" oninput="actualizarValor('sniper')">
-                </div>
-
-                <div>
-                    <div class="flex justify-between mb-1">
-                        <label>Cámara 360</label>
-                        <span id="camaraValor">100</span>
-                    </div>
-                    <input type="range" id="camara" min="0" max="100" value="100" class="w-full input-range" oninput="actualizarValor('camara')">
-                </div>
-
-                <div id="botonContainer">
-                    <div class="flex justify-between mb-1">
-                        <label>Tamaño Botón de Disparo</label>
-                        <span id="botonValor">48%</span>
-                    </div>
-                    <input type="range" id="boton" min="30" max="70" value="48" class="w-full input-range" oninput="actualizarValorBoton()">
-                </div>
+            <div class="grid grid-cols-2 gap-3">
+                <button id="d1" class="py-3 rounded-lg font-bold bg-on text-black" onclick="selDpi(true)">✅ Con DPI</button>
+                <button id="d2" class="py-3 rounded-lg font-bold bg-off" onclick="selDpi(false)">❌ Sin DPI</button>
             </div>
 
-            <button class="w-full bg-primary hover:bg-primary/80 transition-all py-4 rounded-xl font-bold text-lg shadow-lg" onclick="guardarConfiguracion()">
-                <i class="fa fa-save mr-2"></i>GUARDAR CONFIGURACIÓN
+            <button class="w-full bg-on text-black py-4 rounded-xl font-bold text-lg" onclick="copiar()">
+                <i class="fa-solid fa-copy mr-2"></i> COPIAR AJUSTES
             </button>
-        </section>
+        </div>
 
         <!-- SECCIÓN FF PROXY -->
-        <section id="seccionProxy" class="space-y-6 hidden">
-            <div class="card-glass rounded-xl p-5">
-                <h3 class="text-xl font-bold mb-4 flex items-center"><i class="fa fa-rocket mr-2"></i>Estabiliza Free Fire</h3>
-                
-                <div class="mb-5">
-                    <label class="block mb-2 font-semibold">Abrir versión:</label>
-                    <div class="grid grid-cols-2 gap-3">
-                        <button id="btnNormal" class="py-3 rounded-lg bg-primary text-dark font-bold" onclick="seleccionarVersion('normal')">Free Fire Normal</button>
-                        <button id="btnMax" class="py-3 rounded-lg bg-dark border border-gray-600 font-bold" onclick="seleccionarVersion('max')">Free Fire MAX</button>
-                    </div>
+        <div id="s2" class="space-y-4 hidden">
+            <div class="bg-card p-4 rounded-xl space-y-4">
+                <h3 class="font-bold text-lg text-on">⚙️ Estabiliza Free Fire</h3>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <button id="ff1" class="py-3 rounded-lg font-bold bg-on text-black" onclick="verFF('normal')">FF Normal</button>
+                    <button id="ff2" class="py-3 rounded-lg font-bold bg-off" onclick="verFF('max')">FF MAX</button>
                 </div>
 
-                <div class="space-y-4 mt-6">
-                    <h4 class="font-bold text-lg">Optimizaciones:</h4>
-                    
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-dark/50 cursor-pointer">
-                        <span>Desactivar llamadas y notificaciones</span>
-                        <input type="checkbox" class="w-5 h-5 accent-primary" id="optNotificaciones">
-                    </label>
-
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-dark/50 cursor-pointer">
-                        <span>Aceleración GPU y Rendimiento</span>
-                        <input type="checkbox" class="w-5 h-5 accent-primary" id="optGpu" checked>
-                    </label>
-
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-dark/50 cursor-pointer">
-                        <span>Modo Juego / Alto Rendimiento</span>
-                        <input type="checkbox" class="w-5 h-5 accent-primary" id="optRendimiento" checked>
-                    </label>
-
-                    <label class="flex items-center justify-between p-3 rounded-lg bg-dark/50 cursor-pointer">
-                        <span>Limpiar memoria antes de jugar</span>
-                        <input type="checkbox" class="w-5 h-5 accent-primary" id="optMemoria">
-                    </label>
+                <div class="flex items-center justify-between p-3 bg-bg rounded-lg">
+                    <span>Quitar llamadas y notificaciones</span>
+                    <button id="sw1" class="w-12 h-6 bg-on rounded-full relative" onclick="toggle(1)">
+                        <span class="absolute right-1 top-1 w-4 h-4 bg-black rounded-full"></span>
+                    </button>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-bg rounded-lg">
+                    <span>Aceleración GPU</span>
+                    <button id="sw2" class="w-12 h-6 bg-on rounded-full relative" onclick="toggle(2)">
+                        <span class="absolute right-1 top-1 w-4 h-4 bg-black rounded-full"></span>
+                    </button>
+                </div>
+                <div class="flex items-center justify-between p-3 bg-bg rounded-lg">
+                    <span>Modo Alto Rendimiento</span>
+                    <button id="sw3" class="w-12 h-6 bg-off rounded-full relative" onclick="toggle(3)">
+                        <span class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full"></span>
+                    </button>
                 </div>
             </div>
 
-            <button class="w-full bg-green-600 hover:bg-green-700 transition-all py-4 rounded-xl font-bold text-lg shadow-lg" onclick="aplicarProxy()">
-                <i class="fa fa-check-circle mr-2"></i>ACTIVAR & ABRIR FREE FIRE
+            <button class="w-full bg-on text-black py-4 rounded-xl font-bold text-lg" onclick="aplicar()">
+                <i class="fa-solid fa-check mr-2"></i> APLICAR Y ABRIR FF
             </button>
-
-            <div class="text-center text-gray-400 text-sm mt-4">
-                ⚠️ Nota: Estas configuraciones optimizan tu dispositivo para reducir lag y mejorar la fluidez.
-            </div>
-        </section>
-
+        </div>
     </div>
 
-    <footer class="text-center py-4 text-gray-500 text-xs">
-        Freestyle Credit: Endry + Dola | Versión 2026
-    </footer>
+    <script src="sens.js"></script>
 </body>
 </html>
